@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0C10E109-E52F-478C-8C9D-D5733CF12E98}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DuckSync.Core</RootNamespace>
+    <AssemblyName>DuckSync.Core</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Infrastructure\Abstract\IDuckObserver.cs" />
+    <Compile Include="Infrastructure\Concrete\DuckConnect.cs" />
+    <Compile Include="Infrastructure\CRC32.cs" />
+    <Compile Include="Infrastructure\DeviaceManager.cs" />
+    <Compile Include="Infrastructure\DuckRemoteHostHistoryEntry.cs" />
+    <Compile Include="Infrastructure\FilePacketCreator.cs" />
+    <Compile Include="Infrastructure\Sync.cs" />
+    <Compile Include="Infrastructure\TCPPacketReCreator.cs" />
+    <Compile Include="Models\Abstract\TCPPacket.cs" />
+    <Compile Include="Models\Abstract\UDPPacket.cs" />
+    <Compile Include="Models\Concrete\Discovery.cs" />
+    <Compile Include="Models\Concrete\DuckACK.cs" />
+    <Compile Include="Models\Concrete\FileDeletePacket.cs" />
+    <Compile Include="Models\Concrete\FileInfoPacket.cs" />
+    <Compile Include="Models\Concrete\FilePacket.cs" />
+    <Compile Include="Models\Concrete\FileRequestPacket.cs" />
+    <Compile Include="Models\Concrete\FolderInfoPacket.cs" />
+    <Compile Include="Models\Concrete\NoRequestPacket.cs" />
+    <Compile Include="Models\Concrete\SyncInfoPacket.cs" />
+    <Compile Include="Models\Concrete\SyncNotyfy.cs" />
+    <Compile Include="Models\Concrete\SyncRequest.cs" />
+    <Compile Include="Models\Concrete\SyncUDPPacket.cs" />
+    <Compile Include="Models\ConnectionTimeOutException.cs" />
+    <Compile Include="Models\DuckRemoteHost.cs" />
+    <Compile Include="Models\DuckRemoteHostSync.cs" />
+    <Compile Include="Models\FileInf.cs" />
+    <Compile Include="Models\FileManager.cs" />
+    <Compile Include="Models\InvalidHostException.cs" />
+    <Compile Include="Models\IPUtils.cs" />
+    <Compile Include="Infrastructure\Concrete\UdpSocket.cs" />
+    <Compile Include="Infrastructure\Concrete\TcpSocket.cs" />
+    <Compile Include="Infrastructure\Concrete\TcpSocketListner.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\DuckSyncWin.Domain\PiggySync.Domain.csproj">
+      <Project>{AF7679D0-A9DE-407F-AA79-46726C54F4A9}</Project>
+      <Name>PiggySync.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

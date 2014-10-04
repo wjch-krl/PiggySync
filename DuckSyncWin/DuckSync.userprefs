@@ -1,0 +1,25 @@
+﻿<Properties GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DuckSync.sln">
+    <Files>
+      <File FileName="DuckSyncWin.WinUI/Views/MainWindow.cs" Line="16" Column="16" />
+      <File FileName="DuckSync.Core/Infrastructure/Concrete/DuckConnect.cs" Line="22" Column="22" />
+      <File FileName="DuckSync.Core/Infrastructure/Concrete/UdpSocket.cs" Line="41" Column="41" />
+      <File FileName="DuckSync.Core/Infrastructure/Concrete/TcpSocket.cs" Line="4" Column="4" />
+      <File FileName="DuckSync.Core/Infrastructure/Concrete/TcpSocketListner.cs" Line="41" Column="41" />
+      <File FileName="DuckSync.sln" Line="2" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
