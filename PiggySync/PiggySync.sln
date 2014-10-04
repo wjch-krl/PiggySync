@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.Domain", "DuckSyncWin.Domain\PiggySync.Domain.csproj", "{AF7679D0-A9DE-407F-AA79-46726C54F4A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.Domain", "PiggySync.Domain\PiggySync.Domain.csproj", "{AF7679D0-A9DE-407F-AA79-46726C54F4A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuckSync.DesktopApp", "DuckSyncWin.WinUI\DuckSync.DesktopApp.csproj", "{7ED262DF-9B80-4080-8593-7019B98B01AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuckSync.DesktopApp", "PiggySync.WinUI\DuckSync.DesktopApp.csproj", "{7ED262DF-9B80-4080-8593-7019B98B01AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.Core", "DuckSync.Core\PiggySync.Core.csproj", "{0C10E109-E52F-478C-8C9D-D5733CF12E98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.Core", "PiggySync.Core\PiggySync.Core.csproj", "{0C10E109-E52F-478C-8C9D-D5733CF12E98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.Tests", "DuckSync.Tests\PiggySync.Tests.csproj", "{B564F8F1-CFC0-4109-834D-1777A9BA5706}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.Tests", "PiggySync.Tests\PiggySync.Tests.csproj", "{B564F8F1-CFC0-4109-834D-1777A9BA5706}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.MobileApp", "DuckSync.MobileApp\PiggySync.MobileApp.csproj", "{81DED26B-9521-40C7-B4F2-86B877CB550E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.MobileApp", "PiggySync.MobileApp\PiggySync.MobileApp.csproj", "{81DED26B-9521-40C7-B4F2-86B877CB550E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.DesktopFileWather", "DuckSync.DesktopFileWather\PiggySync.DesktopFileWather.csproj", "{3E68EA85-423E-4FBA-A702-F02C0ECBC2FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.DesktopFileWather", "PiggySync.DesktopFileWather\PiggySync.DesktopFileWather.csproj", "{3E68EA85-423E-4FBA-A702-F02C0ECBC2FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.AndroidFileWatcher", "PPiggySync.AndroidFileWatcher\PiggySync.AndroidFileWatcher.csproj", "{52EDFDF7-47AA-4B86-9D4B-D324D18E7201}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.AndroidFileWatcher", "PiggySync.AndroidFileWatcher\PiggySync.AndroidFileWatcher.csproj", "{52EDFDF7-47AA-4B86-9D4B-D324D18E7201}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.MacApp", "PiggySync.MacApp\PiggySync.MacApp.csproj", "{2CF6D888-9DA2-4D32-A96D-6002F0FFED19}"
 EndProject
