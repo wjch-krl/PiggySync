@@ -72,8 +72,7 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void GetActiveHostsNamesTest() //jak wyzej
         {
-            PiggyConnect target = new PiggyConnect(); // TODO: Initialize to an appropriate value
-            List<string> expected = null; // TODO: Initialize to an appropriate value
+            PiggyConnect target = new PiggyConnect(); 
             List<string> actual;
             actual = target.GetActiveHostsNames();
             Assert.IsNotNull(actual);

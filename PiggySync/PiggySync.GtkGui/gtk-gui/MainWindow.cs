@@ -52,6 +52,9 @@ public partial class MainWindow
 		// Container child fixed1.Gtk.Fixed+FixedChild
 		this.progressbar1 = new global::Gtk.ProgressBar ();
 		this.progressbar1.Name = "progressbar1";
+		this.progressbar1.Text = "";
+		this.progressbar1.Fraction = 0.73;
+		this.progressbar1.PulseStep = 0.41;
 		this.fixed1.Add (this.progressbar1);
 		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.progressbar1]));
 		w3.X = 13;
@@ -81,7 +84,7 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 251;
+		this.DefaultWidth = 275;
 		this.DefaultHeight = 276;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);

@@ -7,7 +7,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/PiggySync.GtkGui.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="251 276">
+  <widget class="Gtk.Window" id="MainWindow" design-size="275 276">
     <property name="MemberName" />
     <property name="Title" translatable="yes">PiGGY .... sync</property>
     <property name="Icon">stock:gtk-execute Menu</property>
@@ -46,15 +46,6 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.ProgressBar" id="progressbar1">
-            <property name="MemberName" />
-          </widget>
-          <packing>
-            <property name="X">13</property>
-            <property name="Y">142</property>
-          </packing>
-        </child>
-        <child>
           <widget class="Gtk.Button" id="chooseFolderButton">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
@@ -83,10 +74,21 @@
             <property name="Y">241</property>
           </packing>
         </child>
+        <child>
+          <widget class="Gtk.ProgressBar" id="progressbar1">
+            <property name="MemberName" />
+            <property name="Text" translatable="yes" />
+            <property name="PulseStep">0</property>
+          </widget>
+          <packing>
+            <property name="X">13</property>
+            <property name="Y">152</property>
+          </packing>
+        </child>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="PiggySync.GtkGui.ChooseFolderDialog" design-size="632 417">
+  <widget class="Gtk.Dialog" id="PiggySync.GtkGui.ChooseFolderDialog" design-size="400 300">
     <property name="MemberName" />
     <property name="Title" translatable="yes">dialog1</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -97,13 +99,7 @@
         <property name="MemberName" />
         <property name="BorderWidth">2</property>
         <child>
-          <widget class="Gtk.FileChooserWidget" id="filechooserwidget3">
-            <property name="MemberName" />
-          </widget>
-          <packing>
-            <property name="Position">0</property>
-            <property name="AutoSize">True</property>
-          </packing>
+          <placeholder />
         </child>
       </widget>
     </child>

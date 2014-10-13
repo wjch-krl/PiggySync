@@ -73,7 +73,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\DuckSyncWin.Domain\PiggySync.Domain.csproj">
+    <ProjectReference Include="..\PiggySync.Domain\PiggySync.Domain.csproj">
       <Project>{AF7679D0-A9DE-407F-AA79-46726C54F4A9}</Project>
       <Name>PiggySync.Domain</Name>
     </ProjectReference>
