@@ -11,11 +11,20 @@ namespace PiggySyncWin.WinUI.Models
         {
         }
         
-        public ulong LastModyfied
+		public UInt64 LastModyfied
         {
             get;
             set;
         }
+
+		public DateTime LastMdyfiedDate {
+			get {
+				return new DateTime (1970, 1, 1).AddTicks((long)LastModyfied);
+			}
+			set {
+				LastModyfied = (UInt64)(value - new DateTime (1970, 1, 1)).Ticks;
+			}
+		}
 
         public uint FileSize
         {

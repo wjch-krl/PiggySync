@@ -17,12 +17,13 @@ namespace PiggySyncWin.WinUI
         static void Main()
         {
            // ConsoleManager.Show(); //Shows the console window
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            var x = new MainWindow();
 
-
+			do {
+				System.Threading.Thread.Sleep(1000);
+			} while (true);
 
         }
     }
