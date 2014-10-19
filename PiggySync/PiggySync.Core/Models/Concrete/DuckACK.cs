@@ -8,7 +8,7 @@ namespace PiggySyncWin.WinUI.Models
 {
     class PiggyACK : SyncUDPPacket
     {
-        public PiggyACK(uint seqNumber)
+        public PiggyACK(UInt32 seqNumber)
             : base(seqNumber, 0)
         {
         }

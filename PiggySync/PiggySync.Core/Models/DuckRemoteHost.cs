@@ -32,7 +32,7 @@ namespace PiggySyncWin.WinUI.Models
             return base.GetHashCode();
         }
 
-        public uint SEQNumber
+        public UInt32 SEQNumber
         {
             get;
             set;

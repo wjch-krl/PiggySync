@@ -8,7 +8,7 @@ namespace PiggySyncWin.WinUI.Models
 {
     public class SyncNotyfy : SyncUDPPacket
     {
-        public SyncNotyfy(uint seqNumber)
+        public SyncNotyfy(UInt32 seqNumber)
             : base(seqNumber, 170)
         {
         }

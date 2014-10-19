@@ -95,15 +95,15 @@ namespace PiggySyncWin.WinUI.Models
             return packet;
         }
 
-        public uint GetFileCount()
+        public UInt32 GetFileCount()
         {
-            //uint tmp=(uint)files.Count;
+            //UInt32 tmp=(UInt32)files.Count;
             //foreach (var x in folders)
             //{
             //    tmp += x.GetFileCount();
             //}
             //return tmp;
-            return (uint) (files.Count + folders.Count + deletedFiles.Count);
+            return (UInt32) (files.Count + folders.Count + deletedFiles.Count);
         }
 
         public byte[][] GetFilePackets() //TODO Those methods must be tested well
@@ -135,7 +135,7 @@ namespace PiggySyncWin.WinUI.Models
             return new SyncInfoPacket(this);
         }
 
-        public uint ElelmentsCount { get; set; }
+        public UInt32 ElelmentsCount { get; set; }
 
         public object Clone()
         {

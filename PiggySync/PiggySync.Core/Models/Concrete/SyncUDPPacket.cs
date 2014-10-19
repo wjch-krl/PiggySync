@@ -8,8 +8,8 @@ namespace PiggySyncWin.WinUI.Models
 {
     public class SyncUDPPacket : UDPPacket
     {
-        private uint seqNumber;
-        protected SyncUDPPacket(uint seqNumber,byte code)
+        private UInt32 seqNumber;
+        protected SyncUDPPacket(UInt32 seqNumber,byte code)
             : base(code)
         {
             this.seqNumber = seqNumber;

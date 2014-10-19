@@ -1,5 +1,6 @@
 ﻿using PiggySyncWin.WinUI.Models;
 using NUnit.Framework;
+using System;
 
 namespace PiggySyncWin.UnitTests
 {
@@ -19,7 +20,7 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void SyncNotyfyConstructorTest()
         {
-            uint seqNumber = 170; // TODO: Initialize to an appropriate value
+            UInt32 seqNumber = 170; // TODO: Initialize to an appropriate value
             SyncNotyfy target = new SyncNotyfy(seqNumber);
             Assert.IsNotNull(target);
         }

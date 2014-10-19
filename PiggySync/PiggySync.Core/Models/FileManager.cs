@@ -7,6 +7,8 @@ using System.Threading;
 using PiggySyncWin.Domain.Concrete;
 using PiggySyncWin.Domain;
 using System.IO;
+using PiggySyncWin.WinUI.Infrastructure;
+using DuckSync.Core;
 
 namespace PiggySyncWin.WinUI.Models
 {
@@ -69,9 +71,9 @@ namespace PiggySyncWin.WinUI.Models
 				System.Diagnostics.Debug.WriteLine ("Added file: " + x.Substring (len + 1));
 				root.Files.Add (new FileInfoPacket (new FileInf () {
 					FileName = fileInf.Name,
-					FileSize = (uint)fileInf.Length,//TODO check overfllow
+					FileSize = (UInt32)fileInf.Length,//TODO check overfllow
 					LastModyfied = (UInt64)(fileInf.LastWriteTimeUtc - new DateTime (1970, 1, 1)).Ticks,
-					CheckSum = 1,//TODO calculate checksum
+					CheckSum = CheckSumGenerator.ComputeChecksum (fileInf),
 				}));
 			}
 

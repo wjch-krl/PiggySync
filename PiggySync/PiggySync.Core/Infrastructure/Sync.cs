@@ -5,6 +5,7 @@ using PiggySyncWin.WinUI.Infrastructure;
 using PiggySyncWin.WinUI.Models;
 using PiggySyncWin.WinUI.Models.Concrete;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Security;
@@ -101,7 +102,7 @@ namespace PiggySyncWin.WinUI.Sync
 			UInt32 size = x.File.FileSize;
 			Int32 bytes;
 			msg = new byte[2048];
-			FileStream fileStream = new FileStream (x.FilePath + @"\tmp\" + x.File.FileName, FileMode.Create, FileAccess.Write); //TODO optimize
+			FileStream fileStream = new FileStream (x.FilePath + @"\" + x.File.FileName, FileMode.Create, FileAccess.Write); //TODO optimize
 			using (BinaryWriter writer = new BinaryWriter (fileStream)) {
 
 				try {
@@ -138,14 +139,14 @@ namespace PiggySyncWin.WinUI.Sync
 			var remoteFiles = new List<FileRequestPacket> ();
             
 			foreach (var x in rootFolder.Files) {
-				//if (!localFiles.Files.Exists ((FileInfoPacket file) => {
-					/*	return file.File.FileName == x.File.FileName; /*&&
+				if (!localFiles.Files.Exists ((FileInfoPacket file) => {
+						return file.File.FileName == x.File.FileName &&
                         file.File.FileSize == x.File.FileSize &&
-                        file.File.CheckSum == x.File.CheckSum &&
-                        file.File.LastModyfied == x.File.LastModyfied;*/
-				//})) {
+						file.File.CheckSum.SequenceEqual (x.File.CheckSum) &&
+                        file.File.LastModyfied == x.File.LastModyfied;
+				})) {
 					remoteFiles.Add (new FileRequestPacket (x.File, path));
-				//}
+				}
 			}
 			foreach (var x in rootFolder.Folders) {
 				var localSubfolder = localFiles.Folders.Find (folder => folder.FolderName == x.FolderName);

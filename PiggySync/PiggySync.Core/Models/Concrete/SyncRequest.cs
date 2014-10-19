@@ -8,7 +8,7 @@ namespace PiggySyncWin.WinUI.Models.Concrete
 {
     class SyncRequest : SyncUDPPacket
     {
-        public SyncRequest(uint seqNumber)
+        public SyncRequest(UInt32 seqNumber)
             : base(seqNumber, 255)
         {
 

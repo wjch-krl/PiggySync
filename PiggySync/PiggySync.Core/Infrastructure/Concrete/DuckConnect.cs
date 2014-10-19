@@ -29,8 +29,8 @@ namespace PiggySyncWin.WinUI
         {
             get { return me; }
         }
-        ConcurrentDictionary<uint, bool> ACKDickt;
-        static uint packetNum = 0;
+        ConcurrentDictionary<UInt32, bool> ACKDickt;
+        static UInt32 packetNum = 0;
         Thread broadcaster;
         Thread listner;
         Thread syncClient;
@@ -52,7 +52,7 @@ namespace PiggySyncWin.WinUI
             clientLock = new object();
             UDPReader = new UdpClient(1337);
             UDPWriter = new UdpClient();
-            ACKDickt = new ConcurrentDictionary<uint, bool>();
+            ACKDickt = new ConcurrentDictionary<UInt32, bool>();
             UDPReader.EnableBroadcast = true;
         }
 
@@ -214,7 +214,7 @@ namespace PiggySyncWin.WinUI
             SyncNotyfy packet;
             byte[] msg;
             bool ack;
-            uint seqNumber;
+            UInt32 seqNumber;
             IPEndPoint hostAddr;
             foreach (var x in hosts)
             {
@@ -258,7 +258,7 @@ namespace PiggySyncWin.WinUI
         int didReciveSyncNotyfyRetries = 0;
         public bool DidReciveSyncNotyfy(byte[] msg)
         {
-            uint seqNumber = BitConverter.ToUInt32(msg, 1);
+            UInt32 seqNumber = BitConverter.ToUInt32(msg, 1);
             string name = System.Text.Encoding.UTF8.GetString(msg, 5, msg.Length - 5);
             foreach (var x in hosts)
             {
@@ -292,7 +292,7 @@ namespace PiggySyncWin.WinUI
         public bool DidReciveSyncRequest(byte[] msg)
         {
             
-            uint seqNumber = BitConverter.ToUInt32(msg, 1);
+            UInt32 seqNumber = BitConverter.ToUInt32(msg, 1);
             string name = System.Text.Encoding.UTF8.GetString(msg, 5, msg.Length - 5);
             foreach (var x in hosts)
             {
