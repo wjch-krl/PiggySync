@@ -25,7 +25,7 @@ namespace PiggySyncWin.WinUI.Models
 
         public override byte[] GetPacket()
         {
-            byte[] ip = PiggyConnect.Me.Ip.GetAddressBytes();
+            byte[] ip = SyncManager.Me.Ip.GetAddressBytes();
             byte[] msg = new byte[ip.Length + name.Length + 1];
             msg[0] = code;
             ip.CopyTo(msg, 1); //TODO concat ??

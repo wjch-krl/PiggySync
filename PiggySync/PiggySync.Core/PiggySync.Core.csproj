@@ -35,20 +35,19 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Infrastructure\Abstract\IDuckObserver.cs" />
-    <Compile Include="Infrastructure\Concrete\DuckConnect.cs" />
     <Compile Include="Infrastructure\DeviaceManager.cs" />
-    <Compile Include="Infrastructure\DuckRemoteHostHistoryEntry.cs" />
     <Compile Include="Infrastructure\FilePacketCreator.cs" />
     <Compile Include="Infrastructure\Sync.cs" />
     <Compile Include="Infrastructure\TCPPacketReCreator.cs" />
     <Compile Include="Models\Abstract\TCPPacket.cs" />
     <Compile Include="Models\Abstract\UDPPacket.cs" />
     <Compile Include="Models\Concrete\Discovery.cs" />
-    <Compile Include="Models\Concrete\DuckACK.cs" />
     <Compile Include="Models\Concrete\FileDeletePacket.cs" />
     <Compile Include="Models\Concrete\FileInfoPacket.cs" />
     <Compile Include="Models\Concrete\FilePacket.cs" />
@@ -60,8 +59,6 @@
     <Compile Include="Models\Concrete\SyncRequest.cs" />
     <Compile Include="Models\Concrete\SyncUDPPacket.cs" />
     <Compile Include="Models\ConnectionTimeOutException.cs" />
-    <Compile Include="Models\DuckRemoteHost.cs" />
-    <Compile Include="Models\DuckRemoteHostSync.cs" />
     <Compile Include="Models\FileInf.cs" />
     <Compile Include="Models\FileManager.cs" />
     <Compile Include="Models\InvalidHostException.cs" />
@@ -73,6 +70,11 @@
     <Compile Include="Infrastructure\Concrete\CheckSumGenerator.cs" />
     <Compile Include="Infrastructure\Concrete\MD5Generator.cs" />
     <Compile Include="Infrastructure\Concrete\CRC32.cs" />
+    <Compile Include="Models\PiggyRemoteHost.cs" />
+    <Compile Include="Models\PiggyRemoteHostSync.cs" />
+    <Compile Include="Infrastructure\SyncManager.cs" />
+    <Compile Include="Models\PiggyRemoteHostHistoryEntry.cs" />
+    <Compile Include="Models\Concrete\PiggyACK.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -80,5 +82,8 @@
       <Project>{AF7679D0-A9DE-407F-AA79-46726C54F4A9}</Project>
       <Name>PiggySync.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

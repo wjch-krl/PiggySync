@@ -24,7 +24,7 @@ namespace PiggySyncWin.WinUI.Infrastructure
         {
             foreach (var x in allHosts)
             {
-                if (x.HashCode == host.HashCode)
+                if (x == host)
                 {
                     x.LastSync = DateTime.Now;
                     return;

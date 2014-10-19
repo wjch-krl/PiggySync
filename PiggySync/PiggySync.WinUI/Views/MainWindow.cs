@@ -103,7 +103,7 @@ namespace PiggySyncWin.WinUI.Views
             this.DidChangedDirectoryEvent = () => {
                 FileManager.CreateRootFolder();
             };
-            PiggyConnect main = new PiggyConnect();
+            SyncManager main = new SyncManager();
             FileWatcher.Initialize(main);
             DeviaceHistoryManager.Initialize();
             main.Run();

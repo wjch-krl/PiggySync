@@ -34,7 +34,7 @@ namespace PiggySyncWin.WinUI.Views
             //tmp2.Add(new FolderInfoPacket(tmp1,new List<FolderInfoPacket>(),));
            // FileManager.SetRootFolder(new SyncInfoPacket(tmp1,tmp2,tmp3));
 
-            PiggyConnect main = new PiggyConnect();
+            SyncManager main = new SyncManager();
             main.Run();
         }
     }

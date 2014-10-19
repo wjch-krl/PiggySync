@@ -23,7 +23,7 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void PiggyConnectConstructorTest()
         {
-            PiggyConnect target = new PiggyConnect();
+            SyncManager target = new SyncManager();
             Assert.IsNotNull(target);
         }
 
@@ -34,7 +34,7 @@ namespace PiggySyncWin.UnitTests
         [ExpectedException(typeof(SocketException))] ////cos krzyczalo na gniazdo, bez tego wywalalo blad, nie ogarniam :(
         public void CreateNewConnectionTest()
         {
-            PiggyConnect target = new PiggyConnect(); // TODO: Initialize to an appropriate value
+            SyncManager target = new SyncManager(); // TODO: Initialize to an appropriate value
             PiggyRemoteHost host = new PiggyRemoteHost(IPAddress.Any, "Test"); // TODO: Initialize to an appropriate value
         }
 
@@ -44,7 +44,7 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void DidReciveSyncNotyfyTest() // jak wyzej
         {
-            PiggyConnect target = new PiggyConnect(); // TODO: Initialize to an appropriate value
+            SyncManager target = new SyncManager(); // TODO: Initialize to an appropriate value
             byte[] msg = { 1, 0, 0, 1, 1, 0, 0, 1 }; // TODO: Initialize to an appropriate value
             bool expected = true; // TODO: Initialize to an appropriate value
             bool actual;
@@ -58,7 +58,7 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void DidReciveSyncRequestTest() //jak wyzej
         {
-            PiggyConnect target = new PiggyConnect(); // TODO: Initialize to an appropriate value
+            SyncManager target = new SyncManager(); // TODO: Initialize to an appropriate value
             byte[] msg = { 1, 0, 0, 1, 1, 0, 0, 1 }; // TODO: Initialize to an appropriate value
             bool expected = true; // TODO: Initialize to an appropriate value
             bool actual;
@@ -72,7 +72,7 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void GetActiveHostsNamesTest() //jak wyzej
         {
-            PiggyConnect target = new PiggyConnect(); 
+            SyncManager target = new SyncManager(); 
             List<string> actual;
             actual = target.GetActiveHostsNames();
             Assert.IsNotNull(actual);
@@ -85,7 +85,7 @@ namespace PiggySyncWin.UnitTests
         public void MeTest()
         {
             PiggyRemoteHost actual;
-            actual = PiggyConnect.Me;
+            actual = SyncManager.Me;
             Assert.IsNotNull(actual);
         }
     }

@@ -1,6 +1,5 @@
 using PiggySyncWin.Domain.Concrete;
 using PiggySyncWin.WinUI.Infrastructure;
-using PiggySyncWin.WinUI.Infrastructure.Abstract;
 using PiggySyncWin.WinUI.Infrastructure.Concrete;
 using PiggySyncWin.WinUI.Models;
 using PiggySyncWin.WinUI.Models.Concrete;
@@ -34,6 +33,11 @@ namespace PiggySyncWin.WinUI
 		}
 
 		public byte[] Receive (ref IPEndPoint source)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public void Send (byte[] msg, int length, IPEndPoint hostAddr)
 		{
 			throw new NotImplementedException ();
 		}

@@ -10,10 +10,6 @@ namespace PiggySyncWin.Domain
     public class Settings
     {
         //TODO
-
-        public string Prop1 { get; set; }
-        public string Prop2 { get; set; }
-
         public string CurrentDirectory { get; set; }
         public string ComputerName { get; set; }
 

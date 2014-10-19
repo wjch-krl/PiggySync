@@ -12,7 +12,7 @@ namespace PiggySyncWin.WinUI.Infrastructure
 {
 	public class FileWatcher : IFileWather
 	{
-		private static PiggyConnect dckConnect;
+		private static SyncManager dckConnect;
 		private static XmlSettingsRepository repo;
 		private static FileSystemWatcher watcher;
 
@@ -58,7 +58,7 @@ namespace PiggySyncWin.WinUI.Infrastructure
 			fileDeleted (e.FullPath); 
 		}
 
-		public static void Initialize(PiggyConnect main)
+		public static void Initialize(SyncManager main)
 		{
 			dckConnect = main;
 			repo = XmlSettingsRepository.Instance;
