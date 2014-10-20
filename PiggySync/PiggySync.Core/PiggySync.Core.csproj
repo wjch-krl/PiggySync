@@ -7,6 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>PiggySync.Core</RootNamespace>
     <AssemblyName>PiggySync.Core</AssemblyName>
+    <ReleaseVersion>0.5</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,15 +39,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Infrastructure\DeviaceManager.cs" />
-    <Compile Include="Infrastructure\FilePacketCreator.cs" />
-    <Compile Include="Infrastructure\Sync.cs" />
-    <Compile Include="Infrastructure\TCPPacketReCreator.cs" />
-    <Compile Include="Infrastructure\Concrete\UdpSocket.cs" />
-    <Compile Include="Infrastructure\Concrete\TcpSocket.cs" />
-    <Compile Include="Infrastructure\Concrete\TcpSocketListner.cs" />
-    <Compile Include="Infrastructure\SyncManager.cs" />
-    <Compile Include="Infrastructure\FileManager.cs" />
+    <Compile Include="Concrete\TcpSocket.cs" />
+    <Compile Include="Concrete\TcpSocketListner.cs" />
+    <Compile Include="Concrete\UdpSocket.cs" />
+    <Compile Include="DeviaceManager.cs" />
+    <Compile Include="FileManager.cs" />
+    <Compile Include="FilePacketCreator.cs" />
+    <Compile Include="Sync.cs" />
+    <Compile Include="SyncManager.cs" />
+    <Compile Include="TCPPacketReCreator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -62,8 +63,5 @@
       <Project>{9DDDE951-7DB6-43CA-A603-8A4384AEEA5E}</Project>
       <Name>PiggySync.Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\Abstract\" />
   </ItemGroup>
 </Project>

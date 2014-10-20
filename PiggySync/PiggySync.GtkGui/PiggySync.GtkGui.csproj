@@ -7,6 +7,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>PiggySync.GtkGui</RootNamespace>
     <AssemblyName>PiggySync.GtkGui</AssemblyName>
+    <ReleaseVersion>0.5</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

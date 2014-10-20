@@ -7,6 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>PiggySync.Model</RootNamespace>
     <AssemblyName>PiggySync.Model</AssemblyName>
+    <ReleaseVersion>0.5</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
