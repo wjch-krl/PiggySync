@@ -1,49 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.Core/Infrastructure/SyncManager.cs">
-    <Files>
-      <File FileName="PiggySync.Core/Infrastructure/Sync.cs" Line="14" Column="14" />
-      <File FileName="PiggySync.Core/Models/PiggyRemoteHost.cs" Line="3" Column="3" />
-      <File FileName="PiggySync.Core/Infrastructure/Concrete/UdpSocket.cs" Line="3" Column="3" />
-      <File FileName="PiggySync.Core/Infrastructure/Abstract/ICheckSumGenerator.cs" Line="19" Column="19" />
-      <File FileName="PiggySync.Core/Infrastructure/Concrete/TcpSocket.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.DesktopFileWather/FileWatcher.cs" Line="41" Column="41" />
-      <File FileName="PiggySync.Core/Models/FileManager.cs" Line="23" Column="23" />
-      <File FileName="PiggySync.Core/Models/Concrete/SyncInfoPacket.cs" Line="9" Column="9" />
-      <File FileName="PiggySync.Core/Infrastructure/SyncManager.cs" Line="33" Column="33" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="GUIOLD" expanded="True">
-            <Node name="Presenters" expanded="True" />
-            <Node name="Views" expanded="True" />
-          </Node>
-          <Node name="PiggySync.Core" expanded="True">
-            <Node name="Infrastructure" expanded="True">
-              <Node name="Concrete" expanded="True" />
-              <Node name="SyncManager.cs" selected="True" />
-            </Node>
-            <Node name="Models" expanded="True">
-              <Node name="Abstract" expanded="True" />
-              <Node name="Concrete" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="PiggySync.DesktopFileWather" expanded="True" />
-          <Node name="PiggySync.Domain" expanded="True">
-            <Node name="Abstract" expanded="True" />
-            <Node name="Concrete" expanded="True" />
-          </Node>
-          <Node name="PiggySync.Tests" expanded="True" />
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True">
-          <Node name="PiggySync.Tests" expanded="True" selected="True" />
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

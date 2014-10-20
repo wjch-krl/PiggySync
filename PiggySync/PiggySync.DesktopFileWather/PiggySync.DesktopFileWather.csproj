@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3E68EA85-423E-4FBA-A702-F02C0ECBC2FC}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DuckSync.DesktopFileWather</RootNamespace>
-    <AssemblyName>DuckSync.DesktopFileWather</AssemblyName>
+    <RootNamespace>PiggySync.DesktopFileWather</RootNamespace>
+    <AssemblyName>PiggySync.DesktopFileWather</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

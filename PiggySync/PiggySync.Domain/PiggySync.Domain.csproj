@@ -7,8 +7,8 @@
     <ProjectGuid>{AF7679D0-A9DE-407F-AA79-46726C54F4A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DuckSyncWin.Domain</RootNamespace>
-    <AssemblyName>DuckSyncWin.Domain</AssemblyName>
+    <RootNamespace>PiggySync.Domain</RootNamespace>
+    <AssemblyName>PiggySync.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

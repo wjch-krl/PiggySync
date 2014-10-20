@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0C10E109-E52F-478C-8C9D-D5733CF12E98}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DuckSync.Core</RootNamespace>
-    <AssemblyName>DuckSync.Core</AssemblyName>
+    <RootNamespace>PiggySync.Core</RootNamespace>
+    <AssemblyName>PiggySync.Core</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
