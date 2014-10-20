@@ -19,7 +19,7 @@ namespace PiggySyncWin.WinUI
            // ConsoleManager.Show(); //Shows the console window
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var x = new MainWindow();
+            new MainWindow();
 
 			do {
 				System.Threading.Thread.Sleep(1000);

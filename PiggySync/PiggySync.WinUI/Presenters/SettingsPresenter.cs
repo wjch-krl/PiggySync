@@ -34,8 +34,8 @@ namespace PiggySyncWin.WinUI.Presenters
 
         private void view_LoadSettings(object sender, EventArgs e)
         {
-            view.P1 = model.Settings.Prop1;
-            view.P2 = model.Settings.Prop2;
+			view.P1 = model.Settings.ComputerName;
+          //  view.P2 = model.Settings.Prop2;
         }
     }
 }

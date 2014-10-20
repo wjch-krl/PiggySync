@@ -96,7 +96,7 @@ namespace PiggySyncWin.WinUI.Views
             // POCZATEK KODU WOJTKA
             FileManager.Initialize();
             CertificateManager.Initialize();
-            mainPath = XmlSettingsRepository.Instance.Settings.CurrentDirectory;
+            mainPath = XmlSettingsRepository.Instance.Settings.SyncPath;
             showDirectory(mainPath);
             textBox1.Text = mainPath;
             textBox2.Text = mainPath;
@@ -465,18 +465,18 @@ namespace PiggySyncWin.WinUI.Views
             if (fd.SelectedPath.Length > 1)
             {
                 int numer = fd.SelectedPath.LastIndexOf("\\");
-                String temp = fd.SelectedPath.ToString().Substring(numer + 1);
+           //     String temp = fd.SelectedPath.ToString().Substring(numer + 1);
    
                 if (numer == 2)
                 {
-                    temp = fd.SelectedPath.ToString().Replace("\\", "");
+              //      temp = fd.SelectedPath.ToString().Replace("\\", "");
                 }
       
                 mainPath = fd.SelectedPath;
                 
-                XmlSettingsRepository.Instance.Settings.CurrentDirectory = mainPath; 
+                XmlSettingsRepository.Instance.Settings.SyncPath = mainPath; 
                 XmlSettingsRepository.Instance.SaveSettings();
-                FileWatcher.RefreshMonitoredDirectory(XmlSettingsRepository.Instance.Settings.CurrentDirectory);
+                FileWatcher.RefreshMonitoredDirectory(XmlSettingsRepository.Instance.Settings.SyncPath);
                 showDirectory(mainPath);
                 textBox1.Text = mainPath;
                 textBox2.Text = mainPath;

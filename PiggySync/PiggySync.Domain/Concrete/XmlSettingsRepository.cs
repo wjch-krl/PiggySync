@@ -56,7 +56,7 @@ namespace PiggySyncWin.Domain.Concrete
                 //rand.NextBytes(buffer);
                 return new Settings() { //Defaults Settrings
                     ComputerName = System.Environment.MachineName + Random8Numbers(),/* rand.Next(),*/ //System.Text.Encoding.ASCII.GetString(buffer),
-                    CurrentDirectory = System.Environment.CurrentDirectory,
+                    SyncPath = System.Environment.CurrentDirectory,
                 };
 
             }
@@ -106,7 +106,7 @@ namespace PiggySyncWin.Domain.Concrete
             //rand.NextBytes(buffer);
             settings = new Settings() { //Defaults Settrings
                     ComputerName = System.Environment.MachineName + Random8Numbers(), /*rand.Next(),*/ //System.Text.Encoding.UTF8.GetString(buffer),
-                    CurrentDirectory = System.Environment.CurrentDirectory,
+                    SyncPath = System.Environment.CurrentDirectory,
                 };
         }
 

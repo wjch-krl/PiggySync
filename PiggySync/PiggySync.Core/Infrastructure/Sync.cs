@@ -221,7 +221,7 @@ namespace PiggySyncWin.WinUI.Sync
 		}
 
 
-		static string rootPath = XmlSettingsRepository.Instance.Settings.CurrentDirectory;
+		static string rootPath = XmlSettingsRepository.Instance.Settings.SyncPath;
 
 		private static void SendFile (FileRequestPacket fileReqPacket, NetworkStream stream)
 		{

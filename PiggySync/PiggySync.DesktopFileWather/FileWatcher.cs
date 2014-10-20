@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using PiggySyncWin.Domain.Concrete;
+using PiggySyncWin.Domain.Abstract;
 
 namespace PiggySyncWin.WinUI.Infrastructure
 {
@@ -16,39 +16,43 @@ namespace PiggySyncWin.WinUI.Infrastructure
 		private static XmlSettingsRepository repo;
 		private static FileSystemWatcher watcher;
 
-		static void watcher_Created(object sender, FileSystemEventArgs e)
+		static void watcher_Created (object sender, FileSystemEventArgs e)
 		{
-			System.Diagnostics.Debug.WriteLine(e.Name + " has created. Sending notyfy...");//TODO save modyfied file packet
-			string newElementPath = e.FullPath.Replace(XmlSettingsRepository.Instance.Settings.CurrentDirectory+"\\", "");
-			System.Diagnostics.Debug.WriteLine(newElementPath + " Adding");
-			//  if (e.ChangeType == WatcherChangeTypes.Created)
+			fileCreated (e.FullPath);
+		}
+
+		static void fileCreated (string path)
+		{
+			System.Diagnostics.Debug.WriteLine (path+ " has created. Sending notyfy...");//TODO save modyfied file packet
+			FileManager.CreateRootFolder (); //TODO optimize
+			string newElementPath = path.Replace (XmlSettingsRepository.Instance.Settings.SyncPath + "\\", "");
+			System.Diagnostics.Debug.WriteLine (newElementPath + " Adding");
 			try
 			{
-				//     dckConnect.NotyfyAllHost();
+				dckConnect.NotyfyAllHost ();
 			}
 			catch (Exception ex)
 			{
-				System.Diagnostics.Debug.WriteLine(ex);
+				System.Diagnostics.Debug.WriteLine (ex);
 			}
-		}
-
-		static void addFileToRootFolder()
-		{
-
 		}
 
 		static void fileChanged (string path)
 		{
 			System.Diagnostics.Debug.WriteLine (path + " has changed. Sending notyfy...");
-			try {
-				//     dckConnect.NotyfyAllHost();
+			FileManager.CreateRootFolder (); //TODO optimize
+
+			try
+			{
+				dckConnect.NotyfyAllHost ();
 			}
-			catch (Exception ex) {
+			catch (Exception ex)
+			{
 				System.Diagnostics.Debug.WriteLine (ex);
 			}
 		}
 
-		static void watcher_Changed(object sender, FileSystemEventArgs e)
+		static void watcher_Changed (object sender, FileSystemEventArgs e)
 		{
 			fileChanged (e.FullPath);
 		}
@@ -58,14 +62,14 @@ namespace PiggySyncWin.WinUI.Infrastructure
 			fileDeleted (e.FullPath); 
 		}
 
-		public static void Initialize(SyncManager main)
+		public static void Initialize (SyncManager main)
 		{
 			dckConnect = main;
 			repo = XmlSettingsRepository.Instance;
 
 			if (watcher == null)
 			{
-				watcher = new FileSystemWatcher(repo.Settings.CurrentDirectory);
+				watcher = new FileSystemWatcher (repo.Settings.SyncPath);
 				watcher.IncludeSubdirectories = true;
 
 				watcher.Changed += watcher_Changed;
@@ -76,7 +80,7 @@ namespace PiggySyncWin.WinUI.Infrastructure
 			}
 		}
 
-		public static void RefreshMonitoredDirectory(string dir)
+		public static void RefreshMonitoredDirectory (string dir)
 		{
 			watcher.EnableRaisingEvents = false;
 			watcher.Path = dir;
