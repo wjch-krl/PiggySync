@@ -2,9 +2,9 @@
 
 namespace PiggySync.LogManager
 {
-	public class MyClass
+	public static class LoggManager
 	{
-		public MyClass ()
+		static LoggManager ()
 		{
 		}
 	}
