@@ -8,7 +8,7 @@ using PiggySyncWin.Domain.Concrete;
 using PiggySyncWin.Domain;
 using System.IO;
 using PiggySyncWin.WinUI.Infrastructure;
-using DuckSync.Core;
+using PiggySync.Core;
 
 namespace PiggySyncWin.WinUI.Models
 {

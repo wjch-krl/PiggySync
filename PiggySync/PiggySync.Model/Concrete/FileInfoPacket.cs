@@ -5,8 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DuckSync.Core;
-using PiggySyncWin.Domain;
+using PiggySync.Core;
 
 namespace PiggySyncWin.WinUI.Models
 {

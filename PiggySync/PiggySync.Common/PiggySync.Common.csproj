@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6DE2C405-95EB-4B82-A68C-6BC5BC8DCD66}</ProjectGuid>
+    <ProjectGuid>{9DDDE951-7DB6-43CA-A603-8A4384AEEA5E}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>PiggySync.DatabaseManager</RootNamespace>
-    <AssemblyName>PiggySync.DatabaseManager</AssemblyName>
+    <RootNamespace>PiggySync.Common</RootNamespace>
+    <AssemblyName>PiggySync.Common</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,12 +31,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLite.cs" />
-    <Compile Include="SQLiteAsync.cs" />
-    <Compile Include="DatabaseManager.cs" />
+    <Compile Include="Abstract\ICheckSumGenerator.cs" />
+    <Compile Include="Concrete\CheckSumGenerator.cs" />
+    <Compile Include="Concrete\CRC32.cs" />
+    <Compile Include="Concrete\MD5Generator.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="IPUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
 </Project>

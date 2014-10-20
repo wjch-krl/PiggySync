@@ -23,13 +23,6 @@ namespace PiggySyncWin.WinUI
 		ConcurrentQueue<PiggyRemoteHostSync> clientQueue = new ConcurrentQueue<PiggyRemoteHostSync> ();
 		object clientLock;
 		object serverLock;
-
-		static PiggyRemoteHost me = new PiggyRemoteHost (IPUtils.LocalIPAddress (), XmlSettingsRepository.Instance.Settings.ComputerName);
-
-		static public PiggyRemoteHost Me {
-			get { return me; }
-		}
-
 		ConcurrentDictionary<UInt32, bool> ACKDickt;
 		static UInt32 packetNum = 0;
 		Thread broadcaster;
@@ -185,7 +178,7 @@ namespace PiggySyncWin.WinUI
 		public void CreateNewConnection (PiggyRemoteHost host)
 		{
 
-			if (!hosts.Contains (host) && SyncManager.Me.Name != host.Name)
+			if (!hosts.Contains (host) && PiggyRemoteHost.Me.Name != host.Name)
 			{
 				foreach (var x in hosts)
 				{
@@ -343,7 +336,7 @@ namespace PiggySyncWin.WinUI
 							UDPWriter.Send (x.Msg, x.Msg.Length, endPoint);
 						}
 
-						TcpListener listner = new TcpListener (new IPEndPoint (Me.Ip, 1339));
+						TcpListener listner = new TcpListener (new IPEndPoint (PiggyRemoteHost.Me.Ip, 1339));
 						listner.Start ();
 						TcpClient newConnection;
 						newConnection = listner.AcceptTcpClient ();
@@ -415,7 +408,7 @@ namespace PiggySyncWin.WinUI
 						TcpClient newConnection;
 						IPEndPoint host;
 						host = new IPEndPoint (x.Ip, 1339);
-						newConnection = new TcpClient (new IPEndPoint (Me.Ip, 1338));
+						newConnection = new TcpClient (new IPEndPoint (PiggyRemoteHost.Me.Ip, 1338));
 						newConnection.Connect (host);
 
 						Syncronizer.HandleSyncAsClientNoSSL (newConnection);

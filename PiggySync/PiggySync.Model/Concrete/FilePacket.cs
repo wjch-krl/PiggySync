@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PiggySyncWin.WinUI.Models
 {
-    class FilePacket
+	public class FilePacket
     {
         public FilePacket() //TODO          
         {

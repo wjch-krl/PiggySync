@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DuckSync.Core;
+using PiggySync.Core;
 
 namespace PiggySyncWin.WinUI.Models
 {
-    class FileRequestPacket :  TCPPacket
+    public class FileRequestPacket :  TCPPacket
     {
         private FileInf file;
         public UInt32 PacketSize

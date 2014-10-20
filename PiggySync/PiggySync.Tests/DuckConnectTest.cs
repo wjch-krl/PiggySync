@@ -85,7 +85,7 @@ namespace PiggySyncWin.UnitTests
         public void MeTest()
         {
             PiggyRemoteHost actual;
-            actual = SyncManager.Me;
+			actual = PiggyRemoteHost.Me;
             Assert.IsNotNull(actual);
         }
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PiggySyncWin.WinUI.Infrastructure.Concrete
 {
-    class ConnectionTimeOutException : Exception
+    public class ConnectionTimeOutException : Exception
     {
         public ConnectionTimeOutException(string x)
             : base(x)

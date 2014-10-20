@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PiggySyncWin.WinUI.Infrastructure.Concrete
 {
-    class PiggyRemoteHostSync : PiggyRemoteHost
+    public class PiggyRemoteHostSync : PiggyRemoteHost
     {
         public PiggyRemoteHostSync(IPAddress ip, string name, bool isClient)
             : base(ip, name)

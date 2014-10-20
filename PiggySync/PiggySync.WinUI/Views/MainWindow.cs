@@ -2,7 +2,6 @@
 using PiggySyncWin.Domain.Concrete;
 using PiggySyncWin.WinUI.Infrastructure;
 using PiggySyncWin.WinUI.Models;
-using PiggySyncWin.WinUI.Models.Concrete;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

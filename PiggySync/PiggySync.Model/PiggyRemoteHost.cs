@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
+using PiggySyncWin.Domain.Concrete;
 
 namespace PiggySyncWin.WinUI.Models
 {
 	public class PiggyRemoteHost //or struct
 	{
+		static PiggyRemoteHost me = new PiggyRemoteHost (IPUtils.LocalIPAddress (), XmlSettingsRepository.Instance.Settings.ComputerName);
+
+		static public PiggyRemoteHost Me {
+			get { return me; }
+		}
+
 		IPAddress ip;
 
 		public IPAddress Ip {
@@ -74,7 +81,7 @@ namespace PiggySyncWin.WinUI.Models
 		}
 
 
-		internal string GetShortName ()
+		public string GetShortName ()
 		{
 			return name.Substring (0, name.Length - PiggySyncWin.Domain.Concrete.XmlSettingsRepository.RandomNamePartLenght);
 		}

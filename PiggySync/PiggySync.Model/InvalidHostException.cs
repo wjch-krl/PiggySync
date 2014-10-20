@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PiggySyncWin.WinUI.Infrastructure.Concrete
 {
-    class InvalidHostException : Exception
+    public class InvalidHostException : Exception
     {
         public InvalidHostException(string msg): base(msg)
         {

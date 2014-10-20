@@ -10,7 +10,7 @@ using System.Net.NetworkInformation;
 
 namespace PiggySyncWin.WinUI.Models
 {
-    class Discovery : UDPPacket
+    public class Discovery : UDPPacket
     {
         public Discovery()
             : base(240)
@@ -25,7 +25,7 @@ namespace PiggySyncWin.WinUI.Models
 
         public override byte[] GetPacket()
         {
-            byte[] ip = SyncManager.Me.Ip.GetAddressBytes();
+            byte[] ip = PiggyRemoteHost.Me.Ip.GetAddressBytes();
             byte[] msg = new byte[ip.Length + name.Length + 1];
             msg[0] = code;
             ip.CopyTo(msg, 1); //TODO concat ??

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PiggySyncWin.WinUI.Models
 {
-    class NoRequestPacket : TCPPacket
+	public class NoRequestPacket : TCPPacket
     {
         public const byte Code = 160;
 

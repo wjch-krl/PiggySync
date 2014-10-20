@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PiggySyncWin.Domain;
 using PiggySyncWin.WinUI.Models.Concrete;
+using PiggySyncWin.Domain;
 
 namespace PiggySyncWin.WinUI.Models
 {

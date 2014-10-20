@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DuckSync.Core;
+using PiggySync.Core;
 using PiggySyncWin.Domain;
 
 namespace PiggySyncWin.WinUI.Models

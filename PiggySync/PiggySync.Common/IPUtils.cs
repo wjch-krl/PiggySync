@@ -10,7 +10,7 @@ using System.Net.NetworkInformation;
 
 namespace PiggySyncWin.WinUI.Models
 {
-    class IPUtils
+    public class IPUtils
     {
         static IPAddress localBroadCastAdress = GetBroadcastIP();
         public static IPAddress LocalBroadCastAdress

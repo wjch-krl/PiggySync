@@ -10,7 +10,6 @@ using System.Threading;
 using System.Windows.Forms;
 using PiggySyncWin.Domain;
 using PiggySyncWin.WinUI.Models;
-using PiggySyncWin.WinUI.Models.Concrete;
 
 namespace PiggySyncWin.WinUI.Views
 {

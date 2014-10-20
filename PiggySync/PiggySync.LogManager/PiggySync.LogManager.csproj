@@ -7,7 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>PiggySync.LogManager</RootNamespace>
     <AssemblyName>PiggySync.LogManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

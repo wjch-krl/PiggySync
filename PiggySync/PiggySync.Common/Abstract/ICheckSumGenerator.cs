@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace DuckSync.Core
+namespace PiggySync.Core
 {
 	public interface ICheckSumGenerator
 	{
