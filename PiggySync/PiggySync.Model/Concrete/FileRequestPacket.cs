@@ -37,7 +37,7 @@ namespace PiggySyncWin.WinUI.Models
         {
             this.file = file;
             this.FilePath = path;
-			PacketSize = (UInt32)( 1 + 2 * sizeof(UInt32) + sizeof(UInt64) + file.FileName.Length + CheckSumGenerator.ChecksumSize);
+			PacketSize = (UInt32)( 1 + 2 * sizeof(UInt32) + sizeof(Int64) + file.FileName.Length + CheckSumGenerator.ChecksumSize);
         }
 
         public FileRequestPacket(byte[] packet, byte code = 240)

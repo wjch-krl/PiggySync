@@ -15,7 +15,7 @@ namespace PiggySyncWin.WinUI.Models
             : base(code)
         {
             this.file = file;
-			PacketSize = (UInt32)( 1 + 2 * sizeof(UInt32) + sizeof(UInt64) + file.FileName.Length + CheckSumGenerator.ChecksumSize);//TODO refactor
+			PacketSize = (UInt32)( 1 + 2 * sizeof(UInt32) + sizeof(Int64) + file.FileName.Length + CheckSumGenerator.ChecksumSize);//TODO refactor
         }
 
         public FileInfoPacket(byte[] packet, byte code = 170)
@@ -31,6 +31,7 @@ namespace PiggySyncWin.WinUI.Models
         {
             get { return file; }
         }
+
         public UInt32 PacketSize
         {
             get;

@@ -80,7 +80,7 @@ namespace PiggySyncWin.WinUI.Models
 					FileName = fileInf.Name,
 					FileSize = (UInt32)fileInf.Length,
 					//TODO check overfllow
-					LastModyfied = (UInt64)(fileInf.LastWriteTimeUtc - new DateTime (1970, 1, 1)).Ticks,
+					LastModyfied = (Int64)(fileInf.LastWriteTimeUtc - new DateTime (1970, 1, 1)).Ticks,
 					CheckSum = CheckSumGenerator.ComputeChecksum (fileInf),
 				}));
 			}

@@ -52,6 +52,11 @@
     <Compile Include="PiggyRemoteHost.cs" />
     <Compile Include="PiggyRemoteHostHistoryEntry.cs" />
     <Compile Include="PiggyRemoteHostSync.cs" />
+    <Compile Include="PiggyFileException.cs" />
+    <Compile Include="FileChangesCollection.cs" />
+    <Compile Include="DatabaseConnection\SQLite.cs" />
+    <Compile Include="DatabaseConnection\SQLiteAsync.cs" />
+    <Compile Include="FileInfComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -63,5 +68,11 @@
       <Project>{AF7679D0-A9DE-407F-AA79-46726C54F4A9}</Project>
       <Name>PiggySync.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DatabaseConnection\" />
   </ItemGroup>
 </Project>

@@ -1,12 +1,28 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.LogManager/LoggManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.DatabaseManager/SQLite.cs">
     <Files>
-      <File FileName="PiggySync.LogManager/LoggManager.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.LogManager/LoggManager.cs" Line="3" Column="3" />
+      <File FileName="PiggySync.FileMerger/FileMerger.cs" Line="4" Column="4" />
+      <File FileName="PiggySync.Model/InvalidHostException.cs" Line="9" Column="9" />
+      <File FileName="PiggySync.Common/IPUtils.cs" Line="43" Column="43" />
+      <File FileName="PiggySync.Core/SyncManager.cs" Line="31" Column="31" />
+      <File FileName="PiggySync.Core/Sync.cs" Line="49" Column="49" />
+      <File FileName="PiggySync.Model/FileChangesCollection.cs" Line="10" Column="10" />
+      <File FileName="PiggySync.DatabaseManager/DatabaseManager.cs" Line="47" Column="47" />
+      <File FileName="PiggySync.Core/DeviaceManager.cs" Line="58" Column="58" />
+      <File FileName="PiggySync.Model/FileInfComparer.cs" Line="29" Column="29" />
+      <File FileName="PiggySync.WinUI/Program.cs" Line="18" Column="18" />
+      <File FileName="PiggySync.Model/PiggyRemoteHostHistoryEntry.cs" Line="37" Column="37" />
+      <File FileName="PiggySync.DatabaseManager/SQLite.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="225" column="47" />
+      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="187" column="1" />
+      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.WinUI/Program.cs" line="25" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <AuthorInfo Name="wjch_krl" Email="wjch.krl@gmail.com" Copyright="wojciechkrol" Company="" Trademark="" />

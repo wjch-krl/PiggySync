@@ -1865,7 +1865,7 @@ namespace SQLite
 			var clrType = p.ColumnType;
 			if (clrType == typeof(Boolean) || clrType == typeof(Byte) || clrType == typeof(UInt16) || clrType == typeof(SByte) || clrType == typeof(Int16) || clrType == typeof(Int32)) {
 				return "integer";
-			} else if (clrType == typeof(UInt32) || clrType == typeof(Int64)) {
+			} else if (clrType == typeof(UInt32) || clrType == typeof(Int64) ) {
 				return "bigint";
 			} else if (clrType == typeof(Single) || clrType == typeof(Double) || clrType == typeof(Decimal)) {
 				return "float";

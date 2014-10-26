@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Threading;
 using PiggySyncWin.Domain.Concrete;
+using PiggySyncWin.Domain;
 
 namespace PiggySyncWin.WinUI.Models
 {
@@ -17,23 +18,32 @@ namespace PiggySyncWin.WinUI.Models
 		static public PiggyRemoteHost Me {
 			get { return me; }
 		}
-
-		IPAddress ip;
-
-		public IPAddress Ip {
+		private IPAddress ip;
+		public IPAddress Ip
+		{
 			get { return ip; }
 		}
-
-		string name;
-
-		public string Name {
-			get { return name; }
+			
+		public byte[] IpBytes
+		{
+			get {
+				return Ip.GetAddressBytes();
+			}
+			set {
+				ip = new IPAddress(value);
+			}
 		}
 
-		UInt64 hasCode;
+		public string Name
+		{
+			get;
+			private set;
+		}
 
-		public UInt64 HashCode {
-			get { return hasCode; }
+		public Int64 HashCode
+		{
+			get;
+			private set;
 		}
 
 		public override int GetHashCode ()
@@ -65,11 +75,11 @@ namespace PiggySyncWin.WinUI.Models
 		public PiggyRemoteHost (IPAddress ip, string name)
 		{
 			this.ip = ip;
-			this.name = name;
-			this.hasCode = CalculateHash (name + ip.ToString ());
+			this.Name = name;
+			this.HashCode = CalculateHash (name + ip.ToString ());
 		}
 
-		static UInt64 CalculateHash (string read)
+		static Int64 CalculateHash (string read)
 		{
 			UInt64 hashedValue = 3074457345618258791ul;
 			for (int i = 0; i < read.Length; i++)
@@ -77,13 +87,13 @@ namespace PiggySyncWin.WinUI.Models
 				hashedValue += read [i];
 				hashedValue *= 3074457345618258799ul;
 			}
-			return hashedValue;
+			return (Int64)hashedValue;
 		}
 
 
 		public string GetShortName ()
 		{
-			return name.Substring (0, name.Length - PiggySyncWin.Domain.Concrete.XmlSettingsRepository.RandomNamePartLenght);
+			return Name.Substring (0, Name.Length - PiggySyncWin.Domain.Concrete.XmlSettingsRepository.RandomNamePartLenght);
 		}
 	}
     

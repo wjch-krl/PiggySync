@@ -22,7 +22,8 @@ namespace PiggySyncWin.WinUI.Sync
 			byte[] msg = new byte[2048];
 			Int32 bytes;
 			List<TCPPacket> packets = new List<TCPPacket> ();
-			do {
+			do
+			{
 				bytes = stream.Read (msg, 0, msg.Length);
 				packets.AddRange (TCPPacketReCreator.RecrateFromRecivedData (msg, bytes));
 
@@ -34,23 +35,34 @@ namespace PiggySyncWin.WinUI.Sync
 		static void buildFilesTree (SyncInfoPacket root, List<TCPPacket> packets)
 		{
 			int i = 0;
-			foreach (var x in packets) {
+			foreach (var x in packets)
+			{
 				i++;
-				if (x is FileInfoPacket) {
+				if (x is FileInfoPacket)
+				{
 					root.Files.Add (x as FileInfoPacket);
-				} else if (x is FolderInfoPacket) {
+				}
+				else if (x is FolderInfoPacket)
+				{
 					root.Folders.Add (x as FolderInfoPacket); //TODO 2 subfolders in one folder
 					buildFilesTree (x as FolderInfoPacket, packets.GetRange (i, packets.Count - i));//TODO optimize
-				} else if (x is FileDeletePacket) {
+				}
+				else if (x is FileDeletePacket)
+				{
 					root.DeletedFiles.Add (x as FileDeletePacket);
-				} else if (x is NoRequestPacket) {
+				}
+				else if (x is NoRequestPacket)
+				{
 					System.Diagnostics.Debug.WriteLine ("End recieving remote files infs.");
 					return;
-				} else {
+				}
+				else
+				{
 					System.Diagnostics.Debug.WriteLine ("err: " + x.GetType ().ToString ());
 					return;
 				}
-				if (i >= root.ElelmentsCount) {
+				if (i >= root.ElelmentsCount)
+				{
 					return;
 				}
 			}
@@ -58,7 +70,8 @@ namespace PiggySyncWin.WinUI.Sync
 
 		public static void HandleSyncAsClientNoSSL (object hst) //TODO
 		{
-			try {
+			try
+			{
 				var host = (TcpClient)hst;
               
 				NetworkStream stream = host.GetStream ();
@@ -67,16 +80,23 @@ namespace PiggySyncWin.WinUI.Sync
 				SyncInfoPacket rootFolder;
 
 				bytes = stream.Read (msg, 0, msg.Length);
-				if (msg [0] == 255 && bytes == 5) {
+				if (msg [0] == 255 && bytes == 5)
+				{
 					rootFolder = new SyncInfoPacket (msg);
 					GetRemoteFilesInfo (stream, rootFolder);
-				} else {
+				}
+				else
+				{
 					throw new Exception ();//TODO write custom Exception
 				}
 
-				List<FileRequestPacket> fileRequestPackets = ChooseFilesToSync (rootFolder);
-
-				foreach (var x in fileRequestPackets) {
+				var remoteChanges = ChooseFilesToSync (rootFolder);
+				foreach (var x in remoteChanges.DeletedFiles)
+				{
+					DeleteFile (x);
+				}
+				foreach (var x in remoteChanges.FileRequests)
+				{
 					SyncFile (x, stream);
 				}
 				msg = new NoRequestPacket ().GetPacket ();
@@ -84,9 +104,13 @@ namespace PiggySyncWin.WinUI.Sync
 				// Close everything.
 				stream.Close ();
 				host.Close ();
-			} catch (ArgumentNullException e) {
+			}
+			catch (ArgumentNullException e)
+			{
 				System.Diagnostics.Debug.WriteLine ("ArgumentNullException: {0}", e);
-			} catch (SocketException e) {
+			}
+			catch (SocketException e)
+			{
 				System.Diagnostics.Debug.WriteLine ("SocketException:", e);
 			}
 		}
@@ -103,24 +127,33 @@ namespace PiggySyncWin.WinUI.Sync
 			Int32 bytes;
 			msg = new byte[2048];
 			FileStream fileStream = new FileStream (x.FilePath + @"\" + x.File.FileName, FileMode.Create, FileAccess.Write); //TODO optimize
-			using (BinaryWriter writer = new BinaryWriter (fileStream)) {
+			using (BinaryWriter writer = new BinaryWriter (fileStream))
+			{
 
-				try {
-					while (size != 0) {
+				try
+				{
+					while (size != 0)
+					{
 						bytes = stream.Read (msg, 0, msg.Length);
-						if (bytes > size) {
-							writer.Write (msg,0, (int)size);
-							if (overflowBuffer == null) {
+						if (bytes > size)
+						{
+							writer.Write (msg, 0, (int)size);
+							if (overflowBuffer == null)
+							{
 								overflowBuffer = msg.SubArray ((int)size, bytes - (int)size);
 							}
 							return;
 						}
-						writer.Write (msg,0,bytes); //TODO secure overflows etc...
+						writer.Write (msg, 0, bytes); //TODO secure overflows etc...
 						size -= (UInt32)bytes;
 					}
-				} catch (Exception) {
+				}
+				catch (Exception)
+				{
 
-				} finally {
+				}
+				finally
+				{
 					writer.Close ();
 				}
 			}
@@ -128,37 +161,51 @@ namespace PiggySyncWin.WinUI.Sync
 			System.Diagnostics.Debug.WriteLine ("Recived File: {0}", x.File.FileName);
 		}
 
-		private static List<FileRequestPacket> ChooseFilesToSync (SyncInfoPacket rootFolder)
+		private static FileChangesCollection ChooseFilesToSync (SyncInfoPacket rootFolder)
 		{
 			return ChooseFilesToSync (rootFolder, FileManager.RootFolder, rootPath);
 		}
 
-		private static List<FileRequestPacket> ChooseFilesToSync (SyncInfoPacket rootFolder, SyncInfoPacket localFiles, string path)
+		private static FileChangesCollection ChooseFilesToSync (SyncInfoPacket rootFolder, SyncInfoPacket localFiles, string path)
 		{
 			//TODO
-			var remoteFiles = new List<FileRequestPacket> ();
+			var remoteFiles = new FileChangesCollection ();
             
-			foreach (var x in rootFolder.Files) {
-				if (!localFiles.Files.Exists ((FileInfoPacket file) => {
-						return file.File.FileName == x.File.FileName &&
-                        file.File.FileSize == x.File.FileSize &&
-						file.File.CheckSum.SequenceEqual (x.File.CheckSum) &&
-                        file.File.LastModyfied == x.File.LastModyfied;
-				})) {
-					remoteFiles.Add (new FileRequestPacket (x.File, path));
+			foreach (var x in rootFolder.Files)
+			{
+				if (!localFiles.Files.Exists ((FileInfoPacket file) =>
+				{
+					return file.File.FileName == x.File.FileName &&
+					file.File.FileSize == x.File.FileSize &&
+					file.File.CheckSum.SequenceEqual (x.File.CheckSum) &&
+					file.File.LastModyfied == x.File.LastModyfied;
+				}))
+				{
+					remoteFiles.FileRequests.Add (new FileRequestPacket (x.File, path));
 				}
 			}
-			foreach (var x in rootFolder.Folders) {
+			foreach (var x in rootFolder.DeletedFiles)
+			{
+				throw new NotImplementedException ();
+				//TODO  add removed files
+			}
+			foreach (var x in rootFolder.Folders)
+			{
 				var localSubfolder = localFiles.Folders.Find (folder => folder.FolderName == x.FolderName);
-				if (localSubfolder == null) {
+				if (localSubfolder == null)
+				{
 					//TODO Create folder on disk
 					localSubfolder = new FolderInfoPacket (x.FolderName);
 					Directory.CreateDirectory (path + x.FolderName);
-					lock (localFiles) {
+					lock (localFiles)
+					{
 						localFiles.Folders.Add (localSubfolder);
 					}
 				}
-				remoteFiles.AddRange (ChooseFilesToSync (x, localSubfolder, path + @"/" + x.FolderName));
+				var moreFiles = ChooseFilesToSync (x, localSubfolder, path + @"/" + x.FolderName);
+				remoteFiles.FileRequests.AddRange (moreFiles.FileRequests);
+				remoteFiles.DeletedFiles.AddRange (moreFiles.DeletedFiles);
+								
 			}
 			//TODO delete file packets
 			return remoteFiles;
@@ -171,11 +218,18 @@ namespace PiggySyncWin.WinUI.Sync
 			msg = syncInfoPacket.GetPacket ();
 			stream.Write (msg, 0, msg.Length);
 			msgs = syncInfoPacket.GetFilePackets ();
-			foreach (var x in msgs) {
+			foreach (var x in msgs)
+			{
+				stream.Write (x, 0, x.Length);
+			}
+			msgs = syncInfoPacket.GetDeletedFilePackets ();
+			foreach (var x in msgs)
+			{
 				stream.Write (x, 0, x.Length);
 			}
 			var folders = syncInfoPacket.Folders;
-			foreach (var x in folders) {
+			foreach (var x in folders)
+			{
 				SendFilePackets (x, stream);
 			}
 
@@ -183,7 +237,8 @@ namespace PiggySyncWin.WinUI.Sync
 
 		public static void HandleSyncAsServerNoSSL (object hst) //TODO
 		{
-			try {
+			try
+			{
 				var host = (TcpClient)hst;
 				NetworkStream stream = host.GetStream ();
 				var syncInfoPacket = FileManager.RootFolder;
@@ -196,15 +251,20 @@ namespace PiggySyncWin.WinUI.Sync
 				msg = noRequest.GetPacket ();
 				stream.Write (msg, 0, msg.Length);
 				msg = new byte[2048];
-				do {
+				do
+				{
 					bytes = stream.Read (msg, 0, msg.Length);
 					List<TCPPacket> packets = TCPPacketReCreator.RecrateFromRecivedData (msg, bytes);
-					foreach (var x in packets) {
-						if (x is FileRequestPacket) {
+					foreach (var x in packets)
+					{
+						if (x is FileRequestPacket)
+						{
 							fileReqPacet = x as FileRequestPacket;
 							System.Diagnostics.Debug.WriteLine ("Sending file: " + fileReqPacet.File.FileName + "of size" + fileReqPacet.File.FileSize);
 							SendFile (fileReqPacet, stream);
-						} else {
+						}
+						else
+						{
 							stream.Close ();
 							host.Close ();
 							return;
@@ -213,9 +273,13 @@ namespace PiggySyncWin.WinUI.Sync
 				} while (true);
 				// Close everything.
                 
-			} catch (ArgumentNullException e) {
+			}
+			catch (ArgumentNullException e)
+			{
 				System.Diagnostics.Debug.WriteLine ("ArgumentNullException: {0}", e);
-			} catch (SocketException e) {
+			}
+			catch (SocketException e)
+			{
 				System.Diagnostics.Debug.WriteLine ("SocketException:", e);
 			}
 		}
@@ -230,21 +294,28 @@ namespace PiggySyncWin.WinUI.Sync
 			int lastPacketSize = (int)fileReqPacket.File.FileSize % packetSize;
 			int i;
 
-			try {
+			try
+			{
 				string[] files = System.IO.Directory.GetFiles (rootPath, fileReqPacket.File.FileName, System.IO.SearchOption.AllDirectories);
 				string filePath;
-				if (files.Length == 1) {
+				if (files.Length == 1)
+				{
 					filePath = files [0];
-				} else if (files.Length == 0) {
+				}
+				else if (files.Length == 0)
+				{
 					throw new System.IO.FileNotFoundException ("Cannot load file. ", fileReqPacket.File.FileName);
-				} else {
+				}
+				else
+				{
 					//var chekSumGenerator = new CRC32();//TODO check ckecksum
 					//foreach (var x in files)
 					//{      
 					//}
 					filePath = files [0];
 				}
-				for (i = 0; i < packetCount; i++) {
+				for (i = 0; i < packetCount; i++)
+				{
 					System.Diagnostics.Debug.WriteLine ("Sending file packets");
 					byte[] packet = (FilePacketCreator.CreatePacket (filePath, i, packetSize));
 					stream.Write (packet, 0, packetSize);
@@ -253,19 +324,26 @@ namespace PiggySyncWin.WinUI.Sync
 
 				byte[] lastPacket = (FilePacketCreator.CreatePacket (filePath, i, packetSize));
 				stream.Write (lastPacket, 0, lastPacketSize);
-			} catch (Exception e) {
+			}
+			catch (Exception e)
+			{
 				System.Diagnostics.Debug.WriteLine ("The process failed: {0}", e.ToString ());
 				throw e;
 			}
 
 		}
 
+		static void DeleteFile (FileDeletePacket x)
+		{
+			throw new NotImplementedException ();
+		}
 
 		internal static void HandleSyncAsServer (object hst) //TODO
 		{
 			TcpClient host = null;
 			SslStream sslStream = null;
-			try {
+			try
+			{
 				host = (TcpClient)hst;
 
 				string message = "hello word";
@@ -297,20 +375,30 @@ namespace PiggySyncWin.WinUI.Sync
 				// Close everything.
 				sslStream.Close ();
 				host.Close ();
-			} catch (ArgumentNullException e) {
+			}
+			catch (ArgumentNullException e)
+			{
 				System.Diagnostics.Debug.WriteLine ("ArgumentNullException:", e);
-			} catch (SocketException e) {
+			}
+			catch (SocketException e)
+			{
 				System.Diagnostics.Debug.WriteLine ("SocketException:", e);
-			} catch (AuthenticationException e) {
+			}
+			catch (AuthenticationException e)
+			{
 				System.Diagnostics.Debug.WriteLine ("AuthenticationException:", e);
-			} finally {
+			}
+			finally
+			{
 				// The UDPReader stream will be closed with the sslStream 
 				// because we specified this behavior when creating 
 				// the sslStream.
-				if (sslStream != null) {
+				if (sslStream != null)
+				{
 					sslStream.Close ();
 				}
-				if (host != null) {
+				if (host != null)
+				{
 					host.Close ();
 				}
 
@@ -319,7 +407,8 @@ namespace PiggySyncWin.WinUI.Sync
 
 		public static bool ValidateServerCertificate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
 		{
-			if (sslPolicyErrors == SslPolicyErrors.None) {
+			if (sslPolicyErrors == SslPolicyErrors.None)
+			{
 				return true;
 			}
 			System.Diagnostics.Debug.WriteLine ("Certificate error: {0}", sslPolicyErrors);
@@ -332,7 +421,8 @@ namespace PiggySyncWin.WinUI.Sync
 		{
 			TcpClient host = null;
 			SslStream sslStream = null;
-			try {
+			try
+			{
 				host = (TcpClient)hst;
 
 				string message = "hello word";
@@ -362,20 +452,30 @@ namespace PiggySyncWin.WinUI.Sync
 				// Close everything.
 				sslStream.Close ();
 				host.Close ();
-			} catch (ArgumentNullException e) {
+			}
+			catch (ArgumentNullException e)
+			{
 				System.Diagnostics.Debug.WriteLine ("ArgumentNullException: {0}", e);
-			} catch (SocketException e) {
-				System.Diagnostics.Debug.WriteLine ("SocketException:", e);
-			} catch (AuthenticationException e) {
-				System.Diagnostics.Debug.WriteLine ("AuthenticationException:", e);
-			} finally {
+			}
+			catch (SocketException e)
+			{
+				System.Diagnostics.Debug.WriteLine ("SocketException: {0}", e);
+			}
+			catch (AuthenticationException e)
+			{
+				System.Diagnostics.Debug.WriteLine ("AuthenticationException: {0}", e);
+			}
+			finally
+			{
 				// The UDPReader stream will be closed with the sslStream 
 				// because we specified this behavior when creating 
 				// the sslStream.
-				if (sslStream != null) {
+				if (sslStream != null)
+				{
 					sslStream.Close ();
 				}
-				if (host != null) {
+				if (host != null)
+				{
 					host.Close ();
 				}
 
