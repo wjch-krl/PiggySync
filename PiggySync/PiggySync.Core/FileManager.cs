@@ -141,9 +141,12 @@ namespace PiggySyncWin.WinUI.Models
 			path = path.Replace (XmlSettingsRepository.Instance.Settings.SyncPath, String.Empty);
 			path.Replace ('/','\\');
 			SyncInfoPacket folder = rootFolder;
-			foreach (var segment in path.Split ('\\'))
+			if (!String.IsNullOrWhiteSpace (path))
 			{
-				folder = folder.Folders.First (element => element.FolderName == segment);
+				foreach (var segment in path.Split ('\\'))
+				{
+					folder = folder.Folders.First (element => element.FolderName == segment);
+				}
 			}
 			var dbFiles = DatabaseManager.Instance.GetAllFiles ();
 			GetFiles (folder, path, dbFiles);
