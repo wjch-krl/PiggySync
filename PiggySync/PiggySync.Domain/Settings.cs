@@ -6,12 +6,26 @@ using System.Threading.Tasks;
 
 namespace PiggySyncWin.Domain
 {
-    [Serializable]
-    public class Settings
-    {
-        //TODO
-        public string SyncPath { get; set; }
-        public string ComputerName { get; set; }
+	[Serializable]
+	public class Settings
+	{
+		//TODO
+		public string SyncPath
+		{ 
+			get;
+			set;
+		}
 
-    }
+		public string ComputerName
+		{ 
+			get;
+			set;
+		}
+
+		public string[] TextFiles
+		{
+			get;
+			set;
+		}
+	}
 }

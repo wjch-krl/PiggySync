@@ -19,6 +19,10 @@ namespace PiggySync.Model
 		{
 			FileInfo fileInf = new FileInfo (path);
 			FileName = fileInf.Name;
+			if (fileInf.Length > UInt32.MaxValue)
+			{
+				throw new PiggyFileException ("File is tooo Big, Max 4GiB files");
+			}
 			FileSize = (UInt32)fileInf.Length;
 			LastModyfied = (Int64)(fileInf.LastWriteTimeUtc - new DateTime (1970, 1, 1)).Ticks;
 			CheckSum = CheckSumGenerator.ComputeChecksum (fileInf);

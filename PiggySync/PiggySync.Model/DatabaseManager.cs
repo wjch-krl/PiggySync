@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using PiggySyncWin.WinUI.Models;
 using System.Linq;
 using PiggySync.Model;
+using PiggySyncWin.Domain.Concrete;
 
 namespace PiggySync.DatabaseManager
 {
@@ -28,7 +29,7 @@ namespace PiggySync.DatabaseManager
 		private DatabaseManager ()
 		{
 			string DataBaseName = "PiggyDB.sqlite";
-			string libraryPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
+			string libraryPath = XmlSettingsRepository.SettingsPath;
 			databasePath = Path.Combine (libraryPath, DataBaseName);
 			dbLock = new object ();
 			using (var con = GetConnection ())

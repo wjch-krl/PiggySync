@@ -64,6 +64,7 @@ namespace PiggySyncWin.WinUI.Models
 			string path = XmlSettingsRepository.Instance.Settings.SyncPath;
 			var dbFiles = DatabaseManager.Instance.GetAllFiles ();
 			CreateRootFolder (root, path, dbFiles);
+			AddOtherDeletedFiles (dbFiles, root);
 		}
 
 		private static void CreateRootFolder (SyncInfoPacket root, string path, HashSet<FileInf> dbFiles) //TODO delete packets 
@@ -74,6 +75,7 @@ namespace PiggySyncWin.WinUI.Models
 			}
 			GetFiles (root, path, dbFiles);
 			GetDirectories (root, path, dbFiles);
+
 			FileManager.rootFolder.ElelmentsCount = FileManager.rootFolder.GetFileCount ();
 		}
 
@@ -105,31 +107,39 @@ namespace PiggySyncWin.WinUI.Models
 				root.Files.Add (new FileInfoPacket (fileInf));
 				addedFiles.Add (fileInf);
 			}
-			foreach (var element in dbFiles.Where (x => x.Path == path && x.IsDeleted))
-			{
-				System.Diagnostics.Debug.WriteLine ("Added deleted file from db: {0}", element.FileName);
-				root.DeletedFiles.Add (new FileDeletePacket (element));
-			}
-			foreach (var element in dbFiles.Where (x => x.Path == path && !x.IsDeleted))
+			var folderFiles = new List<FileInf> (dbFiles.Where (x => x.Path == path));
+			foreach (var element in folderFiles)
 			{
 				FileInf file = null;
-				if ((file = addedFiles.FirstOrDefault (x => x.FileName == element.FileName)) == null)
+				if ((file = addedFiles.FirstOrDefault (x => x.FileName == element.FileName && !element.IsDeleted)) == null)
 				{
-					System.Diagnostics.Debug.WriteLine ("Added new deleted file: {0}", element.FileName);
+					System.Diagnostics.Debug.WriteLine ("Added new deleted file: " + element.FileName);
 					element.IsDeleted = true;
 					DatabaseManager.Instance.SaveDeletedFile (element);
 					root.DeletedFiles.Add (new FileDeletePacket (element));
 				}
 				else
 				{
+					file.IsDeleted = false;
 					file.Id = element.Id;
 				}
+				dbFiles.Remove (element);
 			}
 		}
 
 		public static void RefreshRootFolder ()
 		{
 			CreateRootFolder ();
+		}
+
+		static void AddOtherDeletedFiles (HashSet<FileInf> dbFiles, SyncInfoPacket root)
+		{
+			foreach (var file in dbFiles)
+			{
+				file.IsDeleted = true;
+				//rootFolder.DeletedFiles.Add (new FileDeletePacket(file));
+				//TODO Create deleted folder packet
+			}
 		}
 
 		public static void RefreshPath (string path)
@@ -139,11 +149,11 @@ namespace PiggySyncWin.WinUI.Models
 				path = Path.GetDirectoryName (path);
 			}
 			path = path.Replace (XmlSettingsRepository.Instance.Settings.SyncPath, String.Empty);
-			path.Replace ('/','\\');
+			path.Replace ('\\', '/');
 			SyncInfoPacket folder = rootFolder;
 			if (!String.IsNullOrWhiteSpace (path))
 			{
-				foreach (var segment in path.Split ('\\'))
+				foreach (var segment in path.Split ('/'))
 				{
 					folder = folder.Folders.First (element => element.FolderName == segment);
 				}
