@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PiggySync.Core;
+using PiggySync.Model;
 
 namespace PiggySyncWin.WinUI.Models
 {

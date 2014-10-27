@@ -51,6 +51,7 @@ namespace PiggySyncWin.WinUI.Models
 			return base.GetHashCode ();
 		}
 
+		[SQLite.Ignore]
 		public UInt32 SEQNumber {
 			get;
 			set;

@@ -3,36 +3,39 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PiggySync.DatabaseManager;
 
 namespace PiggySyncWin.WinUI.Infrastructure
 {
-    public class DeviaceHistoryManager
-    {
-        static List<PiggyRemoteHostHistoryEntry> allHosts;
+	public static class DeviaceHistoryManager
+	{
+		public static List<PiggyRemoteHostHistoryEntry> AllHosts
+		{
+			get;
+			set;
+		}
 
-        public static List<PiggyRemoteHostHistoryEntry> AllHosts
-        {
-            get { return allHosts; }
-            set { allHosts = value; }
-        }
+		static DeviaceHistoryManager ()
+		{
+			AllHosts = DatabaseManager.Instance.GetHistoricalDeviaces ();
+		}
 
-        public static void Initialize(){
-            allHosts = new List<PiggyRemoteHostHistoryEntry>();
-        }
+		public static void AddHost (PiggyRemoteHost host)
+		{
+			foreach (var x in AllHosts)
+			{
+				if (x == host)
+				{
+					x.LastSync = DateTime.Now;
+					DatabaseManager.Instance.UpdateHistoricalDeviace (x);
+					return;
+				}
+			}
+			var newHost = new PiggyRemoteHostHistoryEntry (host);
+			newHost.LastSync = DateTime.Now;
+			DatabaseManager.Instance.SaveHistoricalDeviace (newHost);
 
-        public static void AddHost(PiggyRemoteHost host)
-        {
-            foreach (var x in allHosts)
-            {
-                if (x == host)
-                {
-                    x.LastSync = DateTime.Now;
-                    return;
-                }
-            }
-            var newHost = new PiggyRemoteHostHistoryEntry(host);
-            newHost.LastSync = DateTime.Now;
-            allHosts.Add(newHost);
-        }
-    }
+			AllHosts.Add (newHost);
+		}
+	}
 }

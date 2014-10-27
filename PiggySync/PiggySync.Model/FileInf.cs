@@ -5,13 +5,24 @@ using System.Text;
 using PiggySync.Core;
 using PiggySyncWin.Domain;
 using SQLite;
+using System.IO;
 
-namespace PiggySyncWin.WinUI.Models
+namespace PiggySync.Model
 {
 	public class FileInf
 	{
 		public FileInf ()
 		{
+		}
+
+		public FileInf (string path)
+		{
+			FileInfo fileInf = new FileInfo (path);
+			FileName = fileInf.Name;
+			FileSize = (UInt32)fileInf.Length;
+			LastModyfied = (Int64)(fileInf.LastWriteTimeUtc - new DateTime (1970, 1, 1)).Ticks;
+			CheckSum = CheckSumGenerator.ComputeChecksum (fileInf);
+
 		}
 
 		public FileInf (byte[] packet, UInt32 packetSize)
@@ -23,12 +34,22 @@ namespace PiggySyncWin.WinUI.Models
 				(int)packetSize - (1 + 2 * sizeof(UInt32) + sizeof(Int64) + CheckSumGenerator.ChecksumSize));
 		}
 
-		public Int64 LastModyfied {
+		[PrimaryKey, AutoIncrement]
+		public int Id
+		{ 
 			get;
 			set;
 		}
 
-		public DateTime LastMdyfiedDate {
+		[Ignore]
+		public Int64 LastModyfied
+		{
+			get;
+			set;
+		}
+			
+		public DateTime LastMdyfiedDate
+		{
 			get
 			{
 				return new DateTime (1970, 1, 1).AddTicks (LastModyfied);
@@ -39,26 +60,29 @@ namespace PiggySyncWin.WinUI.Models
 			}
 		}
 
-		public UInt32 FileSize {
+		public UInt32 FileSize
+		{
 			get;
 			set;
 		}
 
-		[MaxLength(16)]
-		public byte[] CheckSum {
+		[MaxLength (16)]
+		public byte[] CheckSum
+		{
 			get;
 			set;
 		}
 
-		public string FileName {
+		public string FileName
+		{
 			get;
 			set;
 		}
 
-		[PrimaryKey, AutoIncrement]
-		public int Id { 
-			get;
-			set;
-		}
+		[Indexed]
+		[MaxLength (1024)]
+		public string Path { get; set; }
+
+		public bool IsDeleted { get; set; }
 	}
 }

@@ -57,6 +57,7 @@
     <Compile Include="DatabaseConnection\SQLite.cs" />
     <Compile Include="DatabaseConnection\SQLiteAsync.cs" />
     <Compile Include="FileInfComparer.cs" />
+    <Compile Include="DatabaseManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

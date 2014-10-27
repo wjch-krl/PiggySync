@@ -75,10 +75,6 @@
       <Project>{2E02DDCB-C2E6-470F-92D5-A9811CEFF743}</Project>
       <Name>PiggySync.GtkGui</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PiggySync.DatabaseManager\PiggySync.DatabaseManager.csproj">
-      <Project>{6DE2C405-95EB-4B82-A68C-6BC5BC8DCD66}</Project>
-      <Name>PiggySync.DatabaseManager</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

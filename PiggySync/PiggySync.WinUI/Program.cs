@@ -20,8 +20,6 @@ namespace PiggySyncWin.WinUI
            // ConsoleManager.Show(); //Shows the console window
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-			var db = DatabaseManager.Instance;
-			var host = db.GetDeletedFiles ();
             new MainWindow();
 
 			do {

@@ -104,7 +104,6 @@ namespace PiggySyncWin.WinUI.Views
             };
             SyncManager main = new SyncManager();
             FileWatcher.Initialize(main);
-            DeviaceHistoryManager.Initialize();
             main.Run();
 
             new TaskFactory().StartNew(() =>

@@ -18,14 +18,14 @@ namespace PiggySyncWin.WinUI.Infrastructure
 
 		}
 
-		public DateTime LastSync
+		[PrimaryKey, AutoIncrement]
+		public int Id
 		{
 			get;
 			set;
 		}
 
-		[PrimaryKey, AutoIncrement]
-		public int Id
+		public DateTime LastSync
 		{
 			get;
 			set;
