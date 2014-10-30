@@ -9,9 +9,13 @@ namespace PiggySyncWin.WinUI.Models //TODO folder name
 {
     public class FolderInfoPacket : SyncInfoPacket, ICloneable
     {
-        public FolderInfoPacket(List<FileInfoPacket> files, List<FolderInfoPacket> subfolders, List<FileDeletePacket> deletedFiles, string name)
-            : base(files, subfolders, deletedFiles, 10)
+		private readonly int PacketCode;
+
+		public FolderInfoPacket(List<FileInfoPacket> files, List<FolderInfoPacket> subfolders, 
+			List<FileDeletePacket> deletedFiles, string name, byte packetCode = 10)
+			: base(files, subfolders, deletedFiles, packetCode)
         {
+			PacketCode = packetCode;
             this.folderName = name;
             PacketSize = (UInt32)(1 + 2 * sizeof(UInt32) + System.Text.Encoding.UTF8.GetBytes(folderName).Length);
         }
@@ -22,22 +26,22 @@ namespace PiggySyncWin.WinUI.Models //TODO folder name
             set;
         }
 
-        public FolderInfoPacket(byte[] msg)
+		public FolderInfoPacket(byte[] msg,byte packetCode =10)
         {
-            this.code = 10;
+			this.Code = packetCode;
             this.PacketSize = BitConverter.ToUInt32(msg, 1);
             this.ElelmentsCount = BitConverter.ToUInt32(msg, 1+sizeof(UInt32));
             this.folderName = System.Text.Encoding.UTF8.GetString(msg, 1 + 2*sizeof(UInt32),(int) PacketSize - (1 + 2*sizeof(UInt32)));
         }
 
-        public FolderInfoPacket(FolderInfoPacket folderInfoPacket) : base (folderInfoPacket,10)
+		public FolderInfoPacket(FolderInfoPacket folderInfoPacket,byte packetCode =10) : base (folderInfoPacket,packetCode)
         {
             this.folderName = folderInfoPacket.folderName;
             PacketSize = (UInt32)( 1 + 2 * sizeof(UInt32) + System.Text.Encoding.UTF8.GetBytes(folderName).Length);
         }
 
-        public FolderInfoPacket(string folderName)
-            : base(10)
+		public FolderInfoPacket(string folderName,byte packetCode =10)
+			: base(packetCode)
         {
             this.folderName = folderName;
             PacketSize = (UInt32)(1 + 2 * sizeof(UInt32) + System.Text.Encoding.UTF8.GetBytes(folderName).Length);
@@ -53,7 +57,7 @@ namespace PiggySyncWin.WinUI.Models //TODO folder name
         public override byte[] GetPacket()
         {
             byte[] packet = new byte[1];
-            packet[0] = code;
+			packet[0] = Code;
             packet = packet.Concat(BitConverter.GetBytes(PacketSize)).ToArray();
             packet = packet.Concat(BitConverter.GetBytes(ElelmentsCount)).ToArray();
             packet = packet.Concat(System.Text.Encoding.UTF8.GetBytes(folderName)).ToArray();
@@ -65,5 +69,10 @@ namespace PiggySyncWin.WinUI.Models //TODO folder name
         {
             return new FolderInfoPacket(this);
         }
+
+		public bool IsDeleted
+		{
+			get { return PacketCode != 10; }
+		}
     }
 }

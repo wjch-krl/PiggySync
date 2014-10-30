@@ -7,10 +7,17 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/PiggySync.GtkGui.exe" internal="true" />
   </import>
+  <icon-factory>
+    <icon-set id="logo64">
+      <source>
+        <property name="Image">file:./PiggyLogo_64.png</property>
+      </source>
+    </icon-set>
+  </icon-factory>
   <widget class="Gtk.Window" id="MainWindow" design-size="275 276">
     <property name="MemberName" />
     <property name="Title" translatable="yes">PiGGY .... sync</property>
-    <property name="Icon">stock:gtk-execute Menu</property>
+    <property name="Icon">resource:PiggySync.GtkGui.PiggyLogo_64.png</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Resizable">False</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />

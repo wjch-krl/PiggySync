@@ -17,7 +17,7 @@ namespace PiggySyncWin.WinUI.Models
 
         public override byte[] GetPacket()
         {
-            byte[] packet = new byte[] { code };
+            byte[] packet = new byte[] { Code };
             packet = packet.Concat(BitConverter.GetBytes(seqNumber)).ToArray();
             packet = packet.Concat(Discovery.Name).ToArray();
             return packet;

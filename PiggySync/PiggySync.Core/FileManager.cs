@@ -137,6 +137,18 @@ namespace PiggySyncWin.WinUI.Models
 			foreach (var file in dbFiles)
 			{
 				file.IsDeleted = true;
+				var folder = file.Path.Replace (XmlSettingsRepository.Instance.Settings.SyncPath, String.Empty);
+				folder = folder.Replace ('\\', '/');
+				var foldersTree = folder.Split ('/');
+				string curr = XmlSettingsRepository.Instance.Settings.SyncPath;
+				foreach (var element in foldersTree)
+				{
+					curr = string.Format ("{1}/{0}", element, curr);
+					if (!Directory.Exists (curr))
+					{
+						root.Folders.Add (new FolderInfoPacket (element, 144));//TODO
+					}
+				}
 				//rootFolder.DeletedFiles.Add (new FileDeletePacket(file));
 				//TODO Create deleted folder packet
 			}
@@ -149,7 +161,7 @@ namespace PiggySyncWin.WinUI.Models
 				path = Path.GetDirectoryName (path);
 			}
 			path = path.Replace (XmlSettingsRepository.Instance.Settings.SyncPath, String.Empty);
-			path.Replace ('\\', '/');
+			path = path.Replace ('\\', '/');
 			SyncInfoPacket folder = rootFolder;
 			if (!String.IsNullOrWhiteSpace (path))
 			{

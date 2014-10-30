@@ -8,11 +8,11 @@ namespace PiggySyncWin.WinUI.Models
 {
     public abstract class UDPPacket 
     {
-        internal byte code;
+		internal byte Code { get; set; }
 
         public UDPPacket(byte code)
         {
-            this.code = code;
+            this.Code = code;
         }
 
         public abstract byte[] GetPacket();

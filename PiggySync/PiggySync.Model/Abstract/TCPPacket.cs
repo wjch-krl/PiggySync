@@ -8,11 +8,11 @@ namespace PiggySyncWin.Models
 {
     public abstract class TCPPacket
     {
-        internal byte code;
+        internal byte Code;
 
         public TCPPacket(byte code)
         {
-            this.code = code;
+            this.Code = code;
         }
 
         public abstract byte[] GetPacket();

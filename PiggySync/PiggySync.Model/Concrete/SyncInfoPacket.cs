@@ -11,10 +11,10 @@ namespace PiggySyncWin.WinUI.Models
 {
 	public class SyncInfoPacket : TCPPacket, ICloneable
 	{
-		public const byte Code = 255;
+		public const byte SyncInfoPacketCode = 255;
 
 		public SyncInfoPacket (List<FileInfoPacket> files, List<FolderInfoPacket> folders, List<FileDeletePacket> deletedFiles)
-			: base (Code)
+			: base (SyncInfoPacketCode)
 		{
 			this.Files = files;
 			this.Folders = folders;
@@ -22,7 +22,7 @@ namespace PiggySyncWin.WinUI.Models
 			this.ElelmentsCount = this.GetFileCount ();
 		}
 
-		public SyncInfoPacket (byte[] data, byte code = Code)
+		public SyncInfoPacket (byte[] data, byte code = SyncInfoPacketCode)
 			: base (code)
 		{
 			this.ElelmentsCount = BitConverter.ToUInt32 (data, 1);
@@ -32,7 +32,7 @@ namespace PiggySyncWin.WinUI.Models
 		}
 
 		//lllll
-		protected SyncInfoPacket (SyncInfoPacket syncInfoPacket, byte code = Code)
+		protected SyncInfoPacket (SyncInfoPacket syncInfoPacket, byte code = SyncInfoPacketCode)
 			: base (code)
 		{
 			this.Files = syncInfoPacket.Files.Clone ();
@@ -51,7 +51,7 @@ namespace PiggySyncWin.WinUI.Models
 		}
 
 		public SyncInfoPacket ()
-			: base (Code)
+			: base (SyncInfoPacketCode)
 		{
 			this.Files = new List<FileInfoPacket> ();
 			this.Folders = new List<FolderInfoPacket> ();
@@ -74,7 +74,7 @@ namespace PiggySyncWin.WinUI.Models
 		public override byte[] GetPacket ()
 		{
 			byte[] packet = new byte[1];
-			packet [0] = code;
+			packet [0] = Code;
 
 			packet = packet.Concat (BitConverter.GetBytes (ElelmentsCount)).ToArray ();
 			return packet;

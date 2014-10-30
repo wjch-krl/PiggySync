@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PiggySyncWin.Domain;
+using System.Diagnostics;
 
 namespace PiggySyncWin.WinUI.Infrastructure
 {
@@ -15,7 +16,8 @@ namespace PiggySyncWin.WinUI.Infrastructure
 
 		public static List<TCPPacket> RecrateFromRecivedData (byte[] recivedData, int bytes)
 		{
-			if (tmpBuffer != null) {
+			if (tmpBuffer != null)
+			{
 				recivedData = tmpBuffer.Concat (recivedData).ToArray ();
 			}
 			var packets = new List<TCPPacket> ();
@@ -23,29 +25,40 @@ namespace PiggySyncWin.WinUI.Infrastructure
 			int singleLen = 0;
 			int pointer = 0;
 
-			if (recivedData [0] == 240 || recivedData [0] == 170 || recivedData [0] == 10 || recivedData [0] == 0) {
+			if (recivedData [0] == 240 || recivedData [0] == 170 || recivedData [0] == 10 || recivedData [0] == 0)
+			{
 				singleLen = (int)BitConverter.ToUInt32 (data, 1);
-			} else {
+			}
+			else
+			{
 				singleLen = getLenghtForPacketType (recivedData [0]);
 			}
 
-			while (pointer < bytes) {  
-				try {
+			while (pointer < bytes)
+			{  
+				try
+				{
 					data = recivedData.SubArray (pointer, recivedData.Length - pointer);
 					tmpBuffer = null;
-				} catch (Exception e) {
-
+				}
+				catch (Exception e)
+				{
+					Debug.WriteLine (e);
 					tmpBuffer = recivedData.SubArray (pointer, bytes - pointer);
 					return packets;
 				}
 
-				if (data [0] == 240 || data [0] == 170 || data [0] == 10 || data [0] == 0) {
+				if (data [0] == 240 || data [0] == 170 || data [0] == 10 || data [0] == 0)
+				{
 					singleLen = (int)BitConverter.ToUInt32 (data, 1);
-				} else {
+				}
+				else
+				{
 					singleLen = getLenghtForPacketType (data [0]);
 				}
 				pointer += singleLen;
-				switch (data [0]) {
+				switch (data [0])
+				{
 				case 255:
 					var root = new SyncInfoPacket (data);
 					packets.Add (root);
@@ -83,10 +96,11 @@ namespace PiggySyncWin.WinUI.Infrastructure
 
 		public static int getLenghtForPacketType (byte code)
 		{
-			switch (code) {
-			case SyncInfoPacket.Code:
+			switch (code)
+			{
+			case SyncInfoPacket.SyncInfoPacketCode:
 				return syncInfoPacketSize;
-			case NoRequestPacket.Code:
+			case NoRequestPacket.NoRequestPacketCode:
 				return noRequestPacketSize;
 			default:
 				return -1;

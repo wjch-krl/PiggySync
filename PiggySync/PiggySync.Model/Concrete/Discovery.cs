@@ -27,7 +27,7 @@ namespace PiggySyncWin.WinUI.Models
         {
             byte[] ip = PiggyRemoteHost.Me.Ip.GetAddressBytes();
             byte[] msg = new byte[ip.Length + name.Length + 1];
-            msg[0] = code;
+            msg[0] = Code;
             ip.CopyTo(msg, 1); //TODO concat ??
             name.CopyTo(msg, ip.Length+1);
             return msg;

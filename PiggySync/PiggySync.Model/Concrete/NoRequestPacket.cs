@@ -9,17 +9,17 @@ namespace PiggySyncWin.WinUI.Models
 {
 	public class NoRequestPacket : TCPPacket
     {
-        public const byte Code = 160;
+		public const byte NoRequestPacketCode = 160;
 
         public NoRequestPacket()
-            : base(Code)
+			: base(NoRequestPacketCode)
         {
 
         }
 
         public override byte[] GetPacket()
         {
-            return new byte[] { code };
+			return new byte[] { NoRequestPacketCode };
         }
 
     }

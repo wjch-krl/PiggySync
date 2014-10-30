@@ -9,11 +9,11 @@ public partial class MainWindow
 	
 	private global::Gtk.Entry rootSyncPath;
 	
-	private global::Gtk.ProgressBar progressbar1;
-	
 	private global::Gtk.Button chooseFolderButton;
 	
 	private global::Gtk.CheckButton autoSyncCheckBox;
+	
+	private global::Gtk.ProgressBar progressbar1;
 
 	protected virtual void Build ()
 	{
@@ -21,7 +21,7 @@ public partial class MainWindow
 		// Widget MainWindow
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("PiGGY .... sync");
-		this.Icon = global::Stetic.IconLoader.LoadIcon (this, "gtk-execute", global::Gtk.IconSize.Menu);
+		this.Icon = global::Gdk.Pixbuf.LoadFromResource ("PiggySync.GtkGui.PiggyLogo_64.png");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		this.Resizable = false;
 		// Container child MainWindow.Gtk.Container+ContainerChild
@@ -50,25 +50,15 @@ public partial class MainWindow
 		w2.X = 10;
 		w2.Y = 191;
 		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.progressbar1 = new global::Gtk.ProgressBar ();
-		this.progressbar1.Name = "progressbar1";
-		this.progressbar1.Text = "";
-		this.progressbar1.Fraction = 0.73;
-		this.progressbar1.PulseStep = 0.41;
-		this.fixed1.Add (this.progressbar1);
-		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.progressbar1]));
-		w3.X = 13;
-		w3.Y = 142;
-		// Container child fixed1.Gtk.Fixed+FixedChild
 		this.chooseFolderButton = new global::Gtk.Button ();
 		this.chooseFolderButton.CanFocus = true;
 		this.chooseFolderButton.Name = "chooseFolderButton";
 		this.chooseFolderButton.UseUnderline = true;
 		this.chooseFolderButton.Label = global::Mono.Unix.Catalog.GetString ("Choose");
 		this.fixed1.Add (this.chooseFolderButton);
-		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.chooseFolderButton]));
-		w4.X = 181;
-		w4.Y = 187;
+		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.chooseFolderButton]));
+		w3.X = 181;
+		w3.Y = 187;
 		// Container child fixed1.Gtk.Fixed+FixedChild
 		this.autoSyncCheckBox = new global::Gtk.CheckButton ();
 		this.autoSyncCheckBox.CanFocus = true;
@@ -77,9 +67,18 @@ public partial class MainWindow
 		this.autoSyncCheckBox.DrawIndicator = true;
 		this.autoSyncCheckBox.UseUnderline = true;
 		this.fixed1.Add (this.autoSyncCheckBox);
-		global::Gtk.Fixed.FixedChild w5 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.autoSyncCheckBox]));
-		w5.X = 149;
-		w5.Y = 241;
+		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.autoSyncCheckBox]));
+		w4.X = 149;
+		w4.Y = 241;
+		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.progressbar1 = new global::Gtk.ProgressBar ();
+		this.progressbar1.Name = "progressbar1";
+		this.progressbar1.Text = "";
+		this.progressbar1.PulseStep = 0;
+		this.fixed1.Add (this.progressbar1);
+		global::Gtk.Fixed.FixedChild w5 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.progressbar1]));
+		w5.X = 13;
+		w5.Y = 152;
 		this.Add (this.fixed1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();

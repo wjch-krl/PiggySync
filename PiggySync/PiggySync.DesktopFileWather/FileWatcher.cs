@@ -76,7 +76,7 @@ namespace PiggySyncWin.WinUI.Infrastructure
 				watcher.Changed += watcher_Changed;
 				watcher.Created += watcher_Created;
 				watcher.Deleted += watcher_Deleted;
-
+				watcher.Renamed += wather_Renamed;
 				watcher.EnableRaisingEvents = true;
 			}
 		}
@@ -104,6 +104,16 @@ namespace PiggySyncWin.WinUI.Infrastructure
 			{
 				System.Diagnostics.Debug.WriteLine (ex);
 			}
+		}
+
+		static void wather_Renamed (object sender, RenamedEventArgs e)
+		{
+			FileRenamed (e.OldFullPath, e.FullPath);
+		}
+
+		static void FileRenamed (string oldFullPath, string fullPath)
+		{
+			throw new NotImplementedException ();
 		}
 	}
 }
