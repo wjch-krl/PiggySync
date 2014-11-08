@@ -17,7 +17,6 @@ namespace PiggySyncWin.WinUI
         [STAThread]
         static void Main()
         {
-           // ConsoleManager.Show(); //Shows the console window
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             new MainWindow();

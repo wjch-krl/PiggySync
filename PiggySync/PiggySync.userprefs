@@ -1,21 +1,28 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.Domain/Settings.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.FileMerger/FileMerger.cs">
     <Files>
-      <File FileName="PiggySync.LogManager/LoggManager.cs" Line="3" Column="3" />
-      <File FileName="PiggySync.FileMerger/FileMerger.cs" Line="10" Column="10" />
-      <File FileName="PiggySync.Core/FileManager.cs" Line="43" Column="43" />
-      <File FileName="PiggySync.Model/DatabaseManager.cs" Line="60" Column="60" />
-      <File FileName="PiggySync.Model/Concrete/FolderInfoPacket.cs" Line="5" Column="5" />
-      <File FileName="PiggySync.Domain/Settings.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Domain/Concrete/XmlSettingsRepository.cs" Line="23" Column="23" />
+      <File FileName="PiggySync.LogManager/LoggManager.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.FileMerger/FileMerger.cs" Line="28" Column="28" />
+      <File FileName="PiggySync.Core/FileManager.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Model/DatabaseManager.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.DesktopFileWather/FileWatcher.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Tests/FileMergerTests.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Tests/DuckRemoteHostTests.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True">
+          <Node name="Common" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="225" column="47" />
       <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="187" column="1" />
-      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/FileManager.cs" line="162" column="1" />
+      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/FileManager.cs" line="178" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

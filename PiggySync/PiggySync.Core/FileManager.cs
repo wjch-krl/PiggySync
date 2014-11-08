@@ -146,10 +146,14 @@ namespace PiggySyncWin.WinUI.Models
 					curr = string.Format ("{1}/{0}", element, curr);
 					if (!Directory.Exists (curr))
 					{
-						root.Folders.Add (new FolderInfoPacket (element, 144));//TODO
+						var deletedFolder = new FolderInfoPacket (curr.Replace(XmlSettingsRepository.Instance.Settings.SyncPath, String.Empty), 144);
+
+						root.Folders.Add (deletedFolder);//TODO
+						deletedFolder.DeletedFiles.Add (new FileDeletePacket (file));
+						break;
 					}
 				}
-				//rootFolder.DeletedFiles.Add (new FileDeletePacket(file));
+				rootFolder.DeletedFiles.Add (new FileDeletePacket(file));
 				//TODO Create deleted folder packet
 			}
 		}
