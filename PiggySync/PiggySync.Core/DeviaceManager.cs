@@ -17,7 +17,7 @@ namespace PiggySync.Core
 
         public static void AddHost(PiggyRemoteHost host)
         {
-            foreach (PiggyRemoteHostHistoryEntry x in AllHosts)
+            foreach (var x in AllHosts)
             {
                 if (x == host)
                 {
