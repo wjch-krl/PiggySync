@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PiggySync.Common;
-using PiggySync.Core;
+using PiggySync.Common.Concrete;
 using PiggySyncWin.Domain;
 using SQLite;
 using System.IO;

@@ -1,9 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using PiggySync.Common.Abstract;
-using PiggySync.Common.Concrete;
 
-namespace PiggySync.Core
+namespace PiggySync.Common.Concrete
 {
 	public static class CheckSumGenerator
 	{

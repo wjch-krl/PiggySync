@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using PiggySync.Core;
+using PiggySync.Common.Concrete;
 using PiggySync.Model.Abstract;
 
 namespace PiggySync.Model.Concrete

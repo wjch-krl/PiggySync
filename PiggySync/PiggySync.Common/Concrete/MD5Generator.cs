@@ -4,9 +4,8 @@ using PiggySync.Common.Abstract;
 
 namespace PiggySync.Common.Concrete
 {
-	class MD5Generator : ICheckSumGenerator
+	class Md5Generator : ICheckSumGenerator
 	{
-
 		public byte[] ComputeChecksum (System.IO.FileInfo file)
 		{
 			using (var md5 = MD5.Create())
