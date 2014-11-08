@@ -1,11 +1,8 @@
-﻿using PiggySyncWin.WinUI.Models.Concrete;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PiggySyncWin.WinUI.Models //TODO folder name
+namespace PiggySync.Model.Concrete
 {
     public class FolderInfoPacket : SyncInfoPacket, ICloneable
     {

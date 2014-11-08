@@ -1,8 +1,8 @@
-using System;
-using System.Security.Cryptography;
 using System.IO;
+using System.Security.Cryptography;
+using PiggySync.Common.Abstract;
 
-namespace PiggySync.Core
+namespace PiggySync.Common.Concrete
 {
 	class MD5Generator : ICheckSumGenerator
 	{

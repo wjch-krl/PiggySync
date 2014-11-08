@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using PiggySync.Core;
+using PiggySync.Common.Abstract;
 
-namespace PiggySyncWin.WinUI.Infrastructure
+namespace PiggySync.Common.Concrete
 {
 	public class CRC32 : ICheckSumGenerator
 	{
