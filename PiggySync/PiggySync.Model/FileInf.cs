@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PiggySync.Common;
 using PiggySync.Core;
 using PiggySyncWin.Domain;
 using SQLite;

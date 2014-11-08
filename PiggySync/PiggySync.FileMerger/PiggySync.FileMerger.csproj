@@ -7,7 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>PiggySync.FileMerger</RootNamespace>
     <AssemblyName>PiggySync.FileMerger</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <ReleaseVersion>0.5</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,6 +29,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="DiffPlex">
+      <HintPath>..\packages\DiffPlex.1.2.1\lib\portable-net40+sl50+win+wpa81+wp80\DiffPlex.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,5 +55,8 @@
       <Project>{19804015-C118-4438-9DB8-90E904F26840}</Project>
       <Name>PiggySync.LogManager</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

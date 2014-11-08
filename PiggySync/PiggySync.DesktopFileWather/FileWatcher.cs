@@ -1,4 +1,6 @@
-﻿using PiggySyncWin.Domain.Concrete;
+﻿using PiggySync.Core;
+using PiggySync.Domain.Abstract;
+using PiggySync.Domain.Concrete;
 using PiggySyncWin.WinUI.Models;
 using System;
 using System.Collections.Concurrent;
@@ -6,8 +8,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using PiggySyncWin.Domain.Abstract;
-using PiggySync.DatabaseManager;
 using PiggySync.Model;
 
 namespace PiggySyncWin.WinUI.Infrastructure

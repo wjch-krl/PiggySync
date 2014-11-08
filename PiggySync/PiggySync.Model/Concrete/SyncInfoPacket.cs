@@ -1,13 +1,14 @@
-﻿using PiggySyncWin.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PiggySyncWin.WinUI.Models.Concrete;
+using PiggySync.Common;
+using PiggySync.Model.Abstract;
 using PiggySyncWin.Domain;
+using PiggySyncWin.Models;
+using PiggySyncWin.WinUI.Models;
+using PiggySyncWin.WinUI.Models.Concrete;
 
-namespace PiggySyncWin.WinUI.Models
+namespace PiggySync.Model.Concrete
 {
 	public class SyncInfoPacket : TCPPacket, ICloneable
 	{

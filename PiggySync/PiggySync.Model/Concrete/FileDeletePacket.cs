@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PiggySync.Model;
+﻿using PiggySyncWin.WinUI.Models;
 
-namespace PiggySyncWin.WinUI.Models.Concrete
+namespace PiggySync.Model.Concrete
 {
     public class FileDeletePacket : FileInfoPacket
     {

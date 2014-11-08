@@ -1,11 +1,6 @@
-﻿using PiggySyncWin.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PiggySync.Model.Abstract;
 
-namespace PiggySyncWin.WinUI.Models
+namespace PiggySync.Model.Concrete
 {
 	public class NoRequestPacket : TCPPacket
     {

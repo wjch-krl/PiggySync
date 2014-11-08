@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PiggySyncWin.Domain;
 
-namespace PiggySyncWin.Domain.Abstract
+namespace PiggySync.Domain.Abstract
 {
     interface ISettingsRepository
     {

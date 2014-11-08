@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PiggySyncWin.WinUI.Models
+﻿namespace PiggySync.Model.Abstract
 {
-    public abstract class UDPPacket 
+    public abstract class UdpPacket 
     {
 		internal byte Code { get; set; }
 
-        public UDPPacket(byte code)
+        public UdpPacket(byte code)
         {
             this.Code = code;
         }

@@ -1,4 +1,7 @@
-﻿using PiggySyncWin.Models;
+﻿using PiggySync.Common;
+using PiggySync.Model.Abstract;
+using PiggySync.Model.Concrete;
+using PiggySyncWin.Models;
 using PiggySyncWin.WinUI.Models;
 using PiggySyncWin.WinUI.Models.Concrete;
 using System;

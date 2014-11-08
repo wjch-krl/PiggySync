@@ -1,13 +1,10 @@
-﻿using PiggySyncWin.Domain.Abstract;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
+using PiggySync.Domain.Abstract;
+using PiggySyncWin.Domain;
 
-namespace PiggySyncWin.Domain.Concrete
+namespace PiggySync.Domain.Concrete
 {
 	public class XmlSettingsRepository : ISettingsRepository
 	{

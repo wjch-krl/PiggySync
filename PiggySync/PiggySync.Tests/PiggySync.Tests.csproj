@@ -40,6 +40,7 @@
     <Compile Include="FilePacketCreatorTest.cs" />
     <Compile Include="FileWatcherTest.cs" />
     <Compile Include="SyncNotyfyTest.cs" />
+    <Compile Include="FileMergerTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -75,8 +76,23 @@
       <Project>{2E02DDCB-C2E6-470F-92D5-A9811CEFF743}</Project>
       <Name>PiggySync.GtkGui</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PiggySync.FileMerger\PiggySync.FileMerger.csproj">
+      <Project>{3296F3DE-89D1-4B00-8031-E17A62AFD039}</Project>
+      <Name>PiggySync.FileMerger</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestFiles\MainWindow-kopia.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestFiles\MainWindow.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

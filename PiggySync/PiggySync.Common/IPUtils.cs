@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Sockets;
+﻿using System.Linq;
 using System.Net;
-using PiggySyncWin.WinUI.Models;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
-namespace PiggySyncWin.WinUI.Models
+namespace PiggySync.Common
 {
     public class IPUtils
     {

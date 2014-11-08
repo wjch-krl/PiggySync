@@ -1,15 +1,12 @@
-﻿using System;
-using SQLite;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Collections;
-using PiggySyncWin.WinUI.Infrastructure;
-using System.Collections.Generic;
-using PiggySyncWin.WinUI.Models;
 using System.Linq;
-using PiggySync.Model;
-using PiggySyncWin.Domain.Concrete;
+using PiggySync.Domain.Concrete;
+using PiggySync.Model.Concrete;
+using PiggySyncWin.WinUI.Infrastructure;
+using SQLite;
 
-namespace PiggySync.DatabaseManager
+namespace PiggySync.Model
 {
 	public class DatabaseManager
 	{

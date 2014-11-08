@@ -1,4 +1,5 @@
-﻿using PiggySyncWin.WinUI.Infrastructure;
+﻿using PiggySync.Core;
+using PiggySyncWin.WinUI.Infrastructure;
 using NUnit.Framework;
 
 namespace PiggySyncWin.UnitTests
