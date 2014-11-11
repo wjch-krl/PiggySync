@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
-using PiggySyncWin.Domain.Concrete;
+using PiggySync.Common;
+using PiggySync.Domain.Concrete;
 using PiggySyncWin.Domain;
 
 namespace PiggySyncWin.WinUI.Models
@@ -94,7 +95,7 @@ namespace PiggySyncWin.WinUI.Models
 
 		public string GetShortName ()
 		{
-			return Name.Substring (0, Name.Length - PiggySyncWin.Domain.Concrete.XmlSettingsRepository.RandomNamePartLenght);
+			return Name.Substring (0, Name.Length - XmlSettingsRepository.RandomNamePartLenght);
 		}
 	}
     

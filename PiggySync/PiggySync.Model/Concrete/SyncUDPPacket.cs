@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PiggySync.Model.Abstract;
+using PiggySync.Model.Concrete;
 
 namespace PiggySyncWin.WinUI.Models
 {
-    public class SyncUDPPacket : UDPPacket
+    public class SyncUDPPacket : UdpPacket
     {
         private UInt32 seqNumber;
         protected SyncUDPPacket(UInt32 seqNumber,byte code)

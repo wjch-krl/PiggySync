@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PiggySyncWin.Domain
+namespace PiggySync.Common
 {
     public static class Extensions
     {

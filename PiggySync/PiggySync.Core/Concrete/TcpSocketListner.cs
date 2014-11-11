@@ -1,9 +1,8 @@
-using PiggySyncWin.Domain.Concrete;
+using PiggySync.Core.Concrete;
 using PiggySyncWin.WinUI.Infrastructure;
 using PiggySyncWin.WinUI.Infrastructure.Concrete;
 using PiggySyncWin.WinUI.Models;
 using PiggySyncWin.WinUI.Models.Concrete;
-using PiggySyncWin.WinUI.Sync;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

@@ -1,11 +1,4 @@
-﻿using PiggySyncWin.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PiggySyncWin.WinUI.Models
+﻿namespace PiggySync.Model.Concrete
 {
 	public class FilePacket
     {
@@ -13,8 +6,6 @@ namespace PiggySyncWin.WinUI.Models
         {
             
         }
-
-
         /// <summary>
         /// Firt Byte value must be 0
         /// </summary>

@@ -1,19 +1,25 @@
-﻿using PiggySyncWin.Domain;
-using PiggySyncWin.Domain.Concrete;
-using PiggySyncWin.Models;
-using PiggySyncWin.WinUI.Infrastructure;
-using PiggySyncWin.WinUI.Models;
-using PiggySyncWin.WinUI.Models.Concrete;
-using System;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using PiggySync.Domain;
+using PiggySyncWin.Domain;
+using PiggySyncWin.Models;
+using PiggySyncWin.WinUI.Infrastructure;
+using PiggySyncWin.WinUI.Models;
+using PiggySyncWin.WinUI.Models.Concrete;
+using PiggySync.Model.Concrete;
+using PiggySync.Model.Abstract;
+using PiggySync.Common;
+using PiggySync.Domain.Concrete;
 
-namespace PiggySyncWin.WinUI.Sync
+namespace PiggySync.Core
 {
 	class Syncronizer
 	{

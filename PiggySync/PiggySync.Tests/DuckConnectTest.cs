@@ -1,4 +1,5 @@
-﻿using PiggySyncWin.WinUI;
+﻿using PiggySync.Core;
+using PiggySyncWin.WinUI;
 using System.Net.Sockets;
 using System.Net;
 using PiggySyncWin.WinUI.Models;

@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
+using PiggySync.Common.Abstract;
 
-namespace PiggySync.Core
+namespace PiggySync.Common.Concrete
 {
 	public static class CheckSumGenerator
 	{
@@ -9,7 +9,7 @@ namespace PiggySync.Core
 
 		static CheckSumGenerator ()
 		{
-			generator = new MD5Generator ();
+			generator = new Md5Generator ();
 		}
 
 		public static void ChangeGenerator (ICheckSumGenerator generator)

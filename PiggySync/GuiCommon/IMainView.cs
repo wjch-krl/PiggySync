@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using PiggySyncWin.Domain;
-using PiggySyncWin.Domain.Concrete;
 
 namespace PiggySync.GuiCommon
 {

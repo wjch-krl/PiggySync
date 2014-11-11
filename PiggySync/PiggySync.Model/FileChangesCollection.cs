@@ -1,5 +1,5 @@
+using PiggySync.Model.Concrete;
 using PiggySyncWin.Domain;
-using PiggySyncWin.Domain.Concrete;
 using PiggySyncWin.Models;
 using PiggySyncWin.WinUI.Infrastructure;
 using PiggySyncWin.WinUI.Models;

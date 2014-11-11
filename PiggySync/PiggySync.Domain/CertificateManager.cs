@@ -1,15 +1,15 @@
-﻿using Org.BouncyCastle.Asn1.X509;
+﻿using System;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
+using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Prng;
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
-using System;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
 
-namespace PiggySyncWin.Domain
+namespace PiggySync.Domain
 {
     public class CertificateManager
     {

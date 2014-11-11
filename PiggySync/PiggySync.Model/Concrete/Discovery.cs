@@ -1,23 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Sockets;
 using System.Net;
+using PiggySync.Domain.Concrete;
+using PiggySync.Model.Abstract;
 using PiggySyncWin.WinUI.Models;
-using System.Net.NetworkInformation;
+using PiggySync.Model.Abstract;
 
-namespace PiggySyncWin.WinUI.Models
+namespace PiggySync.Model.Concrete
 {
-    public class Discovery : UDPPacket
+    public class Discovery : UdpPacket
     {
         public Discovery()
             : base(240)
         {
         }
 
-        static byte[] name = System.Text.Encoding.UTF8.GetBytes(PiggySyncWin.Domain.Concrete.XmlSettingsRepository.Instance.Settings.ComputerName);
+        static byte[] name = System.Text.Encoding.UTF8.GetBytes(XmlSettingsRepository.Instance.Settings.ComputerName);
         public static byte[] Name
         {
             get { return name; }

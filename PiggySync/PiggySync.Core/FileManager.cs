@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.Concurrent;
-using System.Threading;
-using PiggySyncWin.Domain.Concrete;
-using PiggySyncWin.Domain;
 using System.IO;
-using PiggySyncWin.WinUI.Infrastructure;
-using PiggySync.Core;
-using PiggySync.DatabaseManager;
+using System.Linq;
 using PiggySync.Model;
+using PiggySyncWin.WinUI.Models;
 using PiggySyncWin.WinUI.Models.Concrete;
+using PiggySync.Model.Concrete;
+using PiggySync.Domain;
+using PiggySync.Domain.Concrete;
 
-namespace PiggySyncWin.WinUI.Models
+namespace PiggySync.Core
 {
 	public class FileManager
 	{
@@ -146,7 +142,6 @@ namespace PiggySyncWin.WinUI.Models
 					if (!Directory.Exists (curr))
 					{
 						var deletedFolder = new FolderInfoPacket (curr.Replace(XmlSettingsRepository.Instance.Settings.SyncRootPath, String.Empty), 144);
-
 						root.Folders.Add (deletedFolder);//TODO
 						deletedFolder.DeletedFiles.Add (new FileDeletePacket (file));
 						break;

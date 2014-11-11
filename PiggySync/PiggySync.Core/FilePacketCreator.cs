@@ -1,7 +1,6 @@
-﻿using PiggySyncWin.Domain.Concrete;
-using System.IO;
+﻿using System.IO;
 
-namespace PiggySyncWin.WinUI.Infrastructure
+namespace PiggySync.Core
 {
     public static class FilePacketCreator
     {

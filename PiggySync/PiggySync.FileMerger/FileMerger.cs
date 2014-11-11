@@ -2,14 +2,14 @@
 using System.IO;
 using PiggySync.Model;
 using PiggySyncWin.Domain;
-using PiggySyncWin.Domain.Concrete;
 using System.Linq;
 using DiffPlex;
 using System.Diagnostics;
 using DiffPlex.DiffBuilder;
 using DiffPlex.DiffBuilder.Model;
-using System.Xml.Serialization;
 using PiggySync.Domain;
+using System.Xml.Serialization;
+using PiggySync.Domain.Concrete;
 
 namespace PiggySync.FileMerger
 {
@@ -59,8 +59,6 @@ namespace PiggySync.FileMerger
 				{
 					merged += String.Format ("{0}\n", line.Text);
 				}
-
-				Console.WriteLine (line.Text);
 			}
 			File.WriteAllText (resultPath, merged);
 		}

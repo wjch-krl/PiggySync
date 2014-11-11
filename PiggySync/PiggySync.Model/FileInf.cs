@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PiggySync.Core;
-using PiggySyncWin.Domain;
+﻿using PiggySync.Common;
+using PiggySync.Common.Concrete;
 using SQLite;
+using System;
 using System.IO;
 
 namespace PiggySync.Model
