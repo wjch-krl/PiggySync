@@ -52,6 +52,8 @@
     <Compile Include="Settings.cs" />
     <Compile Include="CertificateManager.cs" />
     <Compile Include="Abstract\IFileWather.cs" />
+    <Compile Include="TextFile.cs" />
+    <Compile Include="MergePattern.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -6,6 +6,10 @@ using PiggySyncWin.Domain.Concrete;
 using System.Linq;
 using DiffPlex;
 using System.Diagnostics;
+using DiffPlex.DiffBuilder;
+using DiffPlex.DiffBuilder.Model;
+using System.Xml.Serialization;
+using PiggySync.Domain;
 
 namespace PiggySync.FileMerger
 {
@@ -14,6 +18,7 @@ namespace PiggySync.FileMerger
 		string fileAPath;
 		string fileBPath;
 		string resultPath;
+		MergePattern pattern;
 
 		public FileMerger (string fileAPath, string fileBPath, string resultPath)
 		{
@@ -22,10 +27,10 @@ namespace PiggySync.FileMerger
 			{
 				throw new PiggyFileException ("File extensions dosn't math");
 			}
-			if (!IsTextFile (extension))
-			{
-				throw new PiggyFileException ("Not a text file");
-			}
+			var file = TextFile (extension);
+			var serializer = new XmlSerializer (typeof(MergePattern));
+			Stream stream = new FileStream (file.TemplatePath, FileMode.Open, FileAccess.Read);
+			pattern = (MergePattern)serializer.Deserialize (stream);
 			this.fileAPath = fileAPath;
 			this.fileBPath = fileBPath;
 			this.resultPath = resultPath;
@@ -37,30 +42,39 @@ namespace PiggySync.FileMerger
 			string fileB = File.ReadAllText (fileBPath);
 			string merged = String.Empty;
 
-			merged = String.Format ("<<<<<<<<<<<\n{0}\n>>>>>>>>>>>>>\n<<<<<<<<<<<\n{1}\n>>>>>>>>>>>>>\n", fileA, fileB);
-
-			File.WriteAllText (resultPath, merged);
-
 			var differ = new Differ ();
-			var difference = differ.CreateCharacterDiffs (fileA, fileB, true);
-			string result = String.Empty;
-			foreach (var addedElement in difference.PiecesNew)
+			var inlineBuilder = new InlineDiffBuilder (differ);
+			var result = inlineBuilder.BuildDiffModel (fileA, fileB);
+			foreach (var line in result.Lines)
 			{
-				result += addedElement;
-			}
-			result += "dddddddddddddddddddddddddddddddddddddddddddddddddd";
-			foreach (var addedElement in difference.PiecesOld)
-			{
-				result += addedElement;
-			}
-			result += "dddddddddddddddddddddddddddddddddddddddddddddddddd";
+				if (line.Type == ChangeType.Inserted)
+				{
+					merged += String.Format ("- {0}\n", line.Text);
+				}
+				else if (line.Type == ChangeType.Deleted)
+				{
+					merged += String.Format ("+ {0}\n", line.Text);
+				}
+				else
+				{
+					merged += String.Format ("{0}\n", line.Text);
+				}
 
+				Console.WriteLine (line.Text);
+			}
+			File.WriteAllText (resultPath, merged);
 		}
 
-		public static bool IsTextFile (string extension)
+		public static TextFile TextFile (string extension)
 		{
-			return true;
-			//return XmlSettingsRepository.Instance.Settings.TextFiles.Contains (extension);
+			try
+			{
+				return XmlSettingsRepository.Instance.Settings.TextFiles.First (x => x.Extension == extension);		
+			}
+			catch (Exception e)
+			{
+				throw new PiggyFileException ("Not a text file");
+			}
 		}
 	}
 }

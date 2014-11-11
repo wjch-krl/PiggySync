@@ -51,7 +51,7 @@ namespace PiggySyncWin.Domain
             set;
         }
 
-        public static void Initialize()
+		static CertificateManager()
         {
             if (!File.Exists(serverCertFileName))
             {

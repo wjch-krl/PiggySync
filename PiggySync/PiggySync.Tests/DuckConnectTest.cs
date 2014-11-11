@@ -4,6 +4,7 @@ using System.Net;
 using PiggySyncWin.WinUI.Models;
 using System.Collections.Generic;
 using NUnit.Framework;
+using PiggySyncWin.Core;
 
 namespace PiggySyncWin.UnitTests
 {

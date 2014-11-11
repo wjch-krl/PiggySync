@@ -14,7 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using PiggySyncWin.Domain;
 
-namespace PiggySyncWin.WinUI
+namespace PiggySyncWin.Core
 {
 	public class SyncManager
 	{
@@ -33,7 +33,7 @@ namespace PiggySyncWin.WinUI
 
 		UdpClient UDPReader;
 		UdpClient UDPWriter;
-
+		IHostWather observer;
 
 		public SyncManager ()
 		{
@@ -55,14 +55,26 @@ namespace PiggySyncWin.WinUI
 			do
 			{
 				Thread.Sleep (100000);
-				foreach (var x in hosts)
+				PiggyRemoteHost host;
+				ConcurrentBag<PiggyRemoteHost> cleaned = new ConcurrentBag<PiggyRemoteHost>();
+				while(hosts.TryTake(out host))
 				{
-					if (!clientQueue.Contains (x) && !serverQueue.Contains (x))
+					if (clientQueue.Contains (host) || serverQueue.Contains (host))
 					{
-						//TODO remove from hostsList
+						cleaned.Add (host);
 					}
-				}
+				} 
+				hosts = cleaned;
+				NotyfyAboutHostUpade ();
 			} while (true);
+		}
+
+		void NotyfyAboutHostUpade ()
+		{
+			if (observer != null)
+			{
+				observer.RefreshHostsList (hosts);
+			}
 		}
 
 		public List<string> GetActiveHostsNames ()
@@ -72,12 +84,12 @@ namespace PiggySyncWin.WinUI
 			{
 				activeHosts.Add (x.GetShortName ());
 			}
+			NotyfyAboutHostUpade ();
 			return activeHosts;
 		}
 
 		public void ThreadListnerRun (object observer)
-		{
-           
+		{         
 			IPEndPoint source = new IPEndPoint (IPAddress.Any, 1337);
            
 			byte[] msg;
@@ -177,7 +189,6 @@ namespace PiggySyncWin.WinUI
 
 		public void CreateNewConnection (PiggyRemoteHost host)
 		{
-
 			if (!hosts.Contains (host) && PiggyRemoteHost.Me.Name != host.Name)
 			{
 				foreach (var x in hosts)

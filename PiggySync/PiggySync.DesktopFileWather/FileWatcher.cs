@@ -9,6 +9,7 @@ using System.Text;
 using PiggySyncWin.Domain.Abstract;
 using PiggySync.DatabaseManager;
 using PiggySync.Model;
+using PiggySyncWin.Core;
 
 namespace PiggySyncWin.WinUI.Infrastructure
 {
@@ -27,7 +28,7 @@ namespace PiggySyncWin.WinUI.Infrastructure
 		{
 			System.Diagnostics.Debug.WriteLine (path + " has created. Sending notyfy...");//TODO save modyfied file packet
 			FileManager.RefreshPath (path);
-			string newElementPath = path.Replace (XmlSettingsRepository.Instance.Settings.SyncPath + "\\", String.Empty);
+			string newElementPath = path.Replace (XmlSettingsRepository.Instance.Settings.SyncRootPath + "\\", String.Empty);
 			System.Diagnostics.Debug.WriteLine (newElementPath + " Adding");
 			try
 			{
@@ -70,7 +71,7 @@ namespace PiggySyncWin.WinUI.Infrastructure
 
 			if (watcher == null)
 			{
-				watcher = new FileSystemWatcher (repo.Settings.SyncPath);
+				watcher = new FileSystemWatcher (repo.Settings.SyncRootPath);
 				watcher.IncludeSubdirectories = true;
 
 				watcher.Changed += watcher_Changed;
