@@ -36,6 +36,7 @@ namespace PiggySync.GuiCommon
 			mainView.ComputerName = settings.ComputerName;
 			mainView.UseEncryption = settings.UseEncryption;
 			mainView.UseTcp = settings.UseTcp;
+			mainView.TextFiles = settings.TextFiles;
 		}
 			
 		public void RefreshHostsList (IEnumerable<PiggyRemoteHost> hosts)
@@ -53,6 +54,7 @@ namespace PiggySync.GuiCommon
 			settings.ComputerName = mainView.ComputerName;
 			settings.UseEncryption = mainView.UseEncryption;
 			settings.UseTcp = mainView.UseTcp;
+			settings.TextFiles = mainView.TextFiles;
 			if (XmlSettingsRepository.Instance.SaveSettings ())
 			{
 				mainView.ActionFinished (ResourceWorker.SaveSuccesfull);
@@ -65,13 +67,10 @@ namespace PiggySync.GuiCommon
 
 		public void Synchronize()
 		{
-			mainView.ActionStart ();
-
-
-
-
-
-			mainView.ActionFinished ();
+			if (!main.IsSynchronizing)
+			{
+				main.ForceSync ();
+			}
 		}
 	}
 }

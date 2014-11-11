@@ -1,20 +1,44 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.Core/DeviaceManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GuiCommon/MainPresenter.cs">
     <Files>
-      <File FileName="PiggySync.LogManager/LoggManager.cs" Line="33" Column="33" />
-      <File FileName="PiggySync.FileMerger/FileMerger.cs" Line="22" Column="22" />
-      <File FileName="PiggySync.Core/FileManager.cs" Line="19" Column="19" />
-      <File FileName="PiggySync.Model/DatabaseManager.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.DesktopFileWather/FileWatcher.cs" Line="6" Column="6" />
+      <File FileName="PiggySync.Model/Concrete/SyncInfoPacket.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Common/Extensions.cs" Line="11" Column="11" />
+      <File FileName="PiggySync.Core/FileManager.cs" Line="28" Column="28" />
+      <File FileName="PiggySync.Model/Concrete/FolderInfoPacket.cs" Line="40" Column="40" />
+      <File FileName="PiggySync.Core/Sync.cs" Line="44" Column="44" />
+      <File FileName="PiggySync.Domain/Concrete/XmlSettingsRepository.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Core/SyncManager.cs" Line="48" Column="48" />
+      <File FileName="PiggySync.Model/Concrete/Discovery.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.FileMerger/FileMerger.cs" Line="23" Column="23" />
       <File FileName="GuiCommon/IMainView.cs" Line="1" Column="1" />
-      <File FileName="GuiCommon/MainPresenter.cs" Line="1" Column="1" />
-      <File FileName="GuiCommon/ResourceWorker.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Core/DeviaceManager.cs" Line="1" Column="1" />
+      <File FileName="GuiCommon/MainPresenter.cs" Line="20" Column="20" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True" selected="True">
+          <Node name="Common" expanded="True">
+            <Node name="GuiCommon" expanded="True" />
+            <Node name="PiggySync.Common" expanded="True" />
+            <Node name="PiggySync.Core" expanded="True" />
+            <Node name="PiggySync.Domain" expanded="True">
+              <Node name="Abstract" expanded="True" />
+              <Node name="Concrete" expanded="True" />
+            </Node>
+            <Node name="PiggySync.FileMerger" expanded="True" />
+            <Node name="PiggySync.LogManager" expanded="True" />
+            <Node name="PiggySync.Model" expanded="True">
+              <Node name="Abstract" expanded="True" />
+              <Node name="Concrete" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Platforms" expanded="True">
+            <Node name="Desktop" expanded="True">
+              <Node name="PiggySync.DesktopFileWather" expanded="True" />
+            </Node>
+            <Node name="Mobile" expanded="True" />
+          </Node>
+        </State>
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
         <State expanded="True" selected="True" />
@@ -23,9 +47,9 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="225" column="47" />
-      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="187" column="1" />
-      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/FileManager.cs" line="176" column="1" />
+      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="224" column="47" />
+      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="186" column="1" />
+      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/FileManager.cs" line="172" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

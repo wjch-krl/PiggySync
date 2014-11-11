@@ -51,6 +51,11 @@ namespace PiggySyncWin.Core
 			UDPReader.EnableBroadcast = true;
 		}
 
+		public bool IsSynchronizing
+		{
+			get { return serverQueue.Count + clientQueue.Count > 0; }
+		}
+
 		private void CleanHostsList ()
 		{
 			do
@@ -76,17 +81,6 @@ namespace PiggySyncWin.Core
 			{
 				observer.RefreshHostsList (hosts);
 			}
-		}
-
-		public List<string> GetActiveHostsNames ()
-		{
-			List<string> activeHosts = new List<string> ();
-			foreach (var x in hosts)
-			{
-				activeHosts.Add (x.GetShortName ());
-			}
-			NotyfyAboutHostUpade ();
-			return activeHosts;
 		}
 
 		public void ThreadListnerRun (object observer)
@@ -212,6 +206,14 @@ namespace PiggySyncWin.Core
 			lock (serverLock)
 			{
 				Monitor.PulseAll (serverLock);
+			}
+		}
+
+		public void ForceSync ()
+		{
+			foreach (var elelement in hosts)
+			{
+				RequestSync (elelement);
 			}
 		}
 
