@@ -22,7 +22,7 @@ namespace PiggySyncWin.UnitTests
         [ExpectedException(typeof(NullReferenceException))]
         public void RefreshMonitoredDirectoryTest()
         {
-            string dir = "cos"; // TODO: Initialize to an appropriate value
+            string dir = "cos"; 
             FileWatcher.RefreshMonitoredDirectory(dir);
         }
     }

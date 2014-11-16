@@ -29,7 +29,7 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void ComputeChecksumTest()
         {
-            byte[] bytes = { 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1 }; // TODO: Initialize to an appropriate value
+            byte[] bytes = { 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1 }; 
 			UInt32 expected = 310811753; 
             UInt32 actual;
 			actual = CRC32.ComputeChecksum(bytes);

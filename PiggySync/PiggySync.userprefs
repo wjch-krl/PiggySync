@@ -1,30 +1,20 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.FileMerger/FileMerger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.MonoMacGui/MainWindowController.cs">
     <Files>
-      <File FileName="PiggySync.LogManager/LoggManager.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.FileMerger/FileMerger.cs" Line="28" Column="28" />
+      <File FileName="PiggySync.Core/Sync.cs" Line="1" Column="1" />
       <File FileName="PiggySync.Core/FileManager.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Model/DatabaseManager.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.DesktopFileWather/FileWatcher.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Tests/FileMergerTests.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Tests/DuckRemoteHostTests.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.MonoMacGui/MainWindowController.cs" Line="46" Column="46" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True">
-          <Node name="Common" expanded="True" />
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="225" column="47" />
-      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="187" column="1" />
-      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/FileManager.cs" line="178" column="1" />
+      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="223" column="47" />
+      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/Sync.cs" line="186" column="1" />
+      <Breakpoint file="/Users/wojciechkrol/OneDrive/Projekt/PiggySync/PiggySync.Core/FileManager.cs" line="172" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <AuthorInfo Name="wjch_krl" Email="wjch.krl@gmail.com" Copyright="wojciechkrol" Company="" Trademark="" />
+  <MonoDevelop.Ide.ItemProperties.Platforms.Mobile.PiggySync.AndroidApp MonoForAntroid.PreferredDevice="Nexus 4" />
 </Properties>

@@ -4,6 +4,7 @@ using System.Net;
 using PiggySync.Domain.Concrete;
 using PiggySync.Model.Abstract;
 using PiggySyncWin.WinUI.Models;
+using PiggySync.Model.Abstract;
 
 namespace PiggySync.Model.Concrete
 {

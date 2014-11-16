@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using PiggySync.Domain.Concrete;
 using PiggySync.Model;
-using PiggySync.Model.Concrete;
 using PiggySyncWin.WinUI.Models;
 using PiggySyncWin.WinUI.Models.Concrete;
+using PiggySync.Model.Concrete;
+using PiggySync.Domain;
+using PiggySync.Domain.Concrete;
 
 namespace PiggySync.Core
 {
@@ -20,9 +21,8 @@ namespace PiggySync.Core
 			FileManager.rootFolder = new SyncInfoPacket ();
 		}
 
-		public static void Initialize ()
+		static FileManager()
 		{
-
 			if (FileManager.fileManager == null)
 			{
 				FileManager.fileManager = new FileManager ();
@@ -56,7 +56,7 @@ namespace PiggySync.Core
 
 		private static void CreateRootFolder (SyncInfoPacket root) //TODO delete packets 
 		{
-			string path = XmlSettingsRepository.Instance.Settings.SyncPath;
+			string path = XmlSettingsRepository.Instance.Settings.SyncRootPath;
 			var dbFiles = DatabaseManager.Instance.GetAllFiles ();
 			CreateRootFolder (root, path, dbFiles);
 			AddOtherDeletedFiles (dbFiles, root);
@@ -132,17 +132,16 @@ namespace PiggySync.Core
 			foreach (var file in dbFiles)
 			{
 				file.IsDeleted = true;
-				var folder = file.Path.Replace (XmlSettingsRepository.Instance.Settings.SyncPath, String.Empty);
+				var folder = file.Path.Replace (XmlSettingsRepository.Instance.Settings.SyncRootPath, String.Empty);
 				folder = folder.Replace ('\\', '/');
 				var foldersTree = folder.Split ('/');
-				string curr = XmlSettingsRepository.Instance.Settings.SyncPath;
+				string curr = XmlSettingsRepository.Instance.Settings.SyncRootPath;
 				foreach (var element in foldersTree)
 				{
 					curr = string.Format ("{1}/{0}", element, curr);
 					if (!Directory.Exists (curr))
 					{
-						var deletedFolder = new FolderInfoPacket (curr.Replace(XmlSettingsRepository.Instance.Settings.SyncPath, String.Empty), 144);
-
+						var deletedFolder = new FolderInfoPacket (curr.Replace(XmlSettingsRepository.Instance.Settings.SyncRootPath, String.Empty), 144);
 						root.Folders.Add (deletedFolder);//TODO
 						deletedFolder.DeletedFiles.Add (new FileDeletePacket (file));
 						break;
@@ -159,7 +158,7 @@ namespace PiggySync.Core
 			{
 				path = Path.GetDirectoryName (path);
 			}
-			path = path.Replace (XmlSettingsRepository.Instance.Settings.SyncPath, String.Empty);
+			path = path.Replace (XmlSettingsRepository.Instance.Settings.SyncRootPath, String.Empty);
 			path = path.Replace ('\\', '/');
 			SyncInfoPacket folder = rootFolder;
 			if (!String.IsNullOrWhiteSpace (path))

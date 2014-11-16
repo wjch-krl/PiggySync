@@ -56,10 +56,6 @@
       <Project>{3E68EA85-423E-4FBA-A702-F02C0ECBC2FC}</Project>
       <Name>PiggySync.DesktopFileWather</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PiggySync.WinUI\GUIOLD.csproj">
-      <Project>{7ED262DF-9B80-4080-8593-7019B98B01AA}</Project>
-      <Name>GUIOLD</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PiggySync.Common\PiggySync.Common.csproj">
       <Project>{9DDDE951-7DB6-43CA-A603-8A4384AEEA5E}</Project>
       <Name>PiggySync.Common</Name>

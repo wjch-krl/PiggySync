@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="sync_now">Sync Now!</string>
+	<string name="app_name">PiggySync!</string>
+</resources>

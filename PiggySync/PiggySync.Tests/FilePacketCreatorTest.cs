@@ -19,10 +19,10 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void CreatePacketTest() //nie ogarniam :(
         {
-            string filePath = "siema.txt"; // TODO: Initialize to an appropriate value
-            int position = 1; // TODO: Initialize to an appropriate value
-            int size = 1; // TODO: Initialize to an appropriate value
-            byte[] expected = {1}; // TODO: Initialize to an appropriate value
+            string filePath = "siema.txt"; 
+            int position = 1; 
+            int size = 1; 
+            byte[] expected = {1}; 
             byte[] actual;
             actual = FilePacketCreator.CreatePacket(filePath, position, size);
             Assert.AreEqual(expected, actual);

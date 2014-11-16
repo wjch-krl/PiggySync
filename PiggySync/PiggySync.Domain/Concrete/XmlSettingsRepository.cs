@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using PiggySync.Domain.Abstract;
 using PiggySyncWin.Domain;
+using PiggySync.Domain.Abstract;
 
 namespace PiggySync.Domain.Concrete
 {
@@ -62,8 +62,8 @@ namespace PiggySync.Domain.Concrete
 				//byte[] buffer = new byte[RandomNamePartLenght];
 				//rand.NextBytes(buffer);
 				return new Settings () { //Defaults Settrings
-					ComputerName = System.Environment.MachineName + Random8Numbers (),/* rand.Next(),*/ //System.Text.Encoding.ASCII.GetString(buffer),
-					SyncPath = System.Environment.CurrentDirectory,
+					ComputerName = System.Environment.MachineName + Random8Numbers (),
+					SyncRootPath = System.Environment.CurrentDirectory,
 				};
 
 			}
@@ -113,7 +113,7 @@ namespace PiggySync.Domain.Concrete
 			//rand.NextBytes(buffer);
 			settings = new Settings () { //Defaults Settrings
 				ComputerName = System.Environment.MachineName + Random8Numbers (), /*rand.Next(),*/ //System.Text.Encoding.UTF8.GetString(buffer),
-				SyncPath = System.Environment.CurrentDirectory,
+				SyncRootPath = System.Environment.CurrentDirectory,
 			};
 		}
 

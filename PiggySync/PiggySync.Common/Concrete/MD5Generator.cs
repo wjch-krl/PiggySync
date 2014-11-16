@@ -27,7 +27,7 @@ namespace PiggySync.Common.Concrete
 		public int ChecksumSize {
 			get
 			{
-				return MD5.Create ().HashSize / 8; //TODO optimize
+				return 20;
 			}
 		}
 	}

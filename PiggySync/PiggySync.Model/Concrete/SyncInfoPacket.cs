@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PiggySync.Common;
-using PiggySync.Model.Abstract;
 using PiggySyncWin.Domain;
 using PiggySyncWin.Models;
 using PiggySyncWin.WinUI.Models;
 using PiggySyncWin.WinUI.Models.Concrete;
+using PiggySync.Model.Abstract;
+using PiggySync.Common;
 
 namespace PiggySync.Model.Concrete
 {

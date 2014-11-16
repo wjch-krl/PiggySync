@@ -20,7 +20,7 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void SyncNotyfyConstructorTest()
         {
-            UInt32 seqNumber = 170; // TODO: Initialize to an appropriate value
+            UInt32 seqNumber = 170; 
             SyncNotyfy target = new SyncNotyfy(seqNumber);
             Assert.IsNotNull(target);
         }

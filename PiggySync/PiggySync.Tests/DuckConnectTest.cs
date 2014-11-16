@@ -5,6 +5,7 @@ using System.Net;
 using PiggySyncWin.WinUI.Models;
 using System.Collections.Generic;
 using NUnit.Framework;
+using PiggySyncWin.Core;
 
 namespace PiggySyncWin.UnitTests
 {
@@ -35,8 +36,8 @@ namespace PiggySyncWin.UnitTests
         [ExpectedException(typeof(SocketException))] ////cos krzyczalo na gniazdo, bez tego wywalalo blad, nie ogarniam :(
         public void CreateNewConnectionTest()
         {
-            SyncManager target = new SyncManager(); // TODO: Initialize to an appropriate value
-            PiggyRemoteHost host = new PiggyRemoteHost(IPAddress.Any, "Test"); // TODO: Initialize to an appropriate value
+            SyncManager target = new SyncManager(); 
+            PiggyRemoteHost host = new PiggyRemoteHost(IPAddress.Any, "Test"); 
         }
 
         /// <summary>
@@ -45,9 +46,9 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void DidReciveSyncNotyfyTest() // jak wyzej
         {
-            SyncManager target = new SyncManager(); // TODO: Initialize to an appropriate value
-            byte[] msg = { 1, 0, 0, 1, 1, 0, 0, 1 }; // TODO: Initialize to an appropriate value
-            bool expected = true; // TODO: Initialize to an appropriate value
+            SyncManager target = new SyncManager(); 
+            byte[] msg = { 1, 0, 0, 1, 1, 0, 0, 1 }; 
+            bool expected = true; 
             bool actual;
             actual = target.DidReciveSyncNotyfy(msg);
             Assert.AreEqual(expected, actual);
@@ -59,24 +60,12 @@ namespace PiggySyncWin.UnitTests
         [Test()]
         public void DidReciveSyncRequestTest() //jak wyzej
         {
-            SyncManager target = new SyncManager(); // TODO: Initialize to an appropriate value
-            byte[] msg = { 1, 0, 0, 1, 1, 0, 0, 1 }; // TODO: Initialize to an appropriate value
-            bool expected = true; // TODO: Initialize to an appropriate value
+            SyncManager target = new SyncManager(); 
+            byte[] msg = { 1, 0, 0, 1, 1, 0, 0, 1 }; 
+            bool expected = true; 
             bool actual;
             actual = target.DidReciveSyncRequest(msg);
             Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
-        ///A test for GetActiveHostsNames
-        ///</summary>
-        [Test()]
-        public void GetActiveHostsNamesTest() //jak wyzej
-        {
-            SyncManager target = new SyncManager(); 
-            List<string> actual;
-            actual = target.GetActiveHostsNames();
-            Assert.IsNotNull(actual);
         }
 
         /// <summary>
