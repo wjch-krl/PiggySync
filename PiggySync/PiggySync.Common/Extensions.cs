@@ -8,12 +8,12 @@ namespace PiggySync.Common
     {
         public static List<T> Clone<T>(this IList<T> listToClone) where T : ICloneable
         {
-            return listToClone.Select(item => (T)item.Clone()).ToList();
+            return listToClone.Select(item => (T) item.Clone()).ToList();
         }
 
         public static T[] SubArray<T>(this T[] data, int index, int length)
         {
-            T[] result = new T[length];
+            var result = new T[length];
             Array.Copy(data, index, result, 0, length);
             return result;
         }

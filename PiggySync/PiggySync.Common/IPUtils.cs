@@ -7,7 +7,8 @@ namespace PiggySync.Common
 {
     public class IPUtils
     {
-        static IPAddress localBroadCastAdress = GetBroadcastIP();
+        private static readonly IPAddress localBroadCastAdress = GetBroadcastIP();
+
         public static IPAddress LocalBroadCastAdress
         {
             get { return localBroadCastAdress; }
@@ -18,7 +19,7 @@ namespace PiggySync.Common
             IPHostEntry host;
             IPAddress localIP = IPAddress.Any;
             host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (IPAddress ip in host.AddressList)
+            foreach (var ip in host.AddressList)
             {
                 if (ip.AddressFamily == AddressFamily.InterNetwork && ip != IPAddress.Any)
                 {
@@ -31,7 +32,7 @@ namespace PiggySync.Common
 
         public static IPAddress GetBroadcastIP()
         {
-			return IPAddress.Broadcast;
+            return IPAddress.Broadcast;
 
             IPAddress maskIP = GetHostMask();
             IPAddress hostIP = LocalIPAddress();
@@ -39,28 +40,27 @@ namespace PiggySync.Common
             if (maskIP == null || hostIP == null)
                 return null;
 
-            byte[] complementedMaskBytes = new byte[4];
-            byte[] broadcastIPBytes = new byte[4];
+            var complementedMaskBytes = new byte[4];
+            var broadcastIPBytes = new byte[4];
 
             for (int i = 0; i < 4; i++)
             {
-                complementedMaskBytes[i] = (byte)~(maskIP.GetAddressBytes().ElementAt(i));
-                broadcastIPBytes[i] = (byte)((hostIP.GetAddressBytes().ElementAt(i)) | complementedMaskBytes[i]);
+                complementedMaskBytes[i] = (byte) ~(maskIP.GetAddressBytes().ElementAt(i));
+                broadcastIPBytes[i] = (byte) ((hostIP.GetAddressBytes().ElementAt(i)) | complementedMaskBytes[i]);
             }
 
             return new IPAddress(broadcastIPBytes);
-
         }
 
 
         private static IPAddress GetHostMask()
         {
             NetworkInterface[] Interfaces = NetworkInterface.GetAllNetworkInterfaces();
-            foreach (NetworkInterface Interface in Interfaces)
+            foreach (var Interface in Interfaces)
             {
                 IPAddress hostIP = LocalIPAddress();
                 UnicastIPAddressInformationCollection UnicastIPInfoCol = Interface.GetIPProperties().UnicastAddresses;
-                foreach (UnicastIPAddressInformation UnicatIPInfo in UnicastIPInfoCol)
+                foreach (var UnicatIPInfo in UnicastIPInfoCol)
                 {
                     if (UnicatIPInfo.Address.ToString() == hostIP.ToString())
                     {

@@ -1,13 +1,9 @@
-﻿using PiggySync.Core;
-using PiggySyncWin.WinUI;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Net;
-using PiggySyncWin.WinUI.Models;
-using System.Collections.Generic;
 using NUnit.Framework;
-using PiggySyncWin.Core;
+using PiggySync.Model;
 
-namespace PiggySyncWin.UnitTests
+namespace DuckSync.Tests
 {
     
     

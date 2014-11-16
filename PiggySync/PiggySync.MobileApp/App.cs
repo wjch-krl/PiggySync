@@ -1,20 +1,20 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
-namespace PiggySync.MobileApp
+namespace DuckSync.MobileApp
 {
-	public class App
-	{
-		public static Page GetMainPage ()
-		{	
-			return new ContentPage { 
-				Content = new Label {
-					Text = "Hello, Forms!",
-					VerticalOptions = LayoutOptions.CenterAndExpand,
-					HorizontalOptions = LayoutOptions.CenterAndExpand,
-				},
-			};
-		}
-	}
+    public class App
+    {
+        public static Page GetMainPage()
+        {
+            return new ContentPage
+            {
+                Content = new Label
+                {
+                    Text = "Hello, Forms!",
+                    VerticalOptions = LayoutOptions.CenterAndExpand,
+                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                },
+            };
+        }
+    }
 }
-

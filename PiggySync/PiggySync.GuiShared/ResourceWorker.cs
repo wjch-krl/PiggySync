@@ -1,6 +1,4 @@
-using System;
-
-namespace PiggySync.GuiCommon
+namespace PiggySync.GuiShared
 {
 	public static class ResourceWorker
 	{

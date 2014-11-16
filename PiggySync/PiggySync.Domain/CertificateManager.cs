@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using Org.BouncyCastle.Asn1.X509;
@@ -13,8 +14,36 @@ namespace PiggySync.Domain
 {
     public class CertificateManager
     {
-        private const string serverCertFileName="serverCert.pfx";
-        
+        private const string serverCertFileName = "serverCert.pfx";
+
+        static CertificateManager()
+        {
+            if (!File.Exists(serverCertFileName))
+            {
+                ServerCert = GenerateCertificate("server");
+
+                var certData = ServerCert.Export(X509ContentType.Cert);
+                File.WriteAllBytes(serverCertFileName, certData);
+            }
+            else
+            {
+                try
+                {
+                    var certData = File.ReadAllBytes(serverCertFileName);
+                    ServerCert = new X509Certificate2();
+                    ServerCert.Import(certData);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine("Exception: " + e);
+                }
+            }
+        }
+
+        public static X509Certificate2 ServerCert { get; set; }
+
+        public static X509Certificate2 ClientCert { get; set; }
+
         public static X509Certificate2 GenerateCertificate(string certName)
         {
             var keypairgen = new RsaKeyPairGenerator();
@@ -37,42 +66,6 @@ namespace PiggySync.Domain
 
             var newCert = gen.Generate(keypair.Private);
             return new X509Certificate2(DotNetUtilities.ToX509Certificate(newCert));
-        }
-
-        public static X509Certificate2 ServerCert
-        {
-            get;
-            set;
-        }
-
-        public static X509Certificate2 ClientCert
-        {
-            get;
-            set;
-        }
-
-		static CertificateManager()
-        {
-            if (!File.Exists(serverCertFileName))
-            {
-                ServerCert = GenerateCertificate("server");
-
-				var certData = ServerCert.Export(X509ContentType.Cert);
-                File.WriteAllBytes(serverCertFileName, certData);
-            }
-            else
-            {
-                try
-                {
-                    var certData = File.ReadAllBytes(serverCertFileName);
-                    ServerCert = new X509Certificate2();
-                    ServerCert.Import(certData);
-                }
-                catch (Exception e)
-                {
-                    System.Diagnostics.Debug.WriteLine("Exception: " + e);
-                }
-            }
         }
     }
 }

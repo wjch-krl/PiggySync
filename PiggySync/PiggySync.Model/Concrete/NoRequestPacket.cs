@@ -2,20 +2,18 @@
 
 namespace PiggySync.Model.Concrete
 {
-	public class NoRequestPacket : TCPPacket
+    public class NoRequestPacket : TCPPacket
     {
-		public const byte NoRequestPacketCode = 160;
+        public const byte NoRequestPacketCode = 160;
 
         public NoRequestPacket()
-			: base(NoRequestPacketCode)
+            : base(NoRequestPacketCode)
         {
-
         }
 
         public override byte[] GetPacket()
         {
-			return new byte[] { NoRequestPacketCode };
+            return new[] {NoRequestPacketCode};
         }
-
     }
 }

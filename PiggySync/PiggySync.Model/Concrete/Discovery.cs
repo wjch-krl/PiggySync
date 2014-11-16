@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using System.Text;
 using PiggySync.Domain.Concrete;
-using PiggySync.Model.Abstract;
-using PiggySyncWin.WinUI.Models;
 using PiggySync.Model.Abstract;
 
 namespace PiggySync.Model.Concrete
 {
     public class Discovery : UdpPacket
     {
+        private static readonly byte[] name =
+            Encoding.UTF8.GetBytes(XmlSettingsRepository.Instance.Settings.ComputerName);
+
         public Discovery()
             : base(240)
         {
         }
 
-        static byte[] name = System.Text.Encoding.UTF8.GetBytes(XmlSettingsRepository.Instance.Settings.ComputerName);
         public static byte[] Name
         {
             get { return name; }
@@ -24,24 +25,20 @@ namespace PiggySync.Model.Concrete
         public override byte[] GetPacket()
         {
             byte[] ip = PiggyRemoteHost.Me.Ip.GetAddressBytes();
-            byte[] msg = new byte[ip.Length + name.Length + 1];
+            var msg = new byte[ip.Length + name.Length + 1];
             msg[0] = Code;
             ip.CopyTo(msg, 1); //TODO concat ??
-            name.CopyTo(msg, ip.Length+1);
+            name.CopyTo(msg, ip.Length + 1);
             return msg;
         }
 
         public static PiggyRemoteHost GetHOstData(byte[] data)
         {
-            byte[] ip = new byte[4];
+            var ip = new byte[4];
             Array.Copy(data, 1, ip, 0, 4);
 
-            string name = System.Text.Encoding.UTF8.GetString(data, 5, data.Count() - 5);
-            return new PiggyRemoteHost(new IPAddress(ip), name);       
+            string name = Encoding.UTF8.GetString(data, 5, data.Count() - 5);
+            return new PiggyRemoteHost(new IPAddress(ip), name);
         }
-
-       
-
     }
-
 }

@@ -35,8 +35,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRC32Test.cs" />
-    <Compile Include="DuckConnectTest.cs" />
-    <Compile Include="DuckRemoteHostTests.cs" />
+    <Compile Include="PiggyConnectTest.cs" />
+    <Compile Include="PiggyRemoteHostTests.cs" />
     <Compile Include="FilePacketCreatorTest.cs" />
     <Compile Include="FileWatcherTest.cs" />
     <Compile Include="SyncNotyfyTest.cs" />
@@ -80,9 +80,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestFiles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="TestFiles\MainWindow-kopia.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

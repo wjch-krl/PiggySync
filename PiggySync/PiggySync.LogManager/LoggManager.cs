@@ -1,12 +1,6 @@
-﻿using System;
-
-namespace PiggySync.LogManager
+﻿namespace PiggySync.LogManager
 {
-	public static class LoggManager
-	{
-		static LoggManager ()
-		{
-		}
-	}
+    public static class LoggManager
+    {
+    }
 }
-

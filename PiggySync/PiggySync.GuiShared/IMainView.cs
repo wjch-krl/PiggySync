@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using PiggySyncWin.Domain;
-
-namespace PiggySync.GuiCommon
+namespace PiggySync.GuiShared
 {
 	public interface IMainView
 	{

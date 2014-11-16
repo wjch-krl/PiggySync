@@ -1,28 +1,24 @@
-﻿using PiggySync.Core;
-using PiggySyncWin.WinUI.Infrastructure;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace PiggySyncWin.UnitTests
+namespace DuckSync.Tests
 {
-    
-    
     /// <summary>
-    ///This is a test class for FilePacketCreatorTest and is intended
-    ///to contain all FilePacketCreatorTest Unit Tests
-    ///</summary>
-    [TestFixture()]
+    ///     This is a test class for FilePacketCreatorTest and is intended
+    ///     to contain all FilePacketCreatorTest Unit Tests
+    /// </summary>
+    [TestFixture]
     public class FilePacketCreatorTest
     {
         /// <summary>
-        ///A test for CreatePacket
-        ///</summary>
-        [Test()]
+        ///     A test for CreatePacket
+        /// </summary>
+        [Test]
         public void CreatePacketTest() //nie ogarniam :(
         {
-            string filePath = "siema.txt"; 
-            int position = 1; 
-            int size = 1; 
-            byte[] expected = {1}; 
+            string filePath = "siema.txt";
+            int position = 1;
+            int size = 1;
+            byte[] expected = {1};
             byte[] actual;
             actual = FilePacketCreator.CreatePacket(filePath, position, size);
             Assert.AreEqual(expected, actual);

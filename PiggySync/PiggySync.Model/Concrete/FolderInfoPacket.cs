@@ -1,67 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PiggySyncWin.WinUI.Models.Concrete;
-using PiggySyncWin.WinUI.Models;
+using System.Text;
 
 namespace PiggySync.Model.Concrete
 {
     public class FolderInfoPacket : SyncInfoPacket, ICloneable
     {
-		private readonly int PacketCode;
+        private readonly int PacketCode;
+        private string folderName; //TODO
 
-		public FolderInfoPacket(List<FileInfoPacket> files, List<FolderInfoPacket> subfolders, 
-			List<FileDeletePacket> deletedFiles, string name, byte packetCode = 10)
-			: base(files, subfolders, deletedFiles, packetCode)
+        public FolderInfoPacket(List<FileInfoPacket> files, List<FolderInfoPacket> subfolders,
+            List<FileDeletePacket> deletedFiles, string name, byte packetCode = 10)
+            : base(files, subfolders, deletedFiles, packetCode)
         {
-			PacketCode = packetCode;
-            this.folderName = name;
-            PacketSize = (UInt32)(1 + 2 * sizeof(UInt32) + System.Text.Encoding.UTF8.GetBytes(folderName).Length);
+            PacketCode = packetCode;
+            folderName = name;
+            PacketSize = (UInt32) (1 + 2*sizeof (UInt32) + Encoding.UTF8.GetBytes(folderName).Length);
         }
 
-        public UInt32 PacketSize
+        public FolderInfoPacket(byte[] msg, byte packetCode = 10)
         {
-            get;
-            set;
+            Code = packetCode;
+            PacketSize = BitConverter.ToUInt32(msg, 1);
+            ElelmentsCount = BitConverter.ToUInt32(msg, 1 + sizeof (UInt32));
+            folderName = Encoding.UTF8.GetString(msg, 1 + 2*sizeof (UInt32), (int) PacketSize - (1 + 2*sizeof (UInt32)));
         }
 
-		public FolderInfoPacket(byte[] msg,byte packetCode =10)
+        public FolderInfoPacket(FolderInfoPacket folderInfoPacket, byte packetCode = 10)
+            : base(folderInfoPacket, packetCode)
         {
-			this.Code = packetCode;
-            this.PacketSize = BitConverter.ToUInt32(msg, 1);
-            this.ElelmentsCount = BitConverter.ToUInt32(msg, 1+sizeof(UInt32));
-            this.folderName = System.Text.Encoding.UTF8.GetString(msg, 1 + 2*sizeof(UInt32),(int) PacketSize - (1 + 2*sizeof(UInt32)));
+            folderName = folderInfoPacket.folderName;
+            PacketSize = (UInt32) (1 + 2*sizeof (UInt32) + Encoding.UTF8.GetBytes(folderName).Length);
         }
 
-		public FolderInfoPacket(FolderInfoPacket folderInfoPacket,byte packetCode =10) : base (folderInfoPacket,packetCode)
-        {
-            this.folderName = folderInfoPacket.folderName;
-            PacketSize = (UInt32)( 1 + 2 * sizeof(UInt32) + System.Text.Encoding.UTF8.GetBytes(folderName).Length);
-        }
-
-		public FolderInfoPacket(string folderName,byte packetCode =10)
-			: base(packetCode)
+        public FolderInfoPacket(string folderName, byte packetCode = 10)
+            : base(packetCode)
         {
             this.folderName = folderName;
-            PacketSize = (UInt32)(1 + 2 * sizeof(UInt32) + System.Text.Encoding.UTF8.GetBytes(folderName).Length);
+            PacketSize = (UInt32) (1 + 2*sizeof (UInt32) + Encoding.UTF8.GetBytes(folderName).Length);
         }
 
-        string folderName; //TODO
+        public UInt32 PacketSize { get; set; }
+
         public string FolderName
         {
             get { return folderName; }
             set { folderName = value; }
         }
 
-        public override byte[] GetPacket()
+        public bool IsDeleted
         {
-            byte[] packet = new byte[1];
-			packet[0] = Code;
-            packet = packet.Concat(BitConverter.GetBytes(PacketSize)).ToArray();
-            packet = packet.Concat(BitConverter.GetBytes(ElelmentsCount)).ToArray();
-            packet = packet.Concat(System.Text.Encoding.UTF8.GetBytes(folderName)).ToArray();
-
-            return packet;
+            get { return PacketCode != 10; }
         }
 
         public new object Clone()
@@ -69,9 +59,15 @@ namespace PiggySync.Model.Concrete
             return new FolderInfoPacket(this);
         }
 
-		public bool IsDeleted
-		{
-			get { return PacketCode != 10; }
-		}
+        public override byte[] GetPacket()
+        {
+            var packet = new byte[1];
+            packet[0] = Code;
+            packet = packet.Concat(BitConverter.GetBytes(PacketSize)).ToArray();
+            packet = packet.Concat(BitConverter.GetBytes(ElelmentsCount)).ToArray();
+            packet = packet.Concat(Encoding.UTF8.GetBytes(folderName)).ToArray();
+
+            return packet;
+        }
     }
 }

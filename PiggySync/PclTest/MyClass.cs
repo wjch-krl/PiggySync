@@ -1,12 +1,6 @@
-﻿using System;
-
-namespace PclTest
+﻿namespace PclTest
 {
-	public class MyClass
-	{
-		public MyClass ()
-		{
-		}
-	}
+    public class MyClass
+    {
+    }
 }
-

@@ -1,8 +1,6 @@
-﻿using PiggySyncWin.Domain;
-
-namespace PiggySync.Domain.Abstract
+﻿namespace PiggySync.Domain.Abstract
 {
-    interface ISettingsRepository
+    internal interface ISettingsRepository
     {
         Settings Settings { get; set; }
         bool SaveSettings();

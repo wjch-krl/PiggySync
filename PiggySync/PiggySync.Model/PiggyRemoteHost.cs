@@ -1,103 +1,84 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Sockets;
 using System.Net;
-using System.Threading;
 using PiggySync.Common;
 using PiggySync.Domain.Concrete;
-using PiggySyncWin.Domain;
+using PiggySync.Model.DatabaseConnection;
 
-namespace PiggySyncWin.WinUI.Models
+namespace PiggySync.Model
 {
-	public class PiggyRemoteHost //or struct
-	{
-		static PiggyRemoteHost me = new PiggyRemoteHost (IPUtils.LocalIPAddress (), XmlSettingsRepository.Instance.Settings.ComputerName);
+    public class PiggyRemoteHost //or struct
+    {
+        private static readonly PiggyRemoteHost me = new PiggyRemoteHost(IPUtils.LocalIPAddress(),
+            XmlSettingsRepository.Instance.Settings.ComputerName);
 
-		static public PiggyRemoteHost Me {
-			get { return me; }
-		}
-		private IPAddress ip;
-		public IPAddress Ip
-		{
-			get { return ip; }
-		}
-			
-		public byte[] IpBytes
-		{
-			get {
-				return Ip.GetAddressBytes();
-			}
-			set {
-				ip = new IPAddress(value);
-			}
-		}
+        private IPAddress ip;
 
-		public string Name
-		{
-			get;
-			private set;
-		}
+        public PiggyRemoteHost(IPAddress ip, string name)
+        {
+            this.ip = ip;
+            Name = name;
+            HashCode = CalculateHash(name + ip);
+        }
 
-		public Int64 HashCode
-		{
-			get;
-			private set;
-		}
+        public static PiggyRemoteHost Me
+        {
+            get { return me; }
+        }
 
-		public override int GetHashCode ()
-		{
-			return base.GetHashCode ();
-		}
+        public IPAddress Ip
+        {
+            get { return ip; }
+        }
 
-		[SQLite.Ignore]
-		public UInt32 SEQNumber {
-			get;
-			set;
-		}
+        public byte[] IpBytes
+        {
+            get { return Ip.GetAddressBytes(); }
+            set { ip = new IPAddress(value); }
+        }
 
-		public override bool Equals (object obj)
-		{
-			PiggyRemoteHost host = (PiggyRemoteHost)obj;
-			return host.HashCode == this.HashCode;
-		}
+        public string Name { get; private set; }
 
-		public static bool operator == (PiggyRemoteHost o1, PiggyRemoteHost o2)
-		{
-			return o1.Equals (o2);
-		}
+        public Int64 HashCode { get; private set; }
 
-		public static bool operator != (PiggyRemoteHost o1, PiggyRemoteHost o2)
-		{
-			return !o1.Equals (o2);
-		}
+        [Ignore]
+        public UInt32 SEQNumber { get; set; }
 
-		public PiggyRemoteHost (IPAddress ip, string name)
-		{
-			this.ip = ip;
-			this.Name = name;
-			this.HashCode = CalculateHash (name + ip.ToString ());
-		}
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
 
-		static Int64 CalculateHash (string read)
-		{
-			UInt64 hashedValue = 3074457345618258791ul;
-			for (int i = 0; i < read.Length; i++)
-			{
-				hashedValue += read [i];
-				hashedValue *= 3074457345618258799ul;
-			}
-			return (Int64)hashedValue;
-		}
+        public override bool Equals(object obj)
+        {
+            var host = (PiggyRemoteHost) obj;
+            return host.HashCode == HashCode;
+        }
+
+        public static bool operator ==(PiggyRemoteHost o1, PiggyRemoteHost o2)
+        {
+            return o1.Equals(o2);
+        }
+
+        public static bool operator !=(PiggyRemoteHost o1, PiggyRemoteHost o2)
+        {
+            return !o1.Equals(o2);
+        }
+
+        private static Int64 CalculateHash(string read)
+        {
+            UInt64 hashedValue = 3074457345618258791ul;
+            for (int i = 0; i < read.Length; i++)
+            {
+                hashedValue += read[i];
+                hashedValue *= 3074457345618258799ul;
+            }
+            return (Int64) hashedValue;
+        }
 
 
-		public string GetShortName ()
-		{
-			return Name.Substring (0, Name.Length - XmlSettingsRepository.RandomNamePartLenght);
-		}
-	}
-    
-
+        public string GetShortName()
+        {
+            return Name.Substring(0, Name.Length - XmlSettingsRepository.RandomNamePartLenght);
+        }
+    }
 }

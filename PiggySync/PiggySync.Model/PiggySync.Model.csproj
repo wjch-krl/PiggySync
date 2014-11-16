@@ -31,6 +31,32 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseConnection\AsyncTableQuery.cs" />
+    <Compile Include="DatabaseConnection\AutoIncrementAttribute.cs" />
+    <Compile Include="DatabaseConnection\BaseTableQuery.cs" />
+    <Compile Include="DatabaseConnection\CollationAttribute.cs" />
+    <Compile Include="DatabaseConnection\ColumnAttribute.cs" />
+    <Compile Include="DatabaseConnection\CreateFlags.cs" />
+    <Compile Include="DatabaseConnection\CreateTablesResult.cs" />
+    <Compile Include="DatabaseConnection\IgnoreAttribute.cs" />
+    <Compile Include="DatabaseConnection\IndexedAttribute.cs" />
+    <Compile Include="DatabaseConnection\MaxLengthAttribute.cs" />
+    <Compile Include="DatabaseConnection\NotNullAttribute.cs" />
+    <Compile Include="DatabaseConnection\NotNullConstraintViolationException.cs" />
+    <Compile Include="DatabaseConnection\Orm.cs" />
+    <Compile Include="DatabaseConnection\PreparedSqlLiteInsertCommand.cs" />
+    <Compile Include="DatabaseConnection\PrimaryKeyAttribute.cs" />
+    <Compile Include="DatabaseConnection\SQLite3.cs" />
+    <Compile Include="DatabaseConnection\SQLiteCommand.cs" />
+    <Compile Include="DatabaseConnection\SQLiteConnection.cs" />
+    <Compile Include="DatabaseConnection\SQLiteConnectionPool.cs" />
+    <Compile Include="DatabaseConnection\SQLiteConnectionString.cs" />
+    <Compile Include="DatabaseConnection\SQLiteConnectionWithLock.cs" />
+    <Compile Include="DatabaseConnection\SQLiteOpenFlags.cs" />
+    <Compile Include="DatabaseConnection\TableAttribute.cs" />
+    <Compile Include="DatabaseConnection\TableMapping.cs" />
+    <Compile Include="DatabaseConnection\TableQuery.cs" />
+    <Compile Include="DatabaseConnection\UniqueAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abstract\TCPPacket.cs" />
     <Compile Include="Abstract\UDPPacket.cs" />
@@ -54,8 +80,8 @@
     <Compile Include="PiggyRemoteHostSync.cs" />
     <Compile Include="PiggyFileException.cs" />
     <Compile Include="FileChangesCollection.cs" />
-    <Compile Include="DatabaseConnection\SQLite.cs" />
-    <Compile Include="DatabaseConnection\SQLiteAsync.cs" />
+    <Compile Include="DatabaseConnection\SQLiteException.cs" />
+    <Compile Include="DatabaseConnection\SQLiteAsyncConnection.cs" />
     <Compile Include="FileInfComparer.cs" />
     <Compile Include="DatabaseManager.cs" />
   </ItemGroup>

@@ -1,25 +1,20 @@
-﻿using PiggySyncWin.WinUI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
+﻿using System.Net;
 
-namespace PiggySyncWin.WinUI.Infrastructure.Concrete
+namespace PiggySync.Model
 {
     public class PiggyRemoteHostSync : PiggyRemoteHost
     {
         public PiggyRemoteHostSync(IPAddress ip, string name, bool isClient)
             : base(ip, name)
         {
-            this.IsClient = isClient;
+            IsClient = isClient;
         }
 
-        public PiggyRemoteHostSync(PiggyRemoteHost host, bool isClient,byte[] msg)
+        public PiggyRemoteHostSync(PiggyRemoteHost host, bool isClient, byte[] msg)
             : base(host.Ip, host.Name)
         {
-            this.IsClient = isClient;
-            this.Msg = msg;
+            IsClient = isClient;
+            Msg = msg;
         }
 
         public bool IsClient { get; set; }

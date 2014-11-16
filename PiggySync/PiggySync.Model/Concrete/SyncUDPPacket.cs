@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PiggySync.Model.Abstract;
-using PiggySync.Model.Concrete;
 
-namespace PiggySyncWin.WinUI.Models
+namespace PiggySync.Model.Concrete
 {
     public class SyncUDPPacket : UdpPacket
     {
-        private UInt32 seqNumber;
-        protected SyncUDPPacket(UInt32 seqNumber,byte code)
+        private readonly UInt32 seqNumber;
+
+        protected SyncUDPPacket(UInt32 seqNumber, byte code)
             : base(code)
         {
             this.seqNumber = seqNumber;
@@ -19,7 +16,7 @@ namespace PiggySyncWin.WinUI.Models
 
         public override byte[] GetPacket()
         {
-            byte[] packet = new byte[] { Code };
+            byte[] packet = {Code};
             packet = packet.Concat(BitConverter.GetBytes(seqNumber)).ToArray();
             packet = packet.Concat(Discovery.Name).ToArray();
             return packet;

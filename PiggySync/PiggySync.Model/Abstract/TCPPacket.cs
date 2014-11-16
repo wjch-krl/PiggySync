@@ -6,7 +6,7 @@
 
         public TCPPacket(byte code)
         {
-            this.Code = code;
+            Code = code;
         }
 
         public abstract byte[] GetPacket();

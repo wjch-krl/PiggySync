@@ -2,13 +2,11 @@
 
 namespace PiggySync.Common.Abstract
 {
-	public interface ICheckSumGenerator
-	{
-		byte[] ComputeChecksum (FileInfo file);
+    public interface ICheckSumGenerator
+    {
+        int ChecksumSize { get; }
+        byte[] ComputeChecksum(FileInfo file);
 
-		byte[] ComputeChecksum (byte[] bytes);
-
-		int ChecksumSize { get; }
-	}
+        byte[] ComputeChecksum(byte[] bytes);
+    }
 }
-

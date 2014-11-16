@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
-using System;
-using PiggySyncWin.WinUI.Models;
+﻿using System;
 using System.Net;
+using NUnit.Framework;
+using PiggySync.Model;
 
-namespace PiggySync.Tests
+namespace DuckSync.Tests
 {
 	[TestFixture]
 	public class PiggyRemoteHostTests
