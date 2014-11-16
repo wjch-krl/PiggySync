@@ -32,7 +32,6 @@ namespace PiggySync.Core
 			{
 				bytes = stream.Read (msg, 0, msg.Length);
 				packets.AddRange (TCPPacketReCreator.RecrateFromRecivedData (msg, bytes));
-
 			} while (packets.Last () is NoRequestPacket);
 
 			buildFilesTree (root, packets);
@@ -73,7 +72,7 @@ namespace PiggySync.Core
 				}
 			}
 		}
-
+			
 		public static void HandleSyncAsClientNoSSL (object hst)
 		{
 			try
@@ -200,8 +199,9 @@ namespace PiggySync.Core
 				var localSubfolder = localFiles.Folders.Find (folder => folder.FolderName == x.FolderName);
 				if (localSubfolder == null)
 				{
-					Directory.CreateDirectory (path + x.FolderName);
+					//TODO Create folder on disk
 					localSubfolder = new FolderInfoPacket (x.FolderName);
+					Directory.CreateDirectory (path + x.FolderName);
 					lock (localFiles)
 					{
 						localFiles.Folders.Add (localSubfolder);
