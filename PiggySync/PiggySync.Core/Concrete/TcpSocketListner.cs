@@ -1,8 +1,4 @@
 using PiggySync.Core.Concrete;
-using PiggySyncWin.WinUI.Infrastructure;
-using PiggySyncWin.WinUI.Infrastructure.Concrete;
-using PiggySyncWin.WinUI.Models;
-using PiggySyncWin.WinUI.Models.Concrete;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -12,7 +8,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PiggySyncWin.WinUI
+namespace PiggySync.Core.Concrete
 {
 	public class TcpSocketListner
 	{

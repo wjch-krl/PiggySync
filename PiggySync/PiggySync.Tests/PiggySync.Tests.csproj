@@ -68,10 +68,6 @@
       <Project>{19804015-C118-4438-9DB8-90E904F26840}</Project>
       <Name>PiggySync.LogManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PiggySync.GtkGui\PiggySync.GtkGui.csproj">
-      <Project>{2E02DDCB-C2E6-470F-92D5-A9811CEFF743}</Project>
-      <Name>PiggySync.GtkGui</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PiggySync.FileMerger\PiggySync.FileMerger.csproj">
       <Project>{3296F3DE-89D1-4B00-8031-E17A62AFD039}</Project>
       <Name>PiggySync.FileMerger</Name>

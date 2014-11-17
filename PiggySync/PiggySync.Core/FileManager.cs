@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using PiggySync.Model;
-using PiggySyncWin.WinUI.Models;
-using PiggySyncWin.WinUI.Models.Concrete;
 using PiggySync.Model.Concrete;
 using PiggySync.Domain;
 using PiggySync.Domain.Concrete;

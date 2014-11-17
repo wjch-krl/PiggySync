@@ -4,6 +4,7 @@ using System.IO;
 using PiggySync.Domain.Abstract;
 using PiggySync.Domain.Concrete;
 using PiggySync.Model;
+using PiggySync.Core;
 
 namespace PiggySync.DesktopFileWather
 {

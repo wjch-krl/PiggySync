@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using PiggySync.Model;
-using PiggySyncWin.WinUI.Infrastructure;
-using PiggySyncWin.WinUI.Models;
 
 namespace PiggySync.Core
 {

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
-using PiggySync.GuiCommon;
+using PiggySync.GuiShared;
 using PiggySync.MonoMacGui;
+using PiggySync.Domain;
 
 namespace PiggySync.MacApp
 {
@@ -129,7 +130,7 @@ namespace PiggySync.MacApp
 			}
 		}
 
-		public IEnumerable<PiggySyncWin.Domain.TextFile> TextFiles
+		public IEnumerable<TextFile> TextFiles
 		{
 			get
 			{

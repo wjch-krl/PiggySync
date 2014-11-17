@@ -1,4 +1,11 @@
-﻿namespace PiggySync.GuiShared
+﻿using PiggySync.Core;
+using PiggySync.DesktopFileWather;
+using System.Collections.Generic;
+using PiggySync.Domain.Concrete;
+using PiggySync.Model;
+using System.Linq;
+
+namespace PiggySync.GuiShared
 {
 	public class MainPresenter : IHostWather
 	{

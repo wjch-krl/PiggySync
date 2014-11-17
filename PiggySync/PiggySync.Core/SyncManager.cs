@@ -8,14 +8,11 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using PiggySyncWin.WinUI.Infrastructure.Concrete;
-using PiggySyncWin.WinUI.Models;
-using PiggySyncWin.WinUI.Models.Concrete;
-using PiggySync.Core;
 using PiggySync.Model.Concrete;
 using PiggySync.Common;
+using PiggySync.Model;
 
-namespace PiggySyncWin.Core
+namespace PiggySync.Core
 {
 	public class SyncManager
 	{

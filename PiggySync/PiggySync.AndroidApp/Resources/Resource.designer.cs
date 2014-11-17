@@ -48,7 +48,10 @@ namespace PiggySync.AndroidApp
 			public const int Icon = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int PiggyLogo_1024 = 2130837505;
+			public const int monoandroidsplash = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int PiggyLogo_1024 = 2130837506;
 			
 			static Drawable()
 			{
@@ -63,11 +66,11 @@ namespace PiggySync.AndroidApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int imageView1 = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int imageView1 = 2131099648;
 			
-			// aapt resource value: 0x7f050001
-			public const int myButton = 2131034113;
+			// aapt resource value: 0x7f060001
+			public const int myButton = 2131099649;
 			
 			static Id()
 			{
@@ -110,6 +113,22 @@ namespace PiggySync.AndroidApp
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int Mono_Android_Theme_Splash = 2131034112;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Style()
 			{
 			}
 		}

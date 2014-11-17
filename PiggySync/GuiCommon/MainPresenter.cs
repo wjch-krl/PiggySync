@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PiggySync.Core;
 using PiggySync.DesktopFileWather;
 using PiggySync.Domain.Concrete;
 using PiggySync.Model;
 
-namespace GuiCommon
+namespace PiggySync.GuiCommon
 {
     public class MainPresenter : IHostWather
     {

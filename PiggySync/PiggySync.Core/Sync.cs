@@ -9,15 +9,11 @@ using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using PiggySync.Domain;
-using PiggySyncWin.Domain;
-using PiggySyncWin.Models;
-using PiggySyncWin.WinUI.Infrastructure;
-using PiggySyncWin.WinUI.Models;
-using PiggySyncWin.WinUI.Models.Concrete;
 using PiggySync.Model.Concrete;
 using PiggySync.Model.Abstract;
 using PiggySync.Common;
 using PiggySync.Domain.Concrete;
+using PiggySync.Model;
 
 namespace PiggySync.Core
 {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using PiggySync.Domain;
 
-namespace GuiCommon
+namespace PiggySync.GuiCommon
 {
     public interface IMainView
     {

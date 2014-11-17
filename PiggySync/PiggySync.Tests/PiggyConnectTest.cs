@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using NUnit.Framework;
 using PiggySync.Model;
+using PiggySync.Core;
 
 namespace DuckSync.Tests
 {

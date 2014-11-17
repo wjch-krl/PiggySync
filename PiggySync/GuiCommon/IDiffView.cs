@@ -1,4 +1,4 @@
-﻿namespace GuiCommon
+﻿namespace PiggySync.GuiCommon
 {
     public interface IDiffView
     {

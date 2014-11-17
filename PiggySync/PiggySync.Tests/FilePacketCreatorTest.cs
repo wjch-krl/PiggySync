@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using PiggySync.Core;
 
 namespace DuckSync.Tests
 {
