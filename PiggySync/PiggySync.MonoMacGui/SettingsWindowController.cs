@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
+using PiggySync.GuiShared;
 
 namespace PiggySync.MonoMacGui
 {
-	public partial class SettingsWindowController : MonoMac.AppKit.NSWindowController
+	public partial class SettingsWindowController : MonoMac.AppKit.NSWindowController, ISettingsView
 	{
 		#region Constructors
 
@@ -33,9 +34,20 @@ namespace PiggySync.MonoMacGui
 		// Shared initialization code
 		void Initialize ()
 		{
+			this.presenter = new SettingsPresenter (this);
 		}
 
 		#endregion
+
+		SettingsPresenter presenter;
+
+		public override void WindowDidLoad ()
+		{
+			base.WindowDidLoad ();
+			CancelButton.Activated += (s, e) => this.Close ();
+			SaveButton.Activated += (s, e) => presenter.SaveSettings ();
+		//	NewFileButton.Activated += (sender, e) => TextFilesGrid.; 
+		}
 
 		//strongly typed window accessor
 		public new SettingsWindow Window
@@ -43,6 +55,78 @@ namespace PiggySync.MonoMacGui
 			get
 			{
 				return (SettingsWindow)base.Window;
+			}
+		}
+			
+		public string SyncRootPath
+		{
+			get
+			{
+				throw new NotImplementedException ();
+			}
+			set
+			{
+				throw new NotImplementedException ();
+			}
+		}
+
+		public bool AutoSync
+		{
+			get
+			{
+				throw new NotImplementedException ();
+			}
+			set
+			{
+				throw new NotImplementedException ();
+			}
+		}
+
+		public bool UseTcp
+		{
+			get
+			{
+				throw new NotImplementedException ();
+			}
+			set
+			{
+				throw new NotImplementedException ();
+			}
+		}
+
+		public bool UseEncryption
+		{
+			get
+			{
+				throw new NotImplementedException ();
+			}
+			set
+			{
+				throw new NotImplementedException ();
+			}
+		}
+
+		public string ComputerName
+		{
+			get
+			{
+				throw new NotImplementedException ();
+			}
+			set
+			{
+				throw new NotImplementedException ();
+			}
+		}
+
+		public IEnumerable<PiggySync.Domain.TextFile> TextFiles
+		{
+			get
+			{
+				throw new NotImplementedException ();
+			}
+			set
+			{
+				throw new NotImplementedException ();
 			}
 		}
 	}

@@ -10,8 +10,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)IDiffView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IMainView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MainPresenter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResourceWorker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ISettingsView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IMainView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SettingsPresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HostsPresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IHostView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyncStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MainPresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DiffPresenter.cs" />
   </ItemGroup>
 </Project>

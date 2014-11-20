@@ -55,102 +55,18 @@ namespace PiggySync.MacApp
 			}
 		}
 
-		public void ActionFinished ()
-		{
-			throw new NotImplementedException ();
-		}
-
-		public void ActionStart ()
-		{
-			throw new NotImplementedException ();
-		}
-
-		public void ActionFinished (string dialogText)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public string SyncRootPath
-		{
-			get
-			{
-				throw new NotImplementedException ();
-			}
-			set
-			{
-				throw new NotImplementedException ();
-			}
-		}
-
-		public bool AutoSync
-		{
-			get
-			{
-				throw new NotImplementedException ();
-			}
-			set
-			{
-				throw new NotImplementedException ();
-			}
-		}
-
-		public bool UseTcp
-		{
-			get
-			{
-				throw new NotImplementedException ();
-			}
-			set
-			{
-				throw new NotImplementedException ();
-			}
-		}
-
-		public bool UseEncryption
-		{
-			get
-			{
-				throw new NotImplementedException ();
-			}
-			set
-			{
-				throw new NotImplementedException ();
-			}
-		}
-
-		public string ComputerName
-		{
-			get
-			{
-				throw new NotImplementedException ();
-			}
-			set
-			{
-				throw new NotImplementedException ();
-			}
-		}
-
-		public IEnumerable<TextFile> TextFiles
-		{
-			get
-			{
-				throw new NotImplementedException ();
-			}
-			set
-			{
-				throw new NotImplementedException ();
-			}
-		}
-
-		public IEnumerable<string> Hosts
-		{
-			set
-			{
-				throw new NotImplementedException ();
-			}
-		}
-
 		public double ProgresLevel
+		{
+			get
+			{
+				throw new NotImplementedException ();
+			}
+			set
+			{
+				throw new NotImplementedException ();
+			}
+		}
+		public SyncStatus SyncStatus
 		{
 			get
 			{

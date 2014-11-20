@@ -2,11 +2,10 @@
 
 namespace PiggySync.GuiShared
 {
-	public class MainPresenter
+	public class DiffPresenter
 	{
-		IMainView view;
-
-		public MainPresenter (IMainView view)
+		IDiffView view;
+		public DiffPresenter (IDiffView view)
 		{
 			this.view = view;
 		}
