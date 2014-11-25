@@ -1,14 +1,34 @@
 ﻿using System;
+using PiggySync.Core;
+using PiggySync.Domain;
+using PiggySync.Domain.Concrete;
+using PiggySync.DesktopFileWather;
 
 namespace PiggySync.GuiShared
 {
 	public class MainPresenter
 	{
-		IMainView view;
+		private static readonly SyncManager main;
+		private readonly IMainView mainView;
 
-		public MainPresenter (IMainView view)
+		static MainPresenter()
 		{
-			this.view = view;
+			main = new SyncManager();
+			FileWatcher.Initialize(main);
+			main.Run();
+		}
+
+		public MainPresenter(IMainView mainView)
+		{
+			this.mainView = mainView;
+		}
+
+		public void Synchronize()
+		{
+			if (!main.IsSynchronizing)
+			{
+				main.ForceSync();
+			}
 		}
 	}
 }

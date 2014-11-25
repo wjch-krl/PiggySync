@@ -40,6 +40,6 @@ namespace PiggySync.Domain
         ///     Gets or sets the text files.
         /// </summary>
         /// <value>The text files.</value>
-        public IEnumerable<TextFile> TextFiles { get; set; }
+		public List<TextFile> TextFiles { get; set; }
     }
 }

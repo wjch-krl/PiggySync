@@ -5,6 +5,6 @@
         Settings Settings { get; set; }
         bool SaveSettings();
         bool ReLoadSettings();
-        void ClearSettings();
+        void RestoreDefaults();
     }
 }

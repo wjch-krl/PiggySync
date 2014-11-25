@@ -19,6 +19,12 @@ namespace PiggySync.MonoMacGui
 		MonoMac.AppKit.NSButton CancelButton { get; set; }
 
 		[Outlet]
+		MonoMac.AppKit.NSTextField ComputerNameLabel { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSTextField ComputerNameTextBox { get; set; }
+
+		[Outlet]
 		MonoMac.AppKit.NSButton DeleteFileButton { get; set; }
 
 		[Outlet]
@@ -34,46 +40,16 @@ namespace PiggySync.MonoMacGui
 		MonoMac.AppKit.NSTextField SyncRootPathTextField { get; set; }
 
 		[Outlet]
-		MonoMac.AppKit.NSScrollView TextFilesGrid { get; set; }
+		MonoMac.AppKit.NSTableView TextFilesTableView { get; set; }
 
 		[Outlet]
 		MonoMac.AppKit.NSButton UseTcpChek { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (EnableEncryptionCheck != null) {
-				EnableEncryptionCheck.Dispose ();
-				EnableEncryptionCheck = null;
-			}
-
-			if (UseTcpChek != null) {
-				UseTcpChek.Dispose ();
-				UseTcpChek = null;
-			}
-
 			if (AutoSyncCheck != null) {
 				AutoSyncCheck.Dispose ();
 				AutoSyncCheck = null;
-			}
-
-			if (SyncRootPathTextField != null) {
-				SyncRootPathTextField.Dispose ();
-				SyncRootPathTextField = null;
-			}
-
-			if (TextFilesGrid != null) {
-				TextFilesGrid.Dispose ();
-				TextFilesGrid = null;
-			}
-
-			if (DeleteFileButton != null) {
-				DeleteFileButton.Dispose ();
-				DeleteFileButton = null;
-			}
-
-			if (NewFileButton != null) {
-				NewFileButton.Dispose ();
-				NewFileButton = null;
 			}
 
 			if (CancelButton != null) {
@@ -81,9 +57,49 @@ namespace PiggySync.MonoMacGui
 				CancelButton = null;
 			}
 
+			if (ComputerNameLabel != null) {
+				ComputerNameLabel.Dispose ();
+				ComputerNameLabel = null;
+			}
+
+			if (ComputerNameTextBox != null) {
+				ComputerNameTextBox.Dispose ();
+				ComputerNameTextBox = null;
+			}
+
+			if (DeleteFileButton != null) {
+				DeleteFileButton.Dispose ();
+				DeleteFileButton = null;
+			}
+
+			if (EnableEncryptionCheck != null) {
+				EnableEncryptionCheck.Dispose ();
+				EnableEncryptionCheck = null;
+			}
+
+			if (NewFileButton != null) {
+				NewFileButton.Dispose ();
+				NewFileButton = null;
+			}
+
 			if (SaveButton != null) {
 				SaveButton.Dispose ();
 				SaveButton = null;
+			}
+
+			if (TextFilesTableView != null) {
+				TextFilesTableView.Dispose ();
+				TextFilesTableView = null;
+			}
+
+			if (SyncRootPathTextField != null) {
+				SyncRootPathTextField.Dispose ();
+				SyncRootPathTextField = null;
+			}
+
+			if (UseTcpChek != null) {
+				UseTcpChek.Dispose ();
+				UseTcpChek = null;
 			}
 		}
 	}

@@ -2,6 +2,8 @@
 using System.IO;
 using System.Xml.Serialization;
 using PiggySync.Domain.Abstract;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace PiggySync.Domain.Concrete
 {
@@ -11,11 +13,12 @@ namespace PiggySync.Domain.Concrete
         private XmlSerializer serializer;
         private Settings settings;
 
-        static XmlSettingsRepository()
+        static XmlSettingsRepository()//TODO DAFUCK!!!!!!!!!!!!!!!!!!!!!!!!!! Static ctor is not being caled
         {
             Instance = new XmlSettingsRepository();
             SettingsPath = String.Format("{0}/{1}", Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                 ".PiggySync");
+			SettingsFile = Path.Combine (SettingsPath,"Piggy.xml");
             if (!Directory.Exists(SettingsPath))
             {
                 DirectoryInfo di = Directory.CreateDirectory(SettingsPath);
@@ -25,10 +28,21 @@ namespace PiggySync.Domain.Concrete
 
         private XmlSettingsRepository()
         {
+		//	Instance = new XmlSettingsRepository();
+			SettingsPath = String.Format("{0}/{1}", Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+				".PiggySync");
+			SettingsFile = Path.Combine (SettingsPath,"Piggy.xml");
+			if (!Directory.Exists(SettingsPath))
+			{
+				DirectoryInfo di = Directory.CreateDirectory(SettingsPath);
+				di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+			}
             settings = LoadSettings();
         }
 
         public static string SettingsPath { get; set; }
+		public static string SettingsFile { get; private set; }
+
         public static XmlSettingsRepository Instance { get; set; }
 
         public Settings Settings
@@ -42,15 +56,16 @@ namespace PiggySync.Domain.Concrete
             try
             {
                 serializer = new XmlSerializer(typeof (Settings));
-                Stream stream = new FileStream(Environment.CurrentDirectory + "\\settings.xml", FileMode.Open,
+				Stream stream = new FileStream(SettingsFile, FileMode.Open,
                     FileAccess.Read);
                 var s = (Settings) serializer.Deserialize(stream);
                 stream.Close();
                 settings = s;
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+				Debug.WriteLine (e);
                 return false;
             }
         }
@@ -64,29 +79,29 @@ namespace PiggySync.Domain.Concrete
             try
             {
                 serializer = new XmlSerializer(typeof (Settings));
-                Stream stream = new FileStream(Environment.CurrentDirectory + "\\settings.xml", FileMode.Create,
+				Stream stream = new FileStream(SettingsFile, FileMode.Create,
                     FileAccess.Write);
                 serializer.Serialize(stream, settings);
                 stream.Close();
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+				Debug.WriteLine (e);
                 return false;
             }
         }
 
-        public void ClearSettings()
+        public void RestoreDefaults()
         {
-            //var rand = new Random();
-            //byte[] buffer = new byte[RandomNamePartLenght];
-            //rand.NextBytes(buffer);
             settings = new Settings
             {
-                //Defaults Settrings
                 ComputerName = Environment.MachineName + Random8Numbers(),
-                /*rand.Next(),*/ //System.Text.Encoding.UTF8.GetString(buffer),
                 SyncRootPath = Environment.CurrentDirectory,
+				AutoSync = true,
+				TextFiles = new List<TextFile>() {new TextFile {Extension =  "txt", TemplatePath = String.Empty}, },
+				UseEncryption = false,
+				UseTcp = true,
             };
         }
 
@@ -95,23 +110,17 @@ namespace PiggySync.Domain.Concrete
             try
             {
                 serializer = new XmlSerializer(typeof (Settings));
-                Stream stream = new FileStream(Environment.CurrentDirectory + "\\settings.xml", FileMode.Open,
+				Stream stream = new FileStream(SettingsFile, FileMode.Open,
                     FileAccess.Read);
                 var s = (Settings) serializer.Deserialize(stream);
                 stream.Close();
                 return s;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //var rand = new Random();
-                //byte[] buffer = new byte[RandomNamePartLenght];
-                //rand.NextBytes(buffer);
-                return new Settings
-                {
-                    //Defaults Settrings
-                    ComputerName = Environment.MachineName + Random8Numbers(),
-                    SyncRootPath = Environment.CurrentDirectory,
-                };
+				Debug.WriteLine (e);
+				RestoreDefaults ();
+				return settings;
             }
         }
 

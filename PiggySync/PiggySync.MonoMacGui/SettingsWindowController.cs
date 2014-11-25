@@ -5,6 +5,7 @@ using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 using PiggySync.GuiShared;
+using System.IO;
 
 namespace PiggySync.MonoMacGui
 {
@@ -34,7 +35,6 @@ namespace PiggySync.MonoMacGui
 		// Shared initialization code
 		void Initialize ()
 		{
-			this.presenter = new SettingsPresenter (this);
 		}
 
 		#endregion
@@ -44,6 +44,7 @@ namespace PiggySync.MonoMacGui
 		public override void WindowDidLoad ()
 		{
 			base.WindowDidLoad ();
+			this.presenter = new SettingsPresenter (this);
 			CancelButton.Activated += (s, e) => this.Close ();
 			SaveButton.Activated += (s, e) => presenter.SaveSettings ();
 		//	NewFileButton.Activated += (sender, e) => TextFilesGrid.; 
@@ -62,11 +63,11 @@ namespace PiggySync.MonoMacGui
 		{
 			get
 			{
-				throw new NotImplementedException ();
+				return SyncRootPathTextField.StringValue;
 			}
 			set
 			{
-				throw new NotImplementedException ();
+				SyncRootPathTextField.StringValue = value;
 			}
 		}
 
@@ -74,11 +75,11 @@ namespace PiggySync.MonoMacGui
 		{
 			get
 			{
-				throw new NotImplementedException ();
+				return AutoSyncCheck.State == NSCellStateValue.On;
 			}
 			set
 			{
-				throw new NotImplementedException ();
+				AutoSyncCheck.State = value ? NSCellStateValue.On : NSCellStateValue.Off;
 			}
 		}
 
@@ -86,11 +87,11 @@ namespace PiggySync.MonoMacGui
 		{
 			get
 			{
-				throw new NotImplementedException ();
+				return UseTcpChek.State == NSCellStateValue.On;
 			}
 			set
 			{
-				throw new NotImplementedException ();
+				UseTcpChek.State = value ? NSCellStateValue.On : NSCellStateValue.Off;
 			}
 		}
 
@@ -98,11 +99,11 @@ namespace PiggySync.MonoMacGui
 		{
 			get
 			{
-				throw new NotImplementedException ();
+				return EnableEncryptionCheck.State == NSCellStateValue.On;
 			}
 			set
 			{
-				throw new NotImplementedException ();
+				EnableEncryptionCheck.State = value ? NSCellStateValue.On : NSCellStateValue.Off;
 			}
 		}
 
@@ -110,11 +111,11 @@ namespace PiggySync.MonoMacGui
 		{
 			get
 			{
-				throw new NotImplementedException ();
+				return ComputerNameTextBox.StringValue;
 			}
 			set
 			{
-				throw new NotImplementedException ();
+				ComputerNameTextBox.StringValue = value;
 			}
 		}
 
@@ -122,11 +123,12 @@ namespace PiggySync.MonoMacGui
 		{
 			get
 			{
-				throw new NotImplementedException ();
+				return (TextFilesTableView.DataSource as TextFilesDataSource).Files;
 			}
 			set
 			{
-				throw new NotImplementedException ();
+				TextFilesTableView.DataSource = new TextFilesDataSource (value);
+				TextFilesTableView.ReloadData ();
 			}
 		}
 	}

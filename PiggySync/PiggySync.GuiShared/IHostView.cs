@@ -11,7 +11,7 @@ namespace PiggySync.GuiShared
 		/// Sets hosts list.
 		/// </summary>
 		/// <value>Conntected hosts.</value>
-		IEnumerable<string> Hosts{ set; }
+		IEnumerable<PiggyRemoteHost> Hosts{ set; }
 	}
 }
 

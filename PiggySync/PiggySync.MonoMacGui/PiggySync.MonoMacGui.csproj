@@ -85,11 +85,19 @@
     <Compile Include="SettingsWindow.designer.cs">
       <DependentUpon>SettingsWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="TextFilesDataSource.cs" />
+    <Compile Include="HostsWindow.cs" />
+    <Compile Include="HostsWindowController.cs" />
+    <Compile Include="HostsWindow.designer.cs">
+      <DependentUpon>HostsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HostTableDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
     <InterfaceDefinition Include="MainMenu.xib" />
     <InterfaceDefinition Include="SettingsWindow.xib" />
+    <InterfaceDefinition Include="HostsWindow.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

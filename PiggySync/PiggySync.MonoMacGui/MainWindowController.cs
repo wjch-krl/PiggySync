@@ -11,8 +11,8 @@ namespace PiggySync.MacApp
 {
 	public partial class MainWindowController : MonoMac.AppKit.NSWindowController , IMainView
 	{
+		MainPresenter presenter;
 		#region Constructors
-
 		// Called when created from unmanaged code
 		public MainWindowController (IntPtr handle) : base (handle)
 		{
@@ -46,6 +46,10 @@ namespace PiggySync.MacApp
 			this.SettingsButton.Activated += (sender, e) => {
 				new SettingsWindowController().ShowWindow(this);
 			};
+			this.DevicesButton.Activated += (sender, e) => {
+				new HostsWindowController().ShowWindow(this);
+			};
+			this.presenter = new MainPresenter (this);
 		}
 
 		//strongly typed window accessor
