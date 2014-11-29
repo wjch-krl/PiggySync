@@ -44,7 +44,7 @@ namespace PiggySync.Model
         [Ignore]
         public Int64 LastModyfied { get; set; }
 
-        public DateTime LastMdyfiedDate
+        public DateTime LastModyfiedDate
         {
             get { return new DateTime(1970, 1, 1).AddTicks(LastModyfied); }
             set { LastModyfied = (value - new DateTime(1970, 1, 1)).Ticks; }

@@ -9,7 +9,7 @@ namespace DuckSync.Tests
         [Test]
         public void TestMerge1()
         {
-            var merger = new FileMerger("TestFiles/MainWindow.txt", "TestFiles/MainWindow-kopia.txt",
+			var merger = new FileMerger("TestFiles/!LocalV~MainWindow.txt", "TestFiles/!RemoteV~MainWindow.txt",
                 "TestFiles/Result.txt");
             merger.MergeFiles();
         }

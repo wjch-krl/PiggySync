@@ -78,10 +78,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="TestFiles\MainWindow-kopia.txt">
+    <Folder Include="TestFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestFiles\!LocalV~MainWindow.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestFiles\MainWindow.txt">
+    <EmbeddedResource Include="TestFiles\!RemoteV~MainWindow.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

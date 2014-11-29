@@ -27,8 +27,8 @@ namespace PiggySync.FileMerger
             }
             var file = TextFile(extension);
             var serializer = new XmlSerializer(typeof (MergePattern));
-            Stream stream = new FileStream(file.TemplatePath, FileMode.Open, FileAccess.Read);
-            pattern = (MergePattern) serializer.Deserialize(stream);
+          //  Stream stream = new FileStream(file.TemplatePath, FileMode.Open, FileAccess.Read);
+            //pattern = (MergePattern) serializer.Deserialize(stream);
             this.fileAPath = fileAPath;
             this.fileBPath = fileBPath;
             this.resultPath = resultPath;
@@ -65,11 +65,13 @@ namespace PiggySync.FileMerger
         {
             try
             {
-                return XmlSettingsRepository.Instance.Settings.TextFiles.First(x => x.Extension == extension);
+                return XmlSettingsRepository.Instance.Settings.TextFiles.First(
+					x => x.Extension == extension
+				);
             }
             catch (Exception e)
             {
-                throw new PiggyFileException("Not a text file");
+                throw new PiggyFileException("Not a text file",e);
             }
         }
     }

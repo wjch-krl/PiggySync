@@ -68,7 +68,7 @@ namespace PiggySync.Core
 					break;
 				case 170:
 					var file = new FileInfoPacket (data);
-					System.Diagnostics.Debug.WriteLine ("File: " + file.File.FileSize + " " + file.File.FileName + " " + file.File.LastMdyfiedDate);
+					System.Diagnostics.Debug.WriteLine ("File: " + file.File.FileSize + " " + file.File.FileName + " " + file.File.LastModyfiedDate);
 					packets.Add (file);
 					break;
 				case 160:

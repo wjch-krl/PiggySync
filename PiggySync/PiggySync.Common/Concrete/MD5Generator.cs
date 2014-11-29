@@ -27,7 +27,7 @@ namespace PiggySync.Common.Concrete
 
         public int ChecksumSize
         {
-            get { return 20; }
+            get { return 16; }
         }
     }
 }

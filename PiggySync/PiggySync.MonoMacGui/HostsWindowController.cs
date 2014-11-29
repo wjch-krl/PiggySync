@@ -10,7 +10,6 @@ namespace PiggySync.MonoMacGui
 {
 	public partial class HostsWindowController : MonoMac.AppKit.NSWindowController, IHostView
 	{
-		HostsPresenter presenter; 
 		#region Constructors
 
 		// Called when created from unmanaged code
@@ -40,7 +39,7 @@ namespace PiggySync.MonoMacGui
 		public override void WindowDidLoad ()
 		{
 			base.WindowDidLoad ();
-			this.presenter = new HostsPresenter (this);
+			new HostsPresenter (this);
 		}
 
 		#endregion

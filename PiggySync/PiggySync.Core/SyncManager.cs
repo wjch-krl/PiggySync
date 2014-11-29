@@ -59,8 +59,8 @@ namespace PiggySync.Core
 			{
 				Thread.Sleep (100000);
 				PiggyRemoteHost host;
-				ConcurrentBag<PiggyRemoteHost> cleaned = new ConcurrentBag<PiggyRemoteHost>();
-				while(hosts.TryTake(out host))
+				ConcurrentBag<PiggyRemoteHost> cleaned = new ConcurrentBag<PiggyRemoteHost> ();
+				while (hosts.TryTake (out host))
 				{
 					if (clientQueue.Contains (host) || serverQueue.Contains (host))
 					{
@@ -101,7 +101,7 @@ namespace PiggySync.Core
 					{
 						try
 						{
-							remote = Discovery.GetHOstData (msg);
+							remote = Discovery.GetHostData (msg);
 
 							((SyncManager)observer).CreateNewConnection (remote); 
                                 
@@ -181,13 +181,13 @@ namespace PiggySync.Core
 
 		public void CreateNewConnection (PiggyRemoteHost host)
 		{
-			if (!hosts.Contains (host) && PiggyRemoteHost.Me.Name != host.Name)
+			if (!hosts.Contains (host) && PiggyRemoteHost.Me.Name == host.Name)
 			{
 				foreach (var x in hosts)
 				{
 					if (x.Name == host.Name && x.Ip != x.Ip)
 					{
-						// hosts.Remove(x); TODO Remove host
+						//hosts.Remove(x); 
 						break;
 					}
 				}
@@ -421,8 +421,8 @@ namespace PiggySync.Core
 						host = new IPEndPoint (x.Ip, 1339);
 						newConnection = new TcpClient (new IPEndPoint (PiggyRemoteHost.Me.Ip, 1338));
 						newConnection.Connect (host);
-
-						Syncronizer.HandleSyncAsClientNoSSL (newConnection);
+						var lastSyncDate = DeviaceHistoryManager.LastSyncDate (x);
+						Syncronizer.HandleSyncAsClientNoSSL (newConnection, lastSyncDate);
 						try
 						{
 							newConnection.Close ();

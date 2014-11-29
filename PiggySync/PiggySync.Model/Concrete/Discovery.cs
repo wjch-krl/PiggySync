@@ -32,7 +32,7 @@ namespace PiggySync.Model.Concrete
             return msg;
         }
 
-        public static PiggyRemoteHost GetHOstData(byte[] data)
+        public static PiggyRemoteHost GetHostData(byte[] data)
         {
             var ip = new byte[4];
             Array.Copy(data, 1, ip, 0, 4);

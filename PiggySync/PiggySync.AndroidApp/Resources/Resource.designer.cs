@@ -50,9 +50,6 @@ namespace PiggySync.AndroidApp
 			// aapt resource value: 0x7f020001
 			public const int monoandroidsplash = 2130837505;
 			
-			// aapt resource value: 0x7f020002
-			public const int PiggyLogo_1024 = 2130837506;
-			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -66,11 +63,29 @@ namespace PiggySync.AndroidApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060000
-			public const int imageView1 = 2131099648;
+			// aapt resource value: 0x7f060003
+			public const int imageView1 = 2131099651;
 			
 			// aapt resource value: 0x7f060001
-			public const int myButton = 2131099649;
+			public const int linearLayout1 = 2131099649;
+			
+			// aapt resource value: 0x7f060005
+			public const int linearLayout2 = 2131099653;
+			
+			// aapt resource value: 0x7f060006
+			public const int linearLayout3 = 2131099654;
+			
+			// aapt resource value: 0x7f060007
+			public const int linearLayout4 = 2131099655;
+			
+			// aapt resource value: 0x7f060002
+			public const int linearLayout5 = 2131099650;
+			
+			// aapt resource value: 0x7f060004
+			public const int myButton = 2131099652;
+			
+			// aapt resource value: 0x7f060000
+			public const int tabHost1 = 2131099648;
 			
 			static Id()
 			{
@@ -86,7 +101,7 @@ namespace PiggySync.AndroidApp
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int mainlayout = 2130903040;
 			
 			static Layout()
 			{

@@ -19,7 +19,7 @@ namespace PiggySync.Core
 			FileManager.rootFolder = new SyncInfoPacket ();
 		}
 
-		static FileManager()
+		static FileManager ()
 		{
 			if (FileManager.fileManager == null)
 			{
@@ -79,11 +79,19 @@ namespace PiggySync.Core
 			FolderInfoPacket folder;
 			foreach (var x in folders)
 			{
-				System.Diagnostics.Debug.WriteLine ("Added dir: " + x);
-				folder = new FolderInfoPacket (x.Substring (path.Length + 1));
-				//simple path 
-				CreateRootFolder (folder, path, deletedFiles);
-				root.Folders.Add (folder);
+				try
+				{
+					folder = new FolderInfoPacket (x.Substring (path.Length + 1));
+					//simple path 
+					CreateRootFolder (folder, path, deletedFiles);
+					root.Folders.Add (folder);
+					System.Diagnostics.Debug.WriteLine ("Added dir: {0}", x);
+				}
+				catch (IOException ex)
+				{
+					System.Diagnostics.Debug.WriteLine ("Cannot add dir: {0}", ex);
+				}
+
 			}
 		}
 
@@ -93,12 +101,25 @@ namespace PiggySync.Core
 			var addedFiles = new List<FileInf> ();
 			foreach (var x in localFileNames)
 			{
-				System.Diagnostics.Debug.WriteLine ("Added file: " + x.Substring (path.Length + 1));
-				var fileInf = new FileInf (x) {
-					Path = path,
-				};
-				root.Files.Add (new FileInfoPacket (fileInf));
-				addedFiles.Add (fileInf);
+				try
+				{
+					var fileInf = new FileInf (x) {
+						Path = path,
+					};
+					if (XmlSettingsRepository.Instance.Settings.BannedFiles.Contains (fileInf.FileName))
+					{
+						continue;
+					}
+					root.Files.Add (new FileInfoPacket (fileInf));
+					addedFiles.Add (fileInf);
+					System.Diagnostics.Debug.WriteLine ("Added file: {0}", x.Substring (path.Length + 1));
+
+				}
+				catch (IOException e)
+				{
+					System.Diagnostics.Debug.WriteLine ("Cannot add file: {0}", e);
+
+				}
 			}
 			var folderFiles = new List<FileInf> (dbFiles.Where (x => x.Path == path));
 			foreach (var element in folderFiles)
@@ -136,16 +157,16 @@ namespace PiggySync.Core
 				string curr = XmlSettingsRepository.Instance.Settings.SyncRootPath;
 				foreach (var element in foldersTree)
 				{
-					curr = string.Format ("{1}/{0}", element, curr);
+					curr = Path.Combine (element, curr);
 					if (!Directory.Exists (curr))
 					{
-						var deletedFolder = new FolderInfoPacket (curr.Replace(XmlSettingsRepository.Instance.Settings.SyncRootPath, String.Empty), 144);
+						var deletedFolder = new FolderInfoPacket (curr.Replace (XmlSettingsRepository.Instance.Settings.SyncRootPath, String.Empty), 144);
 						root.Folders.Add (deletedFolder);//TODO
 						deletedFolder.DeletedFiles.Add (new FileDeletePacket (file));
 						break;
 					}
 				}
-				rootFolder.DeletedFiles.Add (new FileDeletePacket(file));
+				rootFolder.DeletedFiles.Add (new FileDeletePacket (file));
 				//TODO Create deleted folder packet
 			}
 		}

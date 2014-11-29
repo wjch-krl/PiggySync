@@ -68,13 +68,11 @@ namespace PiggySync.Core
 				}
 			}
 		}
-			
-		public static void HandleSyncAsClientNoSSL (object hst)
+
+		public static void HandleSyncAsClientNoSSL (TcpClient host, DateTime lastSyncDate)
 		{
 			try
-			{
-				var host = (TcpClient)hst;
-              
+			{              
 				NetworkStream stream = host.GetStream ();
 				byte[] msg = new byte[5];//5 - size of SyncInfoPacket
 				Int32 bytes;
@@ -91,7 +89,7 @@ namespace PiggySync.Core
 					throw new Exception ();//TODO write custom Exception
 				}
 
-				var remoteChanges = ChooseFilesToSync (rootFolder);
+				var remoteChanges = ChooseFilesToSync (rootFolder, lastSyncDate);
 				foreach (var x in remoteChanges.DeletedFiles)
 				{
 					DeleteFile (x);
@@ -127,10 +125,11 @@ namespace PiggySync.Core
 			UInt32 size = x.File.FileSize;
 			Int32 bytes;
 			msg = new byte[2048];
-			FileStream fileStream = new FileStream (x.FilePath + @"\" + x.File.FileName, FileMode.Create, FileAccess.Write);
-			using (BinaryWriter writer = new BinaryWriter (fileStream))
-			{
+			var filePath = Path.Combine (x.FilePath, x.File.FileName.Trim ('\0'));
 
+			FileStream fileStream = new FileStream (filePath, FileMode.Create, FileAccess.Write);
+			using (var writer = new BinaryWriter (fileStream))
+			{
 				try
 				{
 					while (size != 0)
@@ -162,27 +161,50 @@ namespace PiggySync.Core
 			System.Diagnostics.Debug.WriteLine ("Recived File: {0}", x.File.FileName);
 		}
 
-		private static FileChangesCollection ChooseFilesToSync (SyncInfoPacket rootFolder)
+		private static FileChangesCollection ChooseFilesToSync (SyncInfoPacket rootFolder, DateTime lastSyncDate)
 		{
-			return ChooseFilesToSync (rootFolder, FileManager.RootFolder, rootPath);
+			return ChooseFilesToSync (rootFolder, FileManager.RootFolder, rootPath, lastSyncDate);
 		}
 
-		private static FileChangesCollection ChooseFilesToSync (SyncInfoPacket rootFolder, SyncInfoPacket localFiles, string path)
+		private static FileChangesCollection ChooseFilesToSync (SyncInfoPacket rootFolder, SyncInfoPacket localFiles, string path, DateTime lastSyncDate)
 		{
 			//TODO
 			var remoteFiles = new FileChangesCollection ();
             
-			foreach (var x in rootFolder.Files)
+			foreach (var remoteFile in rootFolder.Files)
 			{
-				if (!localFiles.Files.Exists ((FileInfoPacket file) =>
+				if (!localFiles.Files.Exists ((FileInfoPacket localFile) =>
 				{
-					return file.File.FileName == x.File.FileName &&
-					file.File.FileSize == x.File.FileSize &&
-					file.File.CheckSum.SequenceEqual (x.File.CheckSum) &&
-					file.File.LastModyfied == x.File.LastModyfied;
+					if (localFile.File.FileName == remoteFile.File.FileName &&
+					    localFile.File.FileSize == remoteFile.File.FileSize &&
+					    localFile.File.CheckSum.SequenceEqual (remoteFile.File.CheckSum))
+					{
+						if (localFile.File.LastModyfiedDate > lastSyncDate && remoteFile.File.LastModyfiedDate > lastSyncDate)
+						{
+							//TODO CONFLICT
+							if (localFile.File.LastModyfiedDate > remoteFile.File.LastModyfiedDate)
+							{
+								//Local is newer
+							}
+							else
+							{
+								//Remote is newer
+
+							}
+							return true;
+						}
+						else
+						{
+							return localFile.File.LastModyfied < remoteFile.File.LastModyfied;
+						}
+					}
+					else
+					{
+						return false;
+					}
 				}))
 				{
-					remoteFiles.FileRequests.Add (new FileRequestPacket (x.File, path));
+					remoteFiles.FileRequests.Add (new FileRequestPacket (remoteFile.File, path));
 				}
 			}
 			foreach (var x in rootFolder.DeletedFiles)
@@ -203,7 +225,7 @@ namespace PiggySync.Core
 						localFiles.Folders.Add (localSubfolder);
 					}
 				}
-				var moreFiles = ChooseFilesToSync (x, localSubfolder, path + @"/" + x.FolderName);
+				var moreFiles = ChooseFilesToSync (x, localSubfolder, path + @"/" + x.FolderName, lastSyncDate);
 				remoteFiles.FileRequests.AddRange (moreFiles.FileRequests);
 				remoteFiles.DeletedFiles.AddRange (moreFiles.DeletedFiles);
 								

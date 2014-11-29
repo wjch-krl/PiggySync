@@ -92,12 +92,18 @@
       <DependentUpon>HostsWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="HostTableDataSource.cs" />
+    <Compile Include="DiffWindow.cs" />
+    <Compile Include="DiffWindowController.cs" />
+    <Compile Include="DiffWindow.designer.cs">
+      <DependentUpon>DiffWindow.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
     <InterfaceDefinition Include="MainMenu.xib" />
     <InterfaceDefinition Include="SettingsWindow.xib" />
     <InterfaceDefinition Include="HostsWindow.xib" />
+    <InterfaceDefinition Include="DiffWindow.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
