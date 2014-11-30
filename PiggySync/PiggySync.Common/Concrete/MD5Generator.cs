@@ -4,7 +4,7 @@ using PiggySync.Common.Abstract;
 
 namespace PiggySync.Common.Concrete
 {
-    internal class Md5Generator : ICheckSumGenerator
+    public class Md5Generator : ICheckSumGenerator
     {
         public byte[] ComputeChecksum(FileInfo file)
         {

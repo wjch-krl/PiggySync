@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Linq;
@@ -162,6 +162,7 @@ namespace PiggySync.Core
             } while (true);
         }
 
+<<<<<<< Upstream, based on origin/master
         public void ThreadBroadcasterRun()
         {
             var broadcaster = new UdpClient();
@@ -175,6 +176,25 @@ namespace PiggySync.Core
                 Thread.Sleep(1000);
             } while (true);
         }
+=======
+		public void CreateNewConnection (PiggyRemoteHost host)
+		{
+			if (!hosts.Contains (host) && PiggyRemoteHost.Me.Name != host.Name)
+			{
+				foreach (var x in hosts)
+				{
+					if (x.Name == host.Name && x.Ip != x.Ip)
+					{
+						//hosts.Remove(x); 
+						break;
+					}
+				}
+				System.Diagnostics.Debug.WriteLine ("Addding new host: " + host.Name);
+				hosts.Add (host);
+				RequestSync (host); 
+			}
+		}
+>>>>>>> 0e72788 CheckSum fixes
 
         public void CreateNewConnection(PiggyRemoteHost host)
         {
