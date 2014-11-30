@@ -1,30 +1,62 @@
 using System;
 using System.Net;
+using System.Net.Sockets;
+using PiggySync.Common;
 
 namespace PiggySync.Core.Concrete
 {
-    internal class UdpSocket
-    {
-        public UdpSocket(int i)
-        {
-            throw new NotImplementedException();
-        }
+	internal class UdpSocket
+	{
+		Socket socket;
 
-        public UdpSocket()
-        {
-            throw new NotImplementedException();
-        }
+		public UdpSocket (int port)
+		{
+			socket = new Socket (AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+			socket.Bind (new IPEndPoint (0, port));
+		}
 
-        public bool EnableBroadcast { get; set; }
+		public UdpSocket ()
+		{
+			socket = new Socket (AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+		}
 
-        public byte[] Receive(ref IPEndPoint source)
-        {
-            throw new NotImplementedException();
-        }
+		public bool EnableBroadcast
+		{
+			get { return socket.EnableBroadcast; }
+			set { socket.EnableBroadcast = value; }
+		}
 
-        public void Send(byte[] msg, int length, IPEndPoint hostAddr)
-        {
-            throw new NotImplementedException();
-        }
-    }
+		public byte[] Receive (ref IPEndPoint source)
+		{
+			int buffSize = 256;
+			var buffer = new byte[buffSize];
+			do
+			{
+				var endPoint = (source as EndPoint);
+				try
+				{
+					var recLen = socket.ReceiveFrom (buffer, ref endPoint);
+					return buffer.SubArray (0, recLen);
+				}
+				catch (Exception)
+				{
+				}
+				buffSize = buffSize * 2;
+				buffer = new byte[buffSize];
+			} while (buffer.Length < 10000);
+			throw new SocketException ();
+		}
+
+		public void Send (byte[] msg, int length, IPEndPoint hostAddr)
+		{
+			if (EnableBroadcast)
+			{
+				socket.SendTo (msg, length, SocketFlags.Broadcast, hostAddr);
+			}
+			else
+			{
+				socket.SendTo (msg, length, SocketFlags.None, hostAddr);
+			}
+		}
+	}
 }

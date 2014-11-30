@@ -4,26 +4,43 @@ using System.Net.Sockets;
 
 namespace PiggySync.Core.Concrete
 {
-    public class TcpSocket
+	public class TcpSocket : IDisposable
     {
-        public TcpSocket(IPEndPoint iPEndPoint)
+		Socket socket;
+        
+		public TcpSocket(IPEndPoint iPEndPoint)
         {
-            throw new NotImplementedException();
+			this.socket = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+			socket.Bind (iPEndPoint);
         }
+
+		public TcpSocket(Socket socket)
+		{
+			this.socket = socket;
+		}
 
         public void Connect(IPEndPoint host)
         {
-            throw new NotImplementedException();
+			socket.Connect (host);
         }
 
         public void Close()
         {
-            throw new NotImplementedException();
-        }
+			socket.Close ();
+		}
 
         public NetworkStream GetStream()
         {
-            throw new NotImplementedException();
-        }
+			return new NetworkStream (socket);
+		}
+
+		public void Dispose ()
+		{
+			if (socket.Connected)
+			{
+				socket.Close ();
+			}
+			socket.Dispose ();
+		}
     }
 }

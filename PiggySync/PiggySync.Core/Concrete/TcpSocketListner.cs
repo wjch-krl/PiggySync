@@ -1,28 +1,68 @@
 using System;
 using System.Net;
+using System.Net.Sockets;
+using System.Runtime.CompilerServices;
+using System.Net.NetworkInformation;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
+using System.Threading;
 
 namespace PiggySync.Core.Concrete
 {
-    public class TcpSocketListner
+	public class TcpSocketListner : IDisposable
     {
+		Socket socket;
+		bool run;
         public TcpSocketListner(IPEndPoint iPEndPoint)
         {
-            throw new NotImplementedException();
+			socket = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+			socket.Bind (iPEndPoint);
         }
+
+		ConcurrentQueue<Socket> sockets;
 
         public void Start()
         {
-            throw new NotImplementedException();
+			run = true;
+			Task.Factory.StartNew (() =>
+			{
+				do
+				{
+					try
+					{
+						socket.Listen (5);
+						sockets.Enqueue (socket.Accept ());
+					}
+					catch (Exception)
+					{
+						Thread.Sleep (100);
+					}
+				} while(run);
+			});
         }
 
         public TcpSocket AcceptTcpClient()
         {
-            throw new NotImplementedException();
+			Socket x;
+			do
+			{
+				Thread.Sleep (100);
+			} while(!sockets.TryDequeue (out x));
+			return new TcpSocket (x);
         }
 
         public void Stop()
         {
-            throw new NotImplementedException();
+			run = false;
         }
+			
+		public void Dispose ()
+		{
+			foreach (var element in sockets)
+			{
+				element.Dispose ();
+			}
+		}
+
     }
 }

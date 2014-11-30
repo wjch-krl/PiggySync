@@ -162,7 +162,6 @@ namespace PiggySync.Core
             } while (true);
         }
 
-<<<<<<< Upstream, based on origin/master
         public void ThreadBroadcasterRun()
         {
             var broadcaster = new UdpClient();
@@ -176,7 +175,7 @@ namespace PiggySync.Core
                 Thread.Sleep(1000);
             } while (true);
         }
-=======
+
 		public void CreateNewConnection (PiggyRemoteHost host)
 		{
 			if (!hosts.Contains (host) && PiggyRemoteHost.Me.Name != host.Name)
@@ -194,26 +193,7 @@ namespace PiggySync.Core
 				RequestSync (host); 
 			}
 		}
->>>>>>> 0e72788 CheckSum fixes
-
-        public void CreateNewConnection(PiggyRemoteHost host)
-        {
-            if (!hosts.Contains(host) && PiggyRemoteHost.Me.Name == host.Name)
-            {
-                foreach (var x in hosts)
-                {
-                    if (x.Name == host.Name && x.Ip != x.Ip)
-                    {
-                        //hosts.Remove(x); 
-                        break;
-                    }
-                }
-                Debug.WriteLine("Addding new host: " + host.Name);
-                hosts.Add(host);
-                RequestSync(host);
-            }
-        }
-
+			
         public void RequestSync(PiggyRemoteHost x)
         {
             serverQueue.Enqueue(new PiggyRemoteHostSync(x, false, null));
@@ -349,14 +329,12 @@ namespace PiggySync.Core
                         {
                             UDPWriter.Send(x.Msg, x.Msg.Length, endPoint);
                         }
-
                         var listner = new TcpListener(new IPEndPoint(PiggyRemoteHost.Me.Ip, 1339));
                         listner.Start();
                         TcpClient newConnection;
                         newConnection = listner.AcceptTcpClient();
 
                         listner.Stop();
-
 
                         Syncronizer.HandleSyncAsServerNoSSL(newConnection);
                     }
