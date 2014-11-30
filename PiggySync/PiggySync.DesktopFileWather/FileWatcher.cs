@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using PiggySync.Core;
 using PiggySync.Domain.Abstract;
 using PiggySync.Domain.Concrete;
 using PiggySync.Model;
-using PiggySync.Core;
 
 namespace PiggySync.DesktopFileWather
 {

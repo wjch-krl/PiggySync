@@ -18,7 +18,7 @@ namespace PiggySync.Model.Concrete
             PacketSize =
                 (UInt32)
                     (1 + 2*sizeof (UInt32) + sizeof (Int64) + file.FileName.Length + CheckSumGenerator.ChecksumSize);
-                //TODO refactor
+            //TODO refactor
         }
 
         public FileInfoPacket(byte[] packet, byte code = 170)
@@ -50,7 +50,7 @@ namespace PiggySync.Model.Concrete
             packet = packet.Concat(BitConverter.GetBytes(file.LastModyfied)).ToArray();
             packet = packet.Concat(BitConverter.GetBytes(file.FileSize)).ToArray();
             packet = packet.Concat(Encoding.UTF8.GetBytes(file.FileName)).ToArray();
-                //TODO check?? write unit test for this
+            //TODO check?? write unit test for this
             return packet;
         }
     }

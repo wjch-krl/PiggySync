@@ -40,12 +40,12 @@ namespace PiggySync.Domain
         ///     Gets or sets the text files.
         /// </summary>
         /// <value>The text files.</value>
-		public List<TextFile> TextFiles { get; set; }
+        public List<TextFile> TextFiles { get; set; }
 
-		/// <summary>
-		/// Gets or sets the banned files.
-		/// </summary>
-		/// <value>The banned files.</value>
-		public HashSet<string> BannedFiles { get; set; }
+        /// <summary>
+        ///     Gets or sets the banned files.
+        /// </summary>
+        /// <value>The banned files.</value>
+        public HashSet<string> BannedFiles { get; set; }
     }
 }

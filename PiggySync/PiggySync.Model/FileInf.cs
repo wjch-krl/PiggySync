@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using PiggySync.Common.Concrete;
-using PiggySync.Model;
 using PiggySync.Common;
+using PiggySync.Common.Concrete;
 using PiggySync.Model.DatabaseConnection;
 
 namespace PiggySync.Model

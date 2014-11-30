@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
+
 #if WINDOWS_PHONE && !USE_WP8_NATIVE_SQLITE
 #define USE_CSHARP_SQLITE
 #endif
@@ -39,18 +40,18 @@ using Sqlite3Statement = Sqlite.Statement;
 
 namespace PiggySync.Model.DatabaseConnection
 {
-	public class SQLiteException : Exception
-	{
-		public SQLite3.Result Result { get; private set; }
+    public class SQLiteException : Exception
+    {
+        protected SQLiteException(SQLite3.Result r, string message) : base(message)
+        {
+            Result = r;
+        }
 
-		protected SQLiteException (SQLite3.Result r,string message) : base(message)
-		{
-			Result = r;
-		}
+        public SQLite3.Result Result { get; private set; }
 
-		public static SQLiteException New (SQLite3.Result r, string message)
-		{
-			return new SQLiteException (r, message);
-		}
-	}
+        public static SQLiteException New(SQLite3.Result r, string message)
+        {
+            return new SQLiteException(r, message);
+        }
+    }
 }

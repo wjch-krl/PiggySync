@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using PiggySync.Model;
-using PiggySync.Core;
+﻿using System.Collections.Generic;
 using System.Linq;
-using PiggySync.Domain;
-using PiggySync.Domain.Concrete;
+using PiggySync.Core;
+using PiggySync.Model;
 
 namespace PiggySync.GuiShared
 {
-	public class HostsPresenter : IHostWather
-	{
-		IHostView view;
-		public HostsPresenter (IHostView view)
-		{
-			this.view = view;
-			view.Hosts = DeviaceHistoryManager.AllHosts;
-		}
+    public class HostsPresenter : IHostWather
+    {
+        private readonly IHostView view;
 
-		public void RefreshHostsList (IEnumerable<PiggyRemoteHost> hosts)
-		{
-			view.Hosts = hosts.Concat (DeviaceHistoryManager.AllHosts);
-		}	
-	}
+        public HostsPresenter(IHostView view)
+        {
+            this.view = view;
+            view.Hosts = DeviaceHistoryManager.AllHosts;
+        }
+
+        public void RefreshHostsList(IEnumerable<PiggyRemoteHost> hosts)
+        {
+            view.Hosts = hosts.Concat(DeviaceHistoryManager.AllHosts);
+        }
+    }
 }
-

@@ -6,11 +6,11 @@ namespace PiggySync.Core
     {
         public static byte[] CreatePacket(string filePath, int position, int size)
         {
-            byte[] packet = new byte[size];
-            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            var packet = new byte[size];
+            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
-                BinaryReader br = new BinaryReader(fs);
-                fs.Seek(position * size, SeekOrigin.Begin);
+                var br = new BinaryReader(fs);
+                fs.Seek(position*size, SeekOrigin.Begin);
                 packet = br.ReadBytes(size);
             }
             return packet;

@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiffForm.Designer.cs">
+      <DependentUpon>DiffForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HostsViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DiffForm.resx">
+      <DependentUpon>DiffForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HostsViewForm.resx">
       <DependentUpon>HostsViewForm.cs</DependentUpon>
     </EmbeddedResource>

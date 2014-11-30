@@ -1,25 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PiggySync.GuiShared;
 
 namespace PiggySync.WinApp
 {
-	public partial class MainForm : Form , IMainView
+    public partial class MainForm : Form, IMainView
     {
+        private MainPresenter presenter;
+
         public MainForm()
         {
             InitializeComponent();
-			presenter = new MainPresenter (this);
+            presenter = new MainPresenter(this);
         }
 
-		MainPresenter presenter;
+        public double ProgresLevel
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
+
+        public SyncStatus SyncStatus
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
@@ -30,29 +35,5 @@ namespace PiggySync.WinApp
         {
             new HostsViewForm().ShowDialog();
         }
-			
-		public double ProgresLevel
-		{
-			get
-			{
-				throw new NotImplementedException ();
-			}
-			set
-			{
-				throw new NotImplementedException ();
-			}
-		}
-
-		public SyncStatus SyncStatus
-		{
-			get
-			{
-				throw new NotImplementedException ();
-			}
-			set
-			{
-				throw new NotImplementedException ();
-			}
-		}
     }
 }
