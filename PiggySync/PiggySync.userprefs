@@ -1,9 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.Core/SyncManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.Core/Concrete/UdpSocket.cs">
     <Files>
       <File FileName="PiggySync.AndroidApp/MainActivity.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Core/SyncManager.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Core/SyncManager.cs" Line="40" Column="40" />
       <File FileName="PiggySync.Core/DeviaceManager.cs" Line="1" Column="1" />
       <File FileName="PiggySync.Core/FileManager.cs" Line="1" Column="1" />
       <File FileName="PiggySync.Model/FileInf.cs" Line="1" Column="1" />
@@ -11,6 +11,9 @@
       <File FileName="PiggySync.Domain/Concrete/XmlSettingsRepository.cs" Line="1" Column="1" />
       <File FileName="PiggySync.Domain/Settings.cs" Line="1" Column="1" />
       <File FileName="PiggySync.Core/TCPPacketReCreator.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Core/Concrete/TcpSocket.cs" Line="24" Column="24" />
+      <File FileName="PiggySync.Core/Concrete/TcpSocketListner.cs" Line="90" Column="90" />
+      <File FileName="PiggySync.Core/Concrete/UdpSocket.cs" Line="6" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -27,8 +27,6 @@ namespace PiggySync.FileMerger
             }
             var file = TextFile(extension);
             var serializer = new XmlSerializer(typeof (MergePattern));
-            //  Stream stream = new FileStream(file.TemplatePath, FileMode.Open, FileAccess.Read);
-            //pattern = (MergePattern) serializer.Deserialize(stream);
             this.fileAPath = fileAPath;
             this.fileBPath = fileBPath;
             this.resultPath = resultPath;
@@ -45,13 +43,13 @@ namespace PiggySync.FileMerger
             var result = inlineBuilder.BuildDiffModel(fileA, fileB);
             foreach (var line in result.Lines)
             {
-                if (line.Type == ChangeType.Inserted)
+				if (line.Type == ChangeType.Inserted)
                 {
-                    merged += String.Format("- {0}\n", line.Text);
+                    merged += String.Format("+ {0}\n", line.Text);
                 }
                 else if (line.Type == ChangeType.Deleted)
                 {
-                    merged += String.Format("+ {0}\n", line.Text);
+                    merged += String.Format("- {0}\n", line.Text);
                 }
                 else
                 {
