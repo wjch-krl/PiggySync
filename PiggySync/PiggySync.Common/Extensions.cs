@@ -17,5 +17,16 @@ namespace PiggySync.Common
             Array.Copy(data, index, result, 0, length);
             return result;
         }
+
+		public static int CountSubstrings(this string str, string subStr){
+			int count = 0;
+			int i = 0;
+			while ((i = str.IndexOf(subStr, i)) != -1)
+			{
+				i += subStr.Length;
+				count++;
+			}
+			return count;
+		}
     }
 }
