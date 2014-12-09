@@ -41,6 +41,7 @@
     <Compile Include="FileWatcherTest.cs" />
     <Compile Include="SyncNotyfyTest.cs" />
     <Compile Include="FileMergerTests.cs" />
+    <Compile Include="ValidatorTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

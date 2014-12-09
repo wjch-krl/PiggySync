@@ -175,6 +175,7 @@ namespace PiggySync.Core
             {
                 if (!localFiles.Files.Exists((FileInfoPacket localFile) =>
                 {
+					//TODO check local files if deleted
                     if (localFile.File.FileName == remoteFile.File.FileName &&
                         localFile.File.FileSize == remoteFile.File.FileSize &&
                         localFile.File.CheckSum.SequenceEqual(remoteFile.File.CheckSum))
