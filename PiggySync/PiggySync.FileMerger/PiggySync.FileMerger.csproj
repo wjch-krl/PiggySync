@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3296F3DE-89D1-4B00-8031-E17A62AFD039}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>PiggySync.FileMerger</RootNamespace>
     <AssemblyName>PiggySync.FileMerger</AssemblyName>
     <ReleaseVersion>0.5</ReleaseVersion>
@@ -27,11 +27,15 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="DiffPlex">
       <HintPath>..\packages\DiffPlex.1.2.1\lib\portable-net40+sl50+win+wpa81+wp80\DiffPlex.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Newtonsoft.Json">
@@ -42,7 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileMerger.cs" />
     <Compile Include="Validator.cs" />
-    <Compile Include="XmlElement.cs" />
     <Compile Include="FileTools.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="Program.cs" />

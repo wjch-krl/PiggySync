@@ -1,8 +1,6 @@
-﻿using System;
-using PiggySync.Domain;
+﻿using PiggySync.Domain;
 using PiggySync.Domain.Concrete;
 using System.Linq;
-using PiggySync.Model;
 using System.IO;
 
 namespace PiggySync.FileMerger
@@ -22,7 +20,7 @@ namespace PiggySync.FileMerger
 			{
 				return	XmlSettingsRepository.Instance.Settings.TextFiles.First (x => x.Extension == "txt");
 			}
-			throw new PiggyFileException ("Not a text file");
+		    return null;
 		}
 
 		static bool IsTextFile (string filePath)

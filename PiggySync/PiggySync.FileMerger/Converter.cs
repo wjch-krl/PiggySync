@@ -1,15 +1,12 @@
 ﻿using System;
 using Newtonsoft.Json;
 using System.Xml;
+using PiggySync.Domain;
 
 namespace PiggySync.FileMerger
 {
 	public class Converter
 	{
-		public Converter ()
-		{
-		}
-
 		public string XmlToJson (string xml)
 		{
 			XmlDocument doc = new XmlDocument ();
@@ -22,6 +19,16 @@ namespace PiggySync.FileMerger
 			XmlDocument doc = JsonConvert.DeserializeXmlNode (json);
 			return doc.ToString ();
 		}
-	}
+
+        internal string FileToXml(string text1, MergePattern pattern)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string XmlToFile(string mergedXml, MergePattern pattern)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
 
