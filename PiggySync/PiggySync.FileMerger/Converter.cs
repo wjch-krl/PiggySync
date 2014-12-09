@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 using System.Xml;
 using PiggySync.Domain;
@@ -22,7 +23,18 @@ namespace PiggySync.FileMerger
 
         internal string FileToXml(string text1, MergePattern pattern)
         {
-            throw new NotImplementedException();
+            string[] lines = text1.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            XmlDocument doc = new XmlDocument();
+      //      doc.CreateElement()
+            foreach (var element in lines)
+            {
+                string[] tokens = element.Split(new char[0],StringSplitOptions.RemoveEmptyEntries);
+                if (tokens.Contains(pattern.AggregateStartTag))
+                {
+                    
+                }
+            }
+            return string.Empty;
         }
 
         internal string XmlToFile(string mergedXml, MergePattern pattern)
