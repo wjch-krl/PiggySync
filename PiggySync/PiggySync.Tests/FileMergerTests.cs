@@ -11,7 +11,7 @@ namespace DuckSync.Tests
         {
             var merger = new FileMerger("TestFiles/!LocalV~MainWindow.txt", "TestFiles/!RemoteV~MainWindow.txt",
                 "TestFiles/Result.txt");
-            merger.MergeTextFiles();
+            merger.MergeFiles();
         }
     }
 }
