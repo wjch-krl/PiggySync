@@ -15,9 +15,10 @@ namespace PiggySync.Core.Concrete
         {
 			socket = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			socket.Bind (iPEndPoint);
+            sockets = new ConcurrentQueue<Socket>();
         }
 
-		ConcurrentQueue<Socket> sockets;
+	    readonly ConcurrentQueue<Socket> sockets;
 
         public void Start()
         {

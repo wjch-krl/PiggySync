@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.IosApp", "PiggySy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.AndroidApp", "PiggySync.AndroidApp\PiggySync.AndroidApp.csproj", "{8204A504-96BC-47B3-93B5-4B5861762A47}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggySync.MergerTestWin", "PiggySync.MergerTestWin\PiggySync.MergerTestWin.csproj", "{1C676E36-1D6B-4584-8611-A1908A3AF68C}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		PiggySync.GuiShared\PiggySync.GuiShared.projitems*{565dce74-e600-4468-b92e-056cabc831db}*SharedItemsImports = 4
@@ -454,6 +456,26 @@ Global
 		{8204A504-96BC-47B3-93B5-4B5861762A47}.Release|iPhone.Build.0 = Release|Any CPU
 		{8204A504-96BC-47B3-93B5-4B5861762A47}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{8204A504-96BC-47B3-93B5-4B5861762A47}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.AppStore|Any CPU.Build.0 = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Default|iPhone.ActiveCfg = Debug|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Default|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -476,6 +498,7 @@ Global
 		{81DED26B-9521-40C7-B4F2-86B877CB550E} = {00DD8DB4-E43F-4F0B-A1BE-B970E5BA9235}
 		{B2AF6FEE-C652-47C9-8BD0-E03228335C8A} = {00DD8DB4-E43F-4F0B-A1BE-B970E5BA9235}
 		{8204A504-96BC-47B3-93B5-4B5861762A47} = {00DD8DB4-E43F-4F0B-A1BE-B970E5BA9235}
+		{1C676E36-1D6B-4584-8611-A1908A3AF68C} = {ACF10DC9-CAA4-4A24-884E-A0EEFB221F95}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = PiggySync.MonoMacGui\PiggySync.MonoMacGui.csproj

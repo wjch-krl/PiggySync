@@ -11,7 +11,7 @@ namespace PiggySync.FileMerger
         {
             try
             {
-                XmlDocument x = new XmlDocument();
+                var x = new XmlDocument();
                 x.LoadXml(xmlString);
                 return true;
             }

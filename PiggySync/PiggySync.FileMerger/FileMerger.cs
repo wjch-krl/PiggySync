@@ -2,7 +2,9 @@
 using System.Data;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using DiffPlex;
 using DiffPlex.DiffBuilder;
@@ -46,16 +48,12 @@ namespace PiggySync.FileMerger
             }
             switch (extension)
             {
-                case "xml":
+                case ".xml":
                     return MergeXmlFiles(); // && Validator.va;
-                case "json":
+                case ".json":
                     return MergeJsonFile();
                 default:
-                    if (pattern != null)
-                    {
-                        return ConvertAndMerge(pattern);
-                    }
-                    return MergeTextFiles();
+                    return pattern != null ? ConvertAndMerge(pattern) : MergeTextFiles();
             }
         }
 
@@ -63,26 +61,26 @@ namespace PiggySync.FileMerger
         {
             try
             {
-                var converter = new Converter();
+                var converter = new Converter(pattern);
                 var text1 = File.ReadAllText(fileAPath);
                 var text2 = File.ReadAllText(fileAPath);
 
-                var xmlReader1 = new XmlTextReader(new StringReader(converter.FileToXml(text1,pattern)));
-                var xmlReader2 = new XmlTextReader(new StringReader(converter.FileToXml(text2,pattern)));
+                var xmlReader1 = new XmlTextReader(new StringReader(converter.FileToXml(text1)));
+                var xmlReader2 = new XmlTextReader(new StringReader(converter.FileToXml(text2)));
 
                 var mergedXml = MergeXmlStreams(xmlReader1, xmlReader2);
-                var mergedText = converter.XmlToFile(mergedXml,pattern);
+                var mergedText = converter.XmlToFile(mergedXml);
                 File.WriteAllText(resultPath, mergedText);
                 return true;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
                 return false;
             }
         }
 
-        public bool MergeTextFiles()
+        private bool MergeTextFiles()
         {
             string fileA = File.ReadAllText(fileAPath);
             string fileB = File.ReadAllText(fileBPath);
@@ -128,11 +126,16 @@ namespace PiggySync.FileMerger
 
         private string MergeXmlStreams(XmlTextReader xmlreader1, XmlTextReader xmlreader2)
         {
+//            var xmlDocument1 = XDocument.Load(xmlreader1);
+//            var xmlDocument2 = XDocument.Load(xmlreader2);
+//            var combinedUnique = xmlDocument1.Descendants()
+//                          .Union(xmlDocument2.Descendants());
+//            return combinedUnique.ToString();
             var ds = new DataSet();
             ds.ReadXml(xmlreader1);
             var ds2 = new DataSet();
             ds2.ReadXml(xmlreader2);
-            ds.Merge(ds2);
+            ds.Merge(ds2,false);
             return ds.GetXml();
         }
 
@@ -140,19 +143,18 @@ namespace PiggySync.FileMerger
         {
             try
             {
-                var converter = new Converter();
                 var json1 = File.ReadAllText(fileAPath);
                 var json2 = File.ReadAllText(fileAPath);
 
-                var xmlReader1 = new XmlTextReader(new StringReader(converter.JsonToXml(json1)));
-                var xmlReader2 = new XmlTextReader(new StringReader(converter.JsonToXml(json2)));
+                var xmlReader1 = new XmlTextReader(new StringReader(Converter.JsonToXml(json1)));
+                var xmlReader2 = new XmlTextReader(new StringReader(Converter.JsonToXml(json2)));
 
                 var mergedXml = MergeXmlStreams(xmlReader1, xmlReader2);
-                var mergedJson = converter.XmlToJson(mergedXml);
+                var mergedJson = Converter.XmlToJson(mergedXml);
                 File.WriteAllText(resultPath, mergedJson);
                 return true;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
                 return false;

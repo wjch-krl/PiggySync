@@ -18,7 +18,7 @@ namespace PiggySync.FileMerger
 			}
 			if (IsTextFile (aPath) && IsTextFile (bPath))
 			{
-				return	XmlSettingsRepository.Instance.Settings.TextFiles.First (x => x.Extension == "txt");
+				return	XmlSettingsRepository.Instance.Settings.TextFiles.First (x => x.Extension == ".txt");
 			}
 		    return null;
 		}

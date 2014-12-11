@@ -12,7 +12,7 @@ namespace PiggySync.FileMerger
             }
             else
             {
-                if (new FileMerger(args[1], args[2], args[3]).MergeTextFiles())
+                if (new FileMerger(args[1], args[2], args[3]).MergeFiles())
                 {
                     Console.WriteLine("Succesfull merge");
                 }
