@@ -41,10 +41,9 @@ namespace PiggySync.FileMerger
             {
                 throw new PiggyFileException("Not a text file");
             }
-            if (!string.IsNullOrWhiteSpace(file.TemplatePath))
+			if (file.Pattern != null)
             {
-                var serializer = new XmlSerializer(typeof (MergePattern));
-                pattern = (MergePattern) serializer.Deserialize(File.OpenRead(file.TemplatePath));
+				pattern = file.Pattern;
             }
             switch (extension)
             {

@@ -6,13 +6,13 @@ namespace PiggySync.FileMerger
     {
         public static void Main(string[] args)
         {
-            if (args.Length != 5)
+            if (args.Length != 3)
             {
-                Console.WriteLine("USAGE: {0} filAPath, fileBPath, resultPath", args[0]);
+                Console.WriteLine("USAGE: filAPath, fileBPath, resultPath");
             }
             else
             {
-                if (new FileMerger(args[1], args[2], args[3]).MergeFiles())
+                if (new FileMerger(args[0], args[1], args[2]).MergeFiles())
                 {
                     Console.WriteLine("Succesfull merge");
                 }

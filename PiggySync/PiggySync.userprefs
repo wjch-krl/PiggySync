@@ -1,9 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.FileMerger/FileMerger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.FileMerger/Validator.cs">
     <Files>
-      <File FileName="PiggySync.Model/Concrete/NoRequestPacket.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.FileMerger/FileMerger.cs" Line="3" Column="3" />
+      <File FileName="PiggySync.FileMerger/Validator.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.FileMerger/FileTools.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

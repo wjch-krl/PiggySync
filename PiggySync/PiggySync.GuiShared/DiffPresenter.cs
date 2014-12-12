@@ -21,7 +21,7 @@ namespace PiggySync.GuiShared
         public void CreateDiff()
         {
 			var m = new FileMerger.FileMerger(fileAPath, fileBPath, resultPath);
-            m.MergeTextFiles();
+            m.MergeFiles();
             ReloadView();
             //m.
         }

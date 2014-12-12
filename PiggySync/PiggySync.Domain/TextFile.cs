@@ -4,6 +4,6 @@ namespace PiggySync.Domain
     {
         public string Extension { get; set; }
 
-        public string TemplatePath { get; set; }
+		public MergePattern Pattern { get; set; }
     }
 }

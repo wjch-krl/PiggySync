@@ -100,7 +100,7 @@ namespace PiggySync.Domain.Concrete
                 ComputerName = Environment.MachineName + Random8Numbers(),
                 SyncRootPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 AutoSync = true,
-                TextFiles = new List<TextFile> {new TextFile {Extension = ".txt", TemplatePath = String.Empty},},
+				TextFiles = new List<TextFile> {new TextFile {Extension = ".txt", Pattern =  null },},
                 BannedFiles = new HashSet<string> {".DS_Store", "thumbs.db",},
                 UseEncryption = false,
                 UseTcp = true,
@@ -118,6 +118,15 @@ namespace PiggySync.Domain.Concrete
                 s.BannedFiles = new HashSet<string> {".DS_Store", "thumbs.db",};
 
                 stream.Close();
+
+				var pattern = new MergePattern()
+				{
+					AggregateStartTag = "{",
+					AggregateStopTag = "}",
+					TagOpenString = new[] {"(",";",")"," ", "\t"}
+				};
+				s.TextFiles.Add (new TextFile(){Extension = ".cs", Pattern = pattern });
+
                 return s;
             }
             catch (Exception e)

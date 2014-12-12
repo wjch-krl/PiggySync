@@ -77,6 +77,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Enabled = false;
+			this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Location = new System.Drawing.Point(12, 50);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(535, 453);
