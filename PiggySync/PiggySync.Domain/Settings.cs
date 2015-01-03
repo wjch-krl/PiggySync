@@ -55,3 +55,4 @@ namespace PiggySync.Domain
 		public TimeSpan DeletedFileStore { get; set; } 
     }
 }
+	
