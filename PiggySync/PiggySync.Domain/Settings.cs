@@ -47,5 +47,11 @@ namespace PiggySync.Domain
         /// </summary>
         /// <value>The banned files.</value>
         public HashSet<string> BannedFiles { get; set; }
+
+		/// <summary>
+		/// Gets or sets the deleted file store time.
+		/// </summary>
+		/// <value>The deleted file store time.</value>
+		public TimeSpan DeletedFileStore { get; set; } 
     }
 }

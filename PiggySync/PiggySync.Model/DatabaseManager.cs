@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using PiggySync.Domain.Concrete;
 using PiggySync.Model.Concrete;
-using PiggySync.Model.DatabaseConnection;
+using SQLite.Net;
 
 namespace PiggySync.Model
 {

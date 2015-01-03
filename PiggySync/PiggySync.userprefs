@@ -1,9 +1,17 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.FileMerger/Validator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.Domain/PiggySync.Domain.csproj">
     <Files>
-      <File FileName="PiggySync.FileMerger/Validator.cs" Line="1" Column="1" />
       <File FileName="PiggySync.FileMerger/FileTools.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Model/DatabaseManager.cs" Line="17" Column="17" />
+      <File FileName="PiggySync.Common/Extensions.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Common/IPUtils.cs" Line="45" Column="45" />
+      <File FileName="PiggySync.Domain/Concrete/XmlSettingsRepository.cs" Line="79" Column="79" />
+      <File FileName="PiggySync.GuiShared/DiffPresenter.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Domain/Settings.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Model/PiggySync.Model.csproj" Line="33" Column="33" />
+      <File FileName="PiggySync.Domain/PiggySync.Domain.csproj" Line="58" Column="58" />
+      <File FileName="PiggySync.Common/PiggySync.Common.csproj" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

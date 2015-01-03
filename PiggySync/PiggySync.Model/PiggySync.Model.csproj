@@ -3,11 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{C39A8E5D-9878-4197-9AA1-495C598CA036}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>PiggySync.Model</RootNamespace>
     <AssemblyName>PiggySync.Model</AssemblyName>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
     <ReleaseVersion>0.5</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,34 +32,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="SQLite.Net">
+      <HintPath>..\packages\SQLite.Net-PCL.2.4.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseConnection\AsyncTableQuery.cs" />
-    <Compile Include="DatabaseConnection\AutoIncrementAttribute.cs" />
-    <Compile Include="DatabaseConnection\BaseTableQuery.cs" />
-    <Compile Include="DatabaseConnection\CollationAttribute.cs" />
-    <Compile Include="DatabaseConnection\ColumnAttribute.cs" />
-    <Compile Include="DatabaseConnection\CreateFlags.cs" />
-    <Compile Include="DatabaseConnection\CreateTablesResult.cs" />
-    <Compile Include="DatabaseConnection\IgnoreAttribute.cs" />
-    <Compile Include="DatabaseConnection\IndexedAttribute.cs" />
-    <Compile Include="DatabaseConnection\MaxLengthAttribute.cs" />
-    <Compile Include="DatabaseConnection\NotNullAttribute.cs" />
-    <Compile Include="DatabaseConnection\NotNullConstraintViolationException.cs" />
-    <Compile Include="DatabaseConnection\Orm.cs" />
-    <Compile Include="DatabaseConnection\PreparedSqlLiteInsertCommand.cs" />
-    <Compile Include="DatabaseConnection\PrimaryKeyAttribute.cs" />
-    <Compile Include="DatabaseConnection\SQLite3.cs" />
-    <Compile Include="DatabaseConnection\SQLiteCommand.cs" />
-    <Compile Include="DatabaseConnection\SQLiteConnection.cs" />
-    <Compile Include="DatabaseConnection\SQLiteConnectionPool.cs" />
-    <Compile Include="DatabaseConnection\SQLiteConnectionString.cs" />
-    <Compile Include="DatabaseConnection\SQLiteConnectionWithLock.cs" />
-    <Compile Include="DatabaseConnection\SQLiteOpenFlags.cs" />
-    <Compile Include="DatabaseConnection\TableAttribute.cs" />
-    <Compile Include="DatabaseConnection\TableMapping.cs" />
-    <Compile Include="DatabaseConnection\TableQuery.cs" />
-    <Compile Include="DatabaseConnection\UniqueAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abstract\TCPPacket.cs" />
     <Compile Include="Abstract\UDPPacket.cs" />
@@ -80,20 +60,18 @@
     <Compile Include="PiggyRemoteHostSync.cs" />
     <Compile Include="PiggyFileException.cs" />
     <Compile Include="FileChangesCollection.cs" />
-    <Compile Include="DatabaseConnection\SQLiteException.cs" />
-    <Compile Include="DatabaseConnection\SQLiteAsyncConnection.cs" />
     <Compile Include="FileInfComparer.cs" />
     <Compile Include="DatabaseManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\PiggySync.Common\PiggySync.Common.csproj">
-      <Project>{9DDDE951-7DB6-43CA-A603-8A4384AEEA5E}</Project>
-      <Name>PiggySync.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PiggySync.Domain\PiggySync.Domain.csproj">
       <Project>{AF7679D0-A9DE-407F-AA79-46726C54F4A9}</Project>
       <Name>PiggySync.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PiggySync.Common\PiggySync.Common.csproj">
+      <Project>{9DDDE951-7DB6-43CA-A603-8A4384AEEA5E}</Project>
+      <Name>PiggySync.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
