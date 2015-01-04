@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
+using PCLStorage;
 using PiggySync.Common.Abstract;
 
 namespace PiggySync.Common.Concrete
@@ -32,42 +34,45 @@ namespace PiggySync.Common.Concrete
             }
         }
 
-        byte[] ICheckSumGenerator.ComputeChecksum(FileInfo file)
-        {
-            return BitConverter.GetBytes(ComputeChecksum(file));
-        }
-
         public int ChecksumSize
         {
             get { return sizeof (UInt32); }
         }
 
-        byte[] ICheckSumGenerator.ComputeChecksum(byte[] bytes)
+        static async Task<int> ComputeChecksumForFile(string filePath)
         {
-            return BitConverter.GetBytes(ComputeChecksum(bytes));
-        }
+            var file = await FileSystem.Current.GetFileFromPathAsync(filePath);
 
-        public static UInt32 ComputeChecksum(FileInfo file)
-        {
-            using (var stream = new FileStream(file.FullName, FileMode.Open))
+            using (var stream = await file.OpenAsync(FileAccess.Read))
             {
                 using (var reader = new BinaryReader(stream))
                 {
+                    //TODO
                 }
             }
             return 0;
-            //file.
         }
 
-        public static UInt32 ComputeChecksum(byte[] bytes)
+        static UInt32 ComputeChecksumForBytes(byte[] bytes)
         {
             var crc = 0xffffffff;
-            for (var i = 0; i < bytes.Length; ++i)
+            foreach (byte b in bytes)
             {
-                var index = (byte) (((crc) & 0xff) ^ bytes[i]);
+                var index = (byte) (((crc) & 0xff) ^ b);
                 crc = (crc >> 8) ^ table[index];
             }
             return ~crc;
+        }
+
+
+        public async Task<byte[]> ComputeChecksum(string filePath)
+        {
+            return BitConverter.GetBytes(await ComputeChecksumForFile(filePath));
+        }
+
+        public async Task<byte[]> ComputeChecksum(byte[] bytes)
+        {
+            return BitConverter.GetBytes(ComputeChecksumForBytes(bytes));
         }
     }
 }

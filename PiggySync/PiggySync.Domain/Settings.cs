@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace PiggySync.Domain
 {
-    [Serializable]
     public class Settings
     {
         /// <summary>

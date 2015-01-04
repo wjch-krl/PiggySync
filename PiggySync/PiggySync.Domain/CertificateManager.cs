@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
@@ -30,7 +29,7 @@ namespace PiggySync.Domain
                 try
                 {
                     var certData = File.ReadAllBytes(serverCertFileName);
-                    ServerCert = new X509Certificate2();
+                    ServerCert = new X509Certificate();
                     ServerCert.Import(certData);
                 }
                 catch (Exception e)
@@ -40,11 +39,11 @@ namespace PiggySync.Domain
             }
         }
 
-        public static X509Certificate2 ServerCert { get; set; }
+        public static X509Certificate ServerCert { get; set; }
 
-        public static X509Certificate2 ClientCert { get; set; }
+        public static X509Certificate ClientCert { get; set; }
 
-        public static X509Certificate2 GenerateCertificate(string certName)
+        public static X509Certificate GenerateCertificate(string certName)
         {
             var keypairgen = new RsaKeyPairGenerator();
             keypairgen.Init(new KeyGenerationParameters(new SecureRandom(new CryptoApiRandomGenerator()), 1024));
@@ -65,7 +64,7 @@ namespace PiggySync.Domain
             gen.SetPublicKey(keypair.Public);
 
             var newCert = gen.Generate(keypair.Private);
-            return new X509Certificate2(DotNetUtilities.ToX509Certificate(newCert));
+            return newCert;
         }
     }
 }

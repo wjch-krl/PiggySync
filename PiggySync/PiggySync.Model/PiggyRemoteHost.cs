@@ -2,7 +2,7 @@
 using System.Net;
 using PiggySync.Common;
 using PiggySync.Domain.Concrete;
-using PiggySync.Model.DatabaseConnection;
+using SQLite.Net.Attributes;
 
 namespace PiggySync.Model
 {

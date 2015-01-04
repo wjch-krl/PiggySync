@@ -51,19 +51,19 @@
     <Compile Include="TCPPacketReCreator.cs" />
     <Compile Include="IHostWather.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\PiggySync.Domain\PiggySync.Domain.csproj">
-      <Project>{AF7679D0-A9DE-407F-AA79-46726C54F4A9}</Project>
-      <Name>PiggySync.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PiggySync.Model\PiggySync.Model.csproj">
-      <Project>{C39A8E5D-9878-4197-9AA1-495C598CA036}</Project>
-      <Name>PiggySync.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PiggySync.Common\PiggySync.Common.csproj">
-      <Project>{9DDDE951-7DB6-43CA-A603-8A4384AEEA5E}</Project>
+      <Project>{dcab3960-b155-43b9-bf0e-53fb156f9e27}</Project>
       <Name>PiggySync.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PiggySync.Domain1\PiggySync.Domain.csproj">
+      <Project>{7485a44a-0f3d-4b42-9213-643d7cca2b79}</Project>
+      <Name>PiggySync.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PiggySync.Model1\PiggySync.Model.csproj">
+      <Project>{123d8965-d7be-4ceb-a12d-d430ce4e6cd8}</Project>
+      <Name>PiggySync.Model</Name>
+    </ProjectReference>
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

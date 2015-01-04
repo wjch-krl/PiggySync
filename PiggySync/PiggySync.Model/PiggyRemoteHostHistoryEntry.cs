@@ -1,5 +1,5 @@
 ﻿using System;
-using PiggySync.Model.DatabaseConnection;
+using SQLite.Net.Attributes;
 
 namespace PiggySync.Model
 {
