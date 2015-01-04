@@ -1,14 +1,13 @@
-﻿<Properties GitUserInfo="UsingGIT">
+﻿<Properties GitUserInfo="UsingGIT" StartupItem="PiggySync.MonoMacGui/PiggySync.MonoMacGui.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.Core/Sync.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.GuiShared/DiffPresenter.cs">
     <Files>
       <File FileName="PiggySync.FileMerger/FileTools.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Model/DatabaseManager.cs" Line="17" Column="17" />
+      <File FileName="PiggySync.Model/DatabaseManager.cs" Line="1" Column="1" />
       <File FileName="PiggySync.Common/Extensions.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Common/IPUtils.cs" Line="45" Column="45" />
-      <File FileName="PiggySync.Domain/Concrete/XmlSettingsRepository.cs" Line="79" Column="79" />
-      <File FileName="PiggySync.GuiShared/DiffPresenter.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Domain/Settings.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Common/IPUtils.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Domain/Concrete/XmlSettingsRepository.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.GuiShared/DiffPresenter.cs" Line="17" Column="17" />
       <File FileName="PiggySync.Core/Sync.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

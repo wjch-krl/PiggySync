@@ -29,15 +29,28 @@
                     android:id="@+id/linearLayout5">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="310.8dp"
+                        android:layout_height="332.2dp"
                         android:id="@+id/imageView1"
                         android:layout_marginBottom="21.8dp"
-                        android:src="@drawable/Icon" />
-                    <Button
-                        android:id="@+id/myButton"
-                        android:layout_width="fill_parent"
+                        android:src="@drawable/Icon"
+                        android:layout_marginTop="34.1dp" />
+                    <TextView
+                        android:text="@string/status"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sync_now" />
+                        android:id="@+id/textView1"
+                        android:layout_marginLeft="18.5dp" />
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="327.7dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progressBar1"
+                        android:max="100"
+                        android:progress="60"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="72.9dp"
+                        android:layout_marginTop="27.7dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"

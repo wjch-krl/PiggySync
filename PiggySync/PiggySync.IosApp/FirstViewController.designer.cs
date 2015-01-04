@@ -1,10 +1,12 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Xamarin Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using MonoTouch.Foundation;
+using MonoTouch.UIKit;
+using System;
 using System.CodeDom.Compiler;
 
 namespace IosGui
@@ -26,33 +28,9 @@ namespace IosGui
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton SyncNowButton { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
-			if (ImageStatus != null) {
-				ImageStatus.Dispose ();
-				ImageStatus = null;
-			}
-
-			if (ProgressBar != null) {
-				ProgressBar.Dispose ();
-				ProgressBar = null;
-			}
-
-			if (StatusLabel != null) {
-				StatusLabel.Dispose ();
-				StatusLabel = null;
-			}
-
-			if (SyncNowButton != null) {
-				SyncNowButton.Dispose ();
-				SyncNowButton = null;
-			}
-
-			if (StatusImageButton != null) {
-				StatusImageButton.Dispose ();
-				StatusImageButton = null;
-			}
 		}
 	}
 }

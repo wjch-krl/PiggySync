@@ -23,9 +23,17 @@ namespace PiggySync.MacApp
 
 		[Outlet]
 		MonoMac.AppKit.NSButton SettingsButton { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSTextField SyncStatusLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (DevicesButton != null) {
+				DevicesButton.Dispose ();
+				DevicesButton = null;
+			}
+
 			if (popover != null) {
 				popover.Dispose ();
 				popover = null;
@@ -41,9 +49,9 @@ namespace PiggySync.MacApp
 				SettingsButton = null;
 			}
 
-			if (DevicesButton != null) {
-				DevicesButton.Dispose ();
-				DevicesButton = null;
+			if (SyncStatusLabel != null) {
+				SyncStatusLabel.Dispose ();
+				SyncStatusLabel = null;
 			}
 		}
 	}

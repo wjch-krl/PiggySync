@@ -16,23 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAl-nt-xgu">
-                                <rect key="frame" x="16" y="427" width="288" height="30"/>
-                                <state key="normal" title="Sync Now!">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="F5X-UH-lzP">
-                                <rect key="frame" x="16" y="482" width="288" height="2"/>
+                                <rect key="frame" x="16" y="478" width="288" height="2"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Everything up to date!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jah-Ks-wxp">
-                                <rect key="frame" x="16" y="295" width="288" height="59"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sync Status:                     Synchronizing" textAlignment="left" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jah-Ks-wxp">
+                                <rect key="frame" x="16" y="377" width="288" height="59"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDm-6f-22k">
-                                <rect key="frame" x="39" y="47" width="243" height="230"/>
+                                <rect key="frame" x="6" y="78" width="308" height="291"/>
                                 <state key="normal" backgroundImage="PiggyLogo_1024.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -45,7 +39,6 @@
                         <outlet property="ProgressBar" destination="F5X-UH-lzP" id="ixR-z5-q9U"/>
                         <outlet property="StatusImageButton" destination="fDm-6f-22k" id="54U-24-zbo"/>
                         <outlet property="StatusLabel" destination="Jah-Ks-wxp" id="jir-xV-4VT"/>
-                        <outlet property="SyncNowButton" destination="qAl-nt-xgu" id="XQZ-zg-ACO"/>
                         <segue destination="rwZ-xn-oTf" kind="push" identifier="pushToLog" id="xVs-Na-i3N"/>
                     </connections>
                 </viewController>
@@ -200,6 +193,11 @@
         <image name="PiggyLogo_1024.png" width="1024" height="1024"/>
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
+        <image name="Default-568h.png" width="640" height="1136"/>
+        <image name="first.png" width="30" height="30"/>
+        <image name="second.png" width="30" height="30"/>
+        <image name="PiggyLogo_64.png" width="64" height="64"/>
+        <image name="PiggyLogo_128.png" width="128" height="128"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

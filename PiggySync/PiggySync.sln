@@ -471,7 +471,6 @@ Global
 		{8204A504-96BC-47B3-93B5-4B5861762A47} = {00DD8DB4-E43F-4F0B-A1BE-B970E5BA9235}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = PiggySync.MonoMacGui\PiggySync.MonoMacGui.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None

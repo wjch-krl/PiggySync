@@ -2,4 +2,5 @@
 <resources>
 	<string name="sync_now">Sync Now!</string>
 	<string name="app_name">PiggySync!</string>
+	<string name="status">Sync Status: \nSynchronizing</string>
 </resources>
