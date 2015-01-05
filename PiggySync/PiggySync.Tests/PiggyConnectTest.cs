@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using NUnit.Framework;
+using PiggySync.Common;
 using PiggySync.Core;
 using PiggySync.Model;
 
@@ -22,7 +23,7 @@ namespace DuckSync.Tests
         public void CreateNewConnectionTest()
         {
             var target = new SyncManager();
-            var host = new PiggyRemoteHost(IPAddress.Any, "Test");
+            var host = new PiggyRemoteHost(TypeResolver.IpHelper.Any, "Test");
         }
 
         /// <summary>

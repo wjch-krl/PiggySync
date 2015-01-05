@@ -43,7 +43,6 @@
     <Compile Include="Concrete\FileRequestPacket.cs" />
     <Compile Include="Concrete\FolderDeletePacket.cs" />
     <Compile Include="Concrete\FolderInfoPacket.cs" />
-    <Compile Include="Abstract\ICloneable.cs" />
     <Compile Include="Concrete\NoRequestPacket.cs" />
     <Compile Include="Concrete\PiggyACK.cs" />
     <Compile Include="Concrete\SyncInfoPacket.cs" />

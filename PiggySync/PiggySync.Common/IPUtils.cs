@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
 
 namespace PiggySync.Common
 {
@@ -13,78 +10,79 @@ namespace PiggySync.Common
             LocalBroadCastAdress = GetBroadcastIP();
         }
 
-        public static IPAddress LocalBroadCastAdress { get; private set; }
+        public static IIPAddress LocalBroadCastAdress { get; private set; }
 
-        public static IPAddress LocalIPAddress()
+        public static IIPAddress LocalIPAddress()
         {
-            IPHostEntry host;
-            IPAddress localIP = IPAddress.Any;
-            try
-            {
-                host = Dns.GetHostEntry(Dns.GetHostName());
-                foreach (var ip in host.AddressList)
-                {
-                    if (ip.AddressFamily == AddressFamily.InterNetwork && ip != IPAddress.Any)
-                    {
-                        localIP = ip;
-                        break;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Create Local IP: {0]", e);
-            }
+            IIPAddress host;
+            IIPAddress localIP = TypeResolver.IpHelper.LocalIp;
+//            try
+//            {
+//                var Dns = TypeResolver.IDns;
+//                host = Dns.GetHostEntry(Dns.GetHostName());
+//                foreach (IIPAddress ip in host.AddressList)
+//                {
+//                    if (ip.AddressFamilyIsInterNetwork && ip != TypeResolver.IpHelper.Any)
+//                    {
+//                        localIP = ip;
+//                        break;
+//                    }
+//                }
+//            }
+//            catch (Exception e)
+//            {
+//                Debug.WriteLine("Create Local IP: {0}", e);
+//            }
             return localIP;
         }
 
-        public static IPAddress GetBroadcastIP()
+        public static IIPAddress GetBroadcastIP()
         {
-            return IPAddress.Broadcast;
-            IPAddress maskIP = GetHostMask();
-            IPAddress hostIP = LocalIPAddress();
+            return TypeResolver.IpHelper.Broadcast;
+            //IIPAddress maskIP = GetHostMask();
+            //IIPAddress hostIP = LocalIPAddress();
 
-            if (maskIP == null || hostIP == null)
-                return null;
+            //if (maskIP == null || hostIP == null)
+            //    return null;
 
-            var complementedMaskBytes = new byte[4];
-            var broadcastIPBytes = new byte[4];
-            var maskBytes = maskIP.GetAddressBytes();
-            var hostBytes = hostIP.GetAddressBytes();
-            for (int i = 0; i < 4; i++)
-            {
-                complementedMaskBytes[i] = (byte) ~(maskBytes[i]);
-                broadcastIPBytes[i] = (byte) (hostBytes[i] | complementedMaskBytes[i]);
-            }
+            //var complementedMaskBytes = new byte[4];
+            //var broadcastIPBytes = new byte[4];
+            //var maskBytes = maskIP.GetAddressBytes();
+            //var hostBytes = hostIP.GetAddressBytes();
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    complementedMaskBytes[i] = (byte) ~(maskBytes[i]);
+            //    broadcastIPBytes[i] = (byte) (hostBytes[i] | complementedMaskBytes[i]);
+            //}
 
-            return new IPAddress(broadcastIPBytes);
+            //return new TypeResolver.IpHelper.Create(broadcastIPBytes);
         }
 
 
-        private static IPAddress GetHostMask()
-        {
-            try
-            {
-                NetworkInterface[] Interfaces = NetworkInterface.GetAllNetworkInterfaces();
-                foreach (var Interface in Interfaces)
-                {
-                    IPAddress hostIP = LocalIPAddress();
-                    UnicastIPAddressInformationCollection UnicastIPInfoCol =
-                        Interface.GetIPProperties().UnicastAddresses;
-                    foreach (var UnicatIPInfo in UnicastIPInfoCol)
-                    {
-                        if (UnicatIPInfo.Address.ToString() == hostIP.ToString())
-                        {
-                            return UnicatIPInfo.IPv4Mask;
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Get Host Mask: {0]", e);
-            }
-            return IPAddress.Parse("255.255.255.0");
-        }
+        //private static IIPAddress GetHostMask()
+        //{
+        //    try
+        //    {
+        //        INetworkInterface[] Interfaces = INetworkInterface.GetAllNetworkInterfaces();
+        //        foreach (var Interface in Interfaces)
+        //        {
+        //            IIPAddress hostIP = LocalIPAddress();
+        //            UnicastIPAddressInformationCollection UnicastIPInfoCol =
+        //                Interface.GetIPProperties().UnicastAddresses;
+        //            foreach (var UnicatIPInfo in UnicastIPInfoCol)
+        //            {
+        //                if (UnicatIPInfo.Address.ToString() == hostIP.ToString())
+        //                {
+        //                    return UnicatIPInfo.IPv4Mask;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Debug.WriteLine("Get Host Mask: {0]", e);
+        //    }
+        //    return IPAddress.Parse("255.255.255.0");
+        //}
     }
 }

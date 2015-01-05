@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Text;
+using PiggySync.Common;
 using PiggySync.Domain.Concrete;
 using PiggySync.Model.Abstract;
 
@@ -38,7 +39,7 @@ namespace PiggySync.Model.Concrete
             Array.Copy(data, 1, ip, 0, 4);
 
             string name = Encoding.UTF8.GetString(data, 5, data.Count() - 5);
-            return new PiggyRemoteHost(new IPAddress(ip), name);
+            return new PiggyRemoteHost(TypeResolver.IpHelper.Create(ip), name);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using NUnit.Framework;
 using PiggySync.Common.Concrete;
 
@@ -33,9 +34,10 @@ namespace DuckSync.Tests
                 1
             };
             UInt32 expected = 310811753;
-            UInt32 actual;
-            actual = CRC32.ComputeChecksum(bytes);
-            Assert.AreEqual(expected, actual);
+            var expectedSum = BitConverter.GetBytes(expected);
+            var crc = new CRC32();
+            var actual = crc.ComputeChecksum(bytes).Result;
+            CollectionAssert.AreEqual(expectedSum, actual);
         }
     }
 }

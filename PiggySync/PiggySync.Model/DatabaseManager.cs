@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using PiggySync.Domain.Concrete;
 using PiggySync.Model.Concrete;
 using SQLite.Net;
+using SQLite.Net.Interop;
 
 namespace PiggySync.Model
 {
@@ -212,7 +214,8 @@ namespace PiggySync.Model
 
         private SQLiteConnection GetConnection()
         {
-            return new SQLiteConnection(databasePath);
+            throw new NotImplementedException();
+           // return new SQLiteConnection( databasePath);
         }
     }
 }

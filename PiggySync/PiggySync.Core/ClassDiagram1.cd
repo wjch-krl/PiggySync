@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PiggySync.Common.Concrete.CheckSumGenerator" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PiggySync.Common.Concrete.CRC32" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PiggySync.Common.Concrete.Md5Generator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PiggySync.Common.Extensions" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PiggySync.Common.IPUtils" Collapsed="true">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PiggySync.Core.Concrete.TcpSocket" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAIIAAAAAAAAAAAAEAAACAAAA=</HashCode>
+      <FileName>Concrete\TcpSocket.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PiggySync.Core.Concrete.TcpSocketListner" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAACAAAAAAAAAAAAAAAAAAAAACYAEAAAAAAAA=</HashCode>
+      <FileName>Concrete\TcpSocketListner.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PiggySync.Core.Concrete.UdpSocket" Collapsed="true">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQAAEAAAAEAAA=</HashCode>
+      <FileName>Concrete\UdpSocket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PiggySync.Core.DeviaceHistoryManager" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAEAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>DeviaceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PiggySync.Core.FileManager" Collapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBAACEAAAAAAAAAAAAAACAAAAIgAAACgAAAAAgAAAA=</HashCode>
+      <FileName>FileManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PiggySync.Core.FilePacketCreator" Collapsed="true">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>FilePacketCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PiggySync.Core.Syncronizer" Collapsed="true">
+    <Position X="4.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAIAMAAAAgAAAAACIAAAAAJAACECAAEAEAA=</HashCode>
+      <FileName>Sync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PiggySync.Core.SyncManager" Collapsed="true">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAYAAAEUoIAAABQUSCAAAAAIAAGEAQSEAAIBiBAAEI=</HashCode>
+      <FileName>SyncManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PiggySync.Core.TCPPacketReCreator" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACgAAAAAQAAAAAAAAIAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>TCPPacketReCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PiggySync.Domain.CertificateManager" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PiggySync.Domain.MergePattern" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PiggySync.Domain.Settings" Collapsed="true">
+    <Position X="0.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PiggySync.Domain.TextFile" Collapsed="true">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PiggySync.Domain.Concrete.XmlSettingsRepository" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="PiggySync.Common.Abstract.ICheckSumGenerator" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="PiggySync.Core.IHostWather" Collapsed="true">
+    <Position X="4.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IHostWather.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PiggySync.Domain.Abstract.IFileWather" Collapsed="true">
+    <Position X="2.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

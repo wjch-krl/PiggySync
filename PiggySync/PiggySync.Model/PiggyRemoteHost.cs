@@ -11,9 +11,9 @@ namespace PiggySync.Model
         private static readonly PiggyRemoteHost me = new PiggyRemoteHost(IPUtils.LocalIPAddress(),
             XmlSettingsRepository.Instance.Settings.ComputerName);
 
-        private IPAddress ip;
+        private IIPAddress ip;
 
-        public PiggyRemoteHost(IPAddress ip, string name)
+        public PiggyRemoteHost(IIPAddress ip, string name)
         {
             this.ip = ip;
             Name = name;
@@ -25,7 +25,7 @@ namespace PiggySync.Model
             get { return me; }
         }
 
-        public IPAddress Ip
+        public IIPAddress Ip
         {
             get { return ip; }
         }
@@ -33,7 +33,7 @@ namespace PiggySync.Model
         public byte[] IpBytes
         {
             get { return Ip.GetAddressBytes(); }
-            set { ip = new IPAddress(value); }
+            set { ip = TypeResolver.IpHelper.Create(value); }
         }
 
         public string Name { get; private set; }

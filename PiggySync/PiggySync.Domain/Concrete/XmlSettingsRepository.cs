@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Xml.Serialization;
+using PCLStorage;
 using PiggySync.Domain.Abstract;
 
 namespace PiggySync.Domain.Concrete
@@ -16,26 +17,28 @@ namespace PiggySync.Domain.Concrete
         static XmlSettingsRepository() //TODO DAFUCK!!!!!!!!!!!!!!!!!!!!!!!!!! Static ctor is not being caled
         {
             Instance = new XmlSettingsRepository();
-            SettingsPath = String.Format("{0}/{1}", Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                ".PiggySync");
+            SettingsPath = Path.Combine(Common.TypeResolver.EnviromentHelper.DocumentsPath, ".PiggySync");
             SettingsFile = Path.Combine(SettingsPath, "Piggy.xml");
-            if (!Directory.Exists(SettingsPath))
+            var folder = FileSystem.Current.GetFolderFromPathAsync(Common.TypeResolver.EnviromentHelper.DocumentsPath).Result;
+            if (folder.CheckExistsAsync(".PiggySync").Result != ExistenceCheckResult.FolderExists)
             {
-                DirectoryInfo di = Directory.CreateDirectory(SettingsPath);
-                di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+                var newFolder = folder.CreateFolderAsync(".PiggySync", CreationCollisionOption.ReplaceExisting).Result;
+              //  DirectoryInfo di = Directory.CreateDirectory(SettingsPath);
+                //di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             }
         }
 
         private XmlSettingsRepository()
         {
             //	Instance = new XmlSettingsRepository();
-            SettingsPath = String.Format("{0}/{1}", Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                ".PiggySync");
+            SettingsPath = Path.Combine(Common.TypeResolver.EnviromentHelper.DocumentsPath, ".PiggySync");
             SettingsFile = Path.Combine(SettingsPath, "Piggy.xml");
-            if (!Directory.Exists(SettingsPath))
+            var folder = FileSystem.Current.GetFolderFromPathAsync(Common.TypeResolver.EnviromentHelper.DocumentsPath).Result;
+            if (folder.CheckExistsAsync(".PiggySync").Result != ExistenceCheckResult.FolderExists)
             {
-                DirectoryInfo di = Directory.CreateDirectory(SettingsPath);
-                di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+                var newFolder = folder.CreateFolderAsync(".PiggySync", CreationCollisionOption.ReplaceExisting).Result;
+                //  DirectoryInfo di = Directory.CreateDirectory(SettingsPath);
+                //di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             }
             settings = LoadSettings();
         }
@@ -56,19 +59,14 @@ namespace PiggySync.Domain.Concrete
         {
             try
             {
-                serializer = new XmlSerializer(typeof (Settings));
-                Stream stream = new FileStream(SettingsFile, FileMode.Open,
-                    FileAccess.Read);
-                var s = (Settings) serializer.Deserialize(stream);
-                stream.Close();
-                settings = s;
+                settings = LoadSettingsFile();
                 return true;
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                return false;
             }
+            return false;
         }
 
         public bool SaveSettings()
@@ -80,25 +78,26 @@ namespace PiggySync.Domain.Concrete
             try
             {
                 serializer = new XmlSerializer(typeof (Settings));
-                Stream stream = new FileStream(SettingsFile, FileMode.Create,
-                    FileAccess.Write);
-                serializer.Serialize(stream, settings);
-                stream.Close();
-                return true;
+                var file = FileSystem.Current.GetFileFromPathAsync(SettingsFile);
+                using (var stream = file.Result.OpenAsync(FileAccess.ReadAndWrite).Result)
+                {
+                    serializer.Serialize(stream, settings);
+                    return true;
+                }
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                return false;
             }
+            return false;
         }
 
         public void RestoreDefaults()
         {
             settings = new Settings
             {
-                ComputerName = Environment.MachineName + Random8Numbers(),
-                SyncRootPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                ComputerName = Common.TypeResolver.EnviromentHelper.MachineName + Random8Numbers(),
+                SyncRootPath = Common.TypeResolver.EnviromentHelper.MyDocuments,
                 AutoSync = true,
 				TextFiles = new List<TextFile> {new TextFile {Extension = ".txt", Pattern =  null },},
                 BannedFiles = new HashSet<string> {".DS_Store", "thumbs.db",},
@@ -111,29 +110,36 @@ namespace PiggySync.Domain.Concrete
         {
             try
             {
-                serializer = new XmlSerializer(typeof (Settings));
-                Stream stream = new FileStream(SettingsFile, FileMode.Open,
-                    FileAccess.Read);
-                var s = (Settings) serializer.Deserialize(stream);
-                s.BannedFiles = new HashSet<string> {".DS_Store", "thumbs.db",};
-
-                stream.Close();
-
-				var pattern = new MergePattern()
-				{
-					AggregateStartTag = "{",
-					AggregateStopTag = "}",
-					TagOpenString = new[] {"(",";",")"," ", "\t"}
-				};
-				s.TextFiles.Add (new TextFile(){Extension = ".cs", Pattern = pattern });
-
-                return s;
+                return LoadSettingsFile();
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e);
                 RestoreDefaults();
                 return settings;
+            }
+        }
+
+        private Settings LoadSettingsFile()
+        {
+            serializer = new XmlSerializer(typeof (Settings));
+            var file = FileSystem.Current.GetFileFromPathAsync(SettingsFile);
+            using (var stream = file.Result.OpenAsync(FileAccess.Read).Result)
+            {
+                var s = (Settings) serializer.Deserialize(stream);
+                settings = s;
+
+                s.BannedFiles = new HashSet<string> {".DS_Store", "thumbs.db",};
+
+                var pattern = new MergePattern()
+                {
+                    AggregateStartTag = "{",
+                    AggregateStopTag = "}",
+                    TagOpenString = new[] {"(", ";", ")", " ", "\t"}
+                };
+                s.TextFiles.Add(new TextFile() {Extension = ".cs", Pattern = pattern});
+
+                return s;
             }
         }
 

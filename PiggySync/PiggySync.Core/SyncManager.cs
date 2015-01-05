@@ -2,8 +2,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
-using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,17 +15,17 @@ namespace PiggySync.Core
     {
         private static UInt32 packetNum;
         private readonly ConcurrentDictionary<UInt32, bool> ACKDickt;
-        private readonly UdpClient UDPReader;
-        private readonly UdpClient UDPWriter;
-        private readonly Thread broadcaster;
+        private readonly IUdpClient UDPReader;
+        private readonly IUdpClient UDPWriter;
+        private Task broadcaster;
         private readonly object clientLock;
         private readonly ConcurrentQueue<PiggyRemoteHostSync> clientQueue = new ConcurrentQueue<PiggyRemoteHostSync>();
-        private readonly Thread hostListCleaner;
-        private readonly Thread listner;
+        private Task hostListCleaner;
+        private Task listner;
         private readonly object serverLock;
         private readonly ConcurrentQueue<PiggyRemoteHostSync> serverQueue = new ConcurrentQueue<PiggyRemoteHostSync>();
-        private readonly Thread syncClient;
-        private readonly Thread syncServer;
+        private Task syncClient;
+        private Task syncServer;
         private int didReciveSyncNotyfyRetries;
         private int didReciveSyncRequestReties;
         private ConcurrentBag<PiggyRemoteHost> hosts = new ConcurrentBag<PiggyRemoteHost>();
@@ -35,15 +33,10 @@ namespace PiggySync.Core
 
         public SyncManager()
         {
-            broadcaster = new Thread(ThreadBroadcasterRun);
-            listner = new Thread(ThreadListnerRun);
-            syncClient = new Thread(HandleSyncAsServer);
-            syncServer = new Thread(HandleSyncAsClient);
-            hostListCleaner = new Thread(CleanHostsList);
             serverLock = new object();
             clientLock = new object();
-            UDPReader = new UdpClient(1337);
-            UDPWriter = new UdpClient();
+            UDPReader = TypeResolver.UdpClient(1337);
+            UDPWriter = TypeResolver.UdpClient();
             ACKDickt = new ConcurrentDictionary<UInt32, bool>();
             UDPReader.EnableBroadcast = true;
         }
@@ -57,7 +50,7 @@ namespace PiggySync.Core
         {
             do
             {
-                Thread.Sleep(100000);
+                TypeResolver.ThreadHelper.Sleep(100000);
                 PiggyRemoteHost host;
                 var cleaned = new ConcurrentBag<PiggyRemoteHost>();
                 while (hosts.TryTake(out host))
@@ -82,7 +75,7 @@ namespace PiggySync.Core
 
         public void ThreadListnerRun(object observer)
         {
-            var source = new IPEndPoint(IPAddress.Any, 1337);
+            IIPEndPoint source = TypeResolver.IPEndPoint(TypeResolver.IpHelper.Any, 1337);
 
             byte[] msg;
             PiggyRemoteHost remote;
@@ -155,7 +148,7 @@ namespace PiggySync.Core
                         Task.Factory.StartNew(() =>
                         {
                             Debug.WriteLine("Unknown UDP packet recieved");
-                            Debug.WriteLine(Encoding.UTF8.GetString(msg));
+                            Debug.WriteLine(Encoding.UTF8.GetString(msg,0,msg.Length));
                         });
                         break;
                 }
@@ -164,15 +157,15 @@ namespace PiggySync.Core
 
         public void ThreadBroadcasterRun()
         {
-            var broadcaster = new UdpClient();
-            broadcaster.EnableBroadcast = true;
+            IUdpClient broadcastClient = TypeResolver.UdpClient();
+            broadcastClient.EnableBroadcast = true;
             var discovery = new Discovery();
             byte[] msg = discovery.GetPacket();
-            var destination = new IPEndPoint(IPUtils.LocalBroadCastAdress, 1337);
+            var destination = TypeResolver.IPEndPoint(IPUtils.LocalBroadCastAdress, 1337);
             do
             {
-                broadcaster.Send(msg, msg.Count(), destination);
-                Thread.Sleep(1000);
+                broadcastClient.Send(msg, msg.Count(), destination);
+                TypeResolver.ThreadHelper.Sleep(1000);
             } while (true);
         }
 
@@ -188,7 +181,7 @@ namespace PiggySync.Core
 						break;
 					}
 				}
-				System.Diagnostics.Debug.WriteLine ("Addding new host: " + host.Name);
+				Debug.WriteLine ("Addding new host: " + host.Name);
 				hosts.Add (host);
 				RequestSync (host); 
 			}
@@ -217,13 +210,13 @@ namespace PiggySync.Core
             byte[] msg;
             bool ack;
             UInt32 seqNumber;
-            IPEndPoint hostAddr;
+            IIPEndPoint hostAddr;
             foreach (var x in hosts)
             {
                 seqNumber = packetNum++;
                 packet = new SyncNotyfy(seqNumber);
                 msg = packet.GetPacket();
-                hostAddr = new IPEndPoint(x.Ip, 1337);
+                hostAddr = TypeResolver.IPEndPoint(x.Ip, 1337);
                 lock (UDPWriter)
                 {
                     UDPWriter.Send(msg, msg.Length, hostAddr);
@@ -234,7 +227,7 @@ namespace PiggySync.Core
                     //TODO handle error
                 }
             }
-            Thread.Sleep(2000);
+            TypeResolver.ThreadHelper.Sleep(2000);
             foreach (var x in hosts)
             {
                 string hostsNotResponding = "";
@@ -272,7 +265,7 @@ namespace PiggySync.Core
             }
             if (didReciveSyncNotyfyRetries++ > 3)
             {
-                Thread.Sleep(1200);
+                TypeResolver.ThreadHelper.Sleep(1200);
                 if (DidReciveSyncNotyfy(msg))
                 {
                     return true;
@@ -302,7 +295,7 @@ namespace PiggySync.Core
             }
             if (didReciveSyncRequestReties++ < 2) //HACK handle error - sometimes happens but shouldn't
             {
-                Thread.Sleep(1100);
+                TypeResolver.ThreadHelper.Sleep(1100);
                 Debug.WriteLine("2nd chanse");
 
                 if (DidReciveSyncRequest(msg))
@@ -323,20 +316,19 @@ namespace PiggySync.Core
                     while (clientQueue.TryDequeue(out x))
                     {
                         Debug.WriteLine("Connection from " + x.Ip);
-                        var endPoint = new IPEndPoint(x.Ip, 1337);
+                        var endPoint = TypeResolver.IPEndPoint(x.Ip, 1337);
                         Debug.WriteLine("Sending ACK");
                         lock (UDPWriter)
                         {
                             UDPWriter.Send(x.Msg, x.Msg.Length, endPoint);
                         }
-                        var listner = new TcpListener(new IPEndPoint(PiggyRemoteHost.Me.Ip, 1339));
+                        ITcpListener listner = TypeResolver.TcpListener(TypeResolver.IPEndPoint(PiggyRemoteHost.Me.Ip, 1339));
                         listner.Start();
-                        TcpClient newConnection;
-                        newConnection = listner.AcceptTcpClient();
+                        ITcpClient newConnection = listner.AcceptTcpClient();
 
                         listner.Stop();
 
-                        Syncronizer.HandleSyncAsServerNoSSL(newConnection);
+                        Syncronizer.HandleSyncAsServerNoSsl(newConnection);
                     }
 
 
@@ -348,15 +340,15 @@ namespace PiggySync.Core
 
         public void HandleSyncAsClient()
         {
-            PiggyRemoteHostSync x;
             do
             {
                 lock (serverLock) //TODO
                 {
+                    PiggyRemoteHostSync x;
                     while (serverQueue.TryDequeue(out x))
                     {
                         Debug.WriteLine("Connecting to " + x.Ip);
-                        var endPoint = new IPEndPoint(x.Ip, 1337);
+                        var endPoint = TypeResolver.IPEndPoint(x.Ip, 1337);
                         if (x.Msg != null) //Send ACK packet only when is invoked by recieving Sync notyfy packet
                         {
                             Debug.WriteLine("Sending ACK s");
@@ -383,7 +375,7 @@ namespace PiggySync.Core
                         do
                         {
                             ACKDickt.TryGetValue(packetN, out ack);
-                            Thread.Sleep(10);
+                            TypeResolver.ThreadHelper.Sleep(10);
                             if (i++ == 1000)
                             {
                                 throw new ConnectionTimeOutException("Doesn't have recieved ACK packet");
@@ -394,17 +386,17 @@ namespace PiggySync.Core
                             }
                         } while (true);
 
-
-                        TcpClient newConnection;
-                        IPEndPoint host;
-                        host = new IPEndPoint(x.Ip, 1339);
-                        newConnection = new TcpClient(new IPEndPoint(PiggyRemoteHost.Me.Ip, 1338));
-                        newConnection.Connect(host);
-                        var lastSyncDate = DeviaceHistoryManager.LastSyncDate(x);
-                        Syncronizer.HandleSyncAsClientNoSSL(newConnection, lastSyncDate);
                         try
                         {
-                            newConnection.Close();
+                            IIPEndPoint host = TypeResolver.IPEndPoint(x.Ip, 1339);
+                            using (
+                                ITcpClient newConnection =
+                                    TypeResolver.TcpClient(TypeResolver.IPEndPoint(PiggyRemoteHost.Me.Ip, 1338)))
+                            {
+                                newConnection.Connect(host);
+                                var lastSyncDate = DeviaceHistoryManager.LastSyncDate(x);
+                                Syncronizer.HandleSyncAsClientNoSsl(newConnection, lastSyncDate);
+                            }
                         }
                         catch (Exception e)
                         {
@@ -420,11 +412,11 @@ namespace PiggySync.Core
 
         public void Run()
         {
-            listner.Start(this);
-            broadcaster.Start();
-            syncClient.Start();
-            syncServer.Start();
-            hostListCleaner.Start();
+            broadcaster = Task.Factory.StartNew(ThreadBroadcasterRun);
+            listner = Task.Factory.StartNew(() => ThreadListnerRun(this));
+            syncClient = Task.Factory.StartNew(HandleSyncAsServer);
+            syncServer = Task.Factory.StartNew(HandleSyncAsClient);
+            hostListCleaner = Task.Factory.StartNew(CleanHostsList);
         }
     }
 }

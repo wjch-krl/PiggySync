@@ -1,10 +1,11 @@
 ﻿using System.Net;
+using PiggySync.Common;
 
 namespace PiggySync.Model
 {
     public class PiggyRemoteHostSync : PiggyRemoteHost
     {
-        public PiggyRemoteHostSync(IPAddress ip, string name, bool isClient)
+        public PiggyRemoteHostSync(IIPAddress ip, string name, bool isClient)
             : base(ip, name)
         {
             IsClient = isClient;

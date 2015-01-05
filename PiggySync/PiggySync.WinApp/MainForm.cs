@@ -11,7 +11,7 @@ namespace PiggySync.WinApp
         public MainForm()
         {
             InitializeComponent();
-            presenter = new MainPresenter(this);
+      //      presenter = new MainPresenter(this);
         }
 
         public double ProgresLevel

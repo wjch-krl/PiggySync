@@ -8,6 +8,8 @@ using Org.BouncyCastle.Crypto.Prng;
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
+using PCLStorage;
+using PiggySync.Domain.Concrete;
 
 namespace PiggySync.Domain
 {
@@ -17,20 +19,28 @@ namespace PiggySync.Domain
 
         static CertificateManager()
         {
-            if (!File.Exists(serverCertFileName))
+            var folder = FileSystem.Current.GetFolderFromPathAsync(serverCertFileName).Result;
+            if (folder.CheckExistsAsync(serverCertFileName).Result != ExistenceCheckResult.FileExists)
             {
                 ServerCert = GenerateCertificate("server");
-
-                var certData = ServerCert.Export(X509ContentType.Cert);
-                File.WriteAllBytes(serverCertFileName, certData);
+                var certData = ServerCert.GetEncoded();
+                var file = folder.CreateFileAsync(serverCertFileName, CreationCollisionOption.ReplaceExisting).Result;
+                using (var fileWriter = new BinaryWriter(file.OpenAsync(FileAccess.ReadAndWrite).Result))
+                {
+                    fileWriter.Write(certData);
+                }
             }
             else
             {
                 try
                 {
-                    var certData = File.ReadAllBytes(serverCertFileName);
-                    ServerCert = new X509Certificate();
-                    ServerCert.Import(certData);
+                    var file = folder.GetFileAsync(serverCertFileName).Result;
+                    using (
+                        var filestream =file.OpenAsync(FileAccess.Read).Result)
+                    {
+                        var parser = new X509CertificateParser();
+                        ServerCert = parser.ReadCertificate(filestream);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -46,7 +56,7 @@ namespace PiggySync.Domain
         public static X509Certificate GenerateCertificate(string certName)
         {
             var keypairgen = new RsaKeyPairGenerator();
-            keypairgen.Init(new KeyGenerationParameters(new SecureRandom(new CryptoApiRandomGenerator()), 1024));
+            keypairgen.Init(new KeyGenerationParameters(new SecureRandom(new VmpcRandomGenerator()), 1024));
 
             var keypair = keypairgen.GenerateKeyPair();
 

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using PCLStorage;
 
 namespace PiggySync.Core
 {
@@ -6,8 +7,9 @@ namespace PiggySync.Core
     {
         public static byte[] CreatePacket(string filePath, int position, int size)
         {
-            var packet = new byte[size];
-            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            byte[] packet;
+            var file = FileSystem.Current.GetFileFromPathAsync(filePath).Result;
+            using (var fs = file.OpenAsync(FileAccess.Read).Result)
             {
                 var br = new BinaryReader(fs);
                 fs.Seek(position*size, SeekOrigin.Begin);

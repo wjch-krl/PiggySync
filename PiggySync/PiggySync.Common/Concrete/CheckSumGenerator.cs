@@ -22,9 +22,10 @@ namespace PiggySync.Common.Concrete
             CheckSumGenerator.generator = generator;
         }
 
-        public static byte[] ComputeChecksum(FileInfo file)
+        public static byte[] ComputeChecksum(string file)
         {
-            return generator.ComputeChecksum(file);
+            var chksum = generator.ComputeChecksum(file);
+            return chksum.Result;
         }
     }
 }

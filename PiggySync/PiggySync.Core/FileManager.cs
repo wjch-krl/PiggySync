@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using PiggySync.Common;
 using PiggySync.Domain.Concrete;
 using PiggySync.Model;
 using PiggySync.Model.Concrete;
@@ -76,7 +77,7 @@ namespace PiggySync.Core
 
         private static void GetDirectories(SyncInfoPacket root, string path, HashSet<FileInf> deletedFiles)
         {
-            string[] folders = Directory.GetDirectories(path);
+            string[] folders = TypeResolver.DirectoryHelper.GetDirectories(path);
             FolderInfoPacket folder;
             foreach (var x in folders)
             {
@@ -97,7 +98,7 @@ namespace PiggySync.Core
 
         private static void GetFiles(SyncInfoPacket root, string path, HashSet<FileInf> dbFiles)
         {
-            string[] localFileNames = Directory.GetFiles(path);
+            string[] localFileNames = TypeResolver.DirectoryHelper.GetFiles(path);
             var addedFiles = new List<FileInf>();
             foreach (var x in localFileNames)
             {
@@ -158,7 +159,7 @@ namespace PiggySync.Core
                 foreach (var element in foldersTree)
                 {
                     curr = Path.Combine(element, curr);
-                    if (!Directory.Exists(curr))
+                    if (!TypeResolver.DirectoryHelper.Exists(curr))
                     {
                         var deletedFolder =
                             new FolderInfoPacket(
@@ -175,7 +176,7 @@ namespace PiggySync.Core
 
         public static void RefreshPath(string path)
         {
-            if (!Directory.Exists(path))
+            if (!TypeResolver.DirectoryHelper.Exists(path))
             {
                 path = Path.GetDirectoryName(path);
             }

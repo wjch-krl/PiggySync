@@ -50,9 +50,25 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\PiggySync.Common\PiggySync.Common.csproj">
+      <Project>{dcab3960-b155-43b9-bf0e-53fb156f9e27}</Project>
+      <Name>PiggySync.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PiggySync.Core\PiggySync.Core.csproj">
+      <Project>{0c10e109-e52f-478c-8c9d-d5733cf12e98}</Project>
+      <Name>PiggySync.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PiggySync.Domain\PiggySync.Domain.csproj">
+      <Project>{7485a44a-0f3d-4b42-9213-643d7cca2b79}</Project>
+      <Name>PiggySync.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PiggySync.LogManager\PiggySync.LogManager.csproj">
       <Project>{19804015-C118-4438-9DB8-90E904F26840}</Project>
       <Name>PiggySync.LogManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PiggySync.Model\PiggySync.Model.csproj">
+      <Project>{123d8965-d7be-4ceb-a12d-d430ce4e6cd8}</Project>
+      <Name>PiggySync.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

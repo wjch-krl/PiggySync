@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Security;
-using System.Net.Sockets;
-using System.Security.Authentication;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using Org.BouncyCastle.X509;
+using PCLStorage;
 using PiggySync.Common;
 using PiggySync.Domain;
 using PiggySync.Domain.Concrete;
@@ -22,7 +20,7 @@ namespace PiggySync.Core
         private static byte[] overflowBuffer;
         private static readonly string rootPath = XmlSettingsRepository.Instance.Settings.SyncRootPath;
 
-        public static void GetRemoteFilesInfo(NetworkStream stream, SyncInfoPacket root)
+        public static void GetRemoteFilesInfo(INetworkStream stream, SyncInfoPacket root)
         {
             var msg = new byte[2048];
             Int32 bytes;
@@ -72,52 +70,51 @@ namespace PiggySync.Core
             }
         }
 
-        public static void HandleSyncAsClientNoSSL(TcpClient host, DateTime lastSyncDate)
+        public static void HandleSyncAsClientNoSsl(ITcpClient host, DateTime lastSyncDate)
         {
             try
             {
-                NetworkStream stream = host.GetStream();
-                var msg = new byte[5]; //5 - size of SyncInfoPacket
-                Int32 bytes;
-                SyncInfoPacket rootFolder;
+                using (INetworkStream stream = host.GetStream())
+                {
+                    var msg = new byte[5]; //5 - size of SyncInfoPacket
+                    Int32 bytes;
+                    SyncInfoPacket rootFolder;
 
-                bytes = stream.Read(msg, 0, msg.Length);
-                if (msg[0] == 255 && bytes == 5)
-                {
-                    rootFolder = new SyncInfoPacket(msg);
-                    GetRemoteFilesInfo(stream, rootFolder);
-                }
-                else
-                {
-                    throw new Exception(); //TODO write custom Exception
-                }
+                    bytes = stream.Read(msg, 0, msg.Length);
+                    if (msg[0] == 255 && bytes == 5)
+                    {
+                        rootFolder = new SyncInfoPacket(msg);
+                        GetRemoteFilesInfo(stream, rootFolder);
+                    }
+                    else
+                    {
+                        throw new Exception(); //TODO write custom Exception
+                    }
 
-                var remoteChanges = ChooseFilesToSync(rootFolder, lastSyncDate);
-                foreach (var x in remoteChanges.DeletedFiles)
-                {
-                    DeleteFile(x);
+                    var remoteChanges = ChooseFilesToSync(rootFolder, lastSyncDate);
+                    foreach (var x in remoteChanges.DeletedFiles)
+                    {
+                        DeleteFile(x);
+                    }
+                    foreach (var x in remoteChanges.FileRequests)
+                    {
+                        SyncFile(x, stream);
+                    }
+                    msg = new NoRequestPacket().GetPacket();
+                    stream.Write(msg, 0, msg.Length);
                 }
-                foreach (var x in remoteChanges.FileRequests)
-                {
-                    SyncFile(x, stream);
-                }
-                msg = new NoRequestPacket().GetPacket();
-                stream.Write(msg, 0, msg.Length);
-                // Close everything.
-                stream.Close();
-                host.Close();
             }
             catch (ArgumentNullException e)
             {
                 Debug.WriteLine("ArgumentNullException: {0}", e);
             }
-            catch (SocketException e)
+            catch (Exception e)
             {
-                Debug.WriteLine("SocketException:", e);
+                Debug.WriteLine("HandleSyncAsClientNoSsl: {0}", e);
             }
         }
 
-        private static void SyncFile(FileRequestPacket x, NetworkStream stream)
+        private static void SyncFile(FileRequestPacket x, INetworkStream stream)
         {
             byte[] msg = x.GetPacket();
             Debug.WriteLine("Reciving Files of size " + x.File.FileSize);
@@ -126,9 +123,9 @@ namespace PiggySync.Core
 			UInt32 size = x.File.FileSize;
 			Int32 bytes;
 			msg = new byte[2048];
-			var filePath = Path.Combine (x.FilePath, x.File.FileName);
-			var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
-            using (var writer = new BinaryWriter(fileStream))
+            var folder = FileSystem.Current.GetFolderFromPathAsync(x.FilePath);
+            var file = folder.Result.CreateFileAsync(x.File.FileName, CreationCollisionOption.OpenIfExists);      
+            using (var writer = new BinaryWriter(file.Result.OpenAsync(FileAccess.ReadAndWrite).Result))
             {
                 try
                 {
@@ -148,12 +145,9 @@ namespace PiggySync.Core
                         size -= (UInt32) bytes;
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                }
-                finally
-                {
-                    writer.Close();
+                    Debug.WriteLine("Sync File: {0}",e);
                 }
             }
 
@@ -173,24 +167,25 @@ namespace PiggySync.Core
 
             foreach (var remoteFile in rootFolder.Files)
             {
-                if (!localFiles.Files.Exists((FileInfoPacket localFile) =>
+                FileInfoPacket file = remoteFile;
+                if (!localFiles.Files.Exists(localFile =>
                 {
 					//TODO check local files if deleted
-                    if (localFile.File.FileName == remoteFile.File.FileName &&
-                        localFile.File.FileSize == remoteFile.File.FileSize &&
-                        localFile.File.CheckSum.SequenceEqual(remoteFile.File.CheckSum))
+                    if (localFile.File.FileName == file.File.FileName &&
+                        localFile.File.FileSize == file.File.FileSize &&
+                        localFile.File.CheckSum.SequenceEqual(file.File.CheckSum))
                     {
                         if (localFile.File.LastModyfiedDate > lastSyncDate &&
-                            remoteFile.File.LastModyfiedDate > lastSyncDate)
+                            file.File.LastModyfiedDate > lastSyncDate)
                         {
                             //TODO CONFLICT
-                            if (localFile.File.LastModyfiedDate > remoteFile.File.LastModyfiedDate)
+                            if (localFile.File.LastModyfiedDate > file.File.LastModyfiedDate)
                             {
                                 //Local is newer
                             }
                             return true;
                         }
-                        return localFile.File.LastModyfied < remoteFile.File.LastModyfied;
+                        return localFile.File.LastModyfied < file.File.LastModyfied;
                     }
                     return false;
                 }))
@@ -210,13 +205,13 @@ namespace PiggySync.Core
                 {
                     //TODO Create folder on disk
                     localSubfolder = new FolderInfoPacket(x.FolderName);
-                    Directory.CreateDirectory(path + x.FolderName);
+                    TypeResolver.DirectoryHelper.CreateDirectory(Path.Combine(path, x.FolderName));
                     lock (localFiles)
                     {
                         localFiles.Folders.Add(localSubfolder);
                     }
                 }
-                var moreFiles = ChooseFilesToSync(x, localSubfolder, path + @"/" + x.FolderName, lastSyncDate);
+                var moreFiles = ChooseFilesToSync(x, localSubfolder, Path.Combine(path, x.FolderName), lastSyncDate);
                 remoteFiles.FileRequests.AddRange(moreFiles.FileRequests);
                 remoteFiles.DeletedFiles.AddRange(moreFiles.DeletedFiles);
             }
@@ -224,13 +219,11 @@ namespace PiggySync.Core
             return remoteFiles;
         }
 
-        public static void SendFilePackets(SyncInfoPacket syncInfoPacket, NetworkStream stream)
+        public static void SendFilePackets(SyncInfoPacket syncInfoPacket, INetworkStream stream)
         {
-            byte[] msg;
-            byte[][] msgs;
-            msg = syncInfoPacket.GetPacket();
+            byte[] msg = syncInfoPacket.GetPacket();
             stream.Write(msg, 0, msg.Length);
-            msgs = syncInfoPacket.GetFilePackets();
+            byte[][] msgs = syncInfoPacket.GetFilePackets();
             foreach (var x in msgs)
             {
                 stream.Write(x, 0, x.Length);
@@ -247,66 +240,56 @@ namespace PiggySync.Core
             }
         }
 
-        public static void HandleSyncAsServerNoSSL(object hst) //TODO
+        public static void HandleSyncAsServerNoSsl(object hst) //TODO
         {
             try
             {
-                var host = (TcpClient) hst;
-                NetworkStream stream = host.GetStream();
-                var syncInfoPacket = FileManager.RootFolder;
-                byte[] msg; //13 sizeof filerequest packet
-				FileRequestPacket fileReqPacet;
-                Int32 bytes;
-                SendFilePackets(syncInfoPacket, stream);
-                Debug.WriteLine("Sending no request");
-                var noRequest = new NoRequestPacket();
-                msg = noRequest.GetPacket();
-                stream.Write(msg, 0, msg.Length);
-                msg = new byte[2048];
-                do
+                var host = (ITcpClient) hst;
+                using (INetworkStream stream = host.GetStream())
                 {
-                    bytes = stream.Read(msg, 0, msg.Length);
-                    List<TCPPacket> packets = TCPPacketReCreator.RecrateFromRecivedData(msg, bytes);
-                    foreach (var x in packets)
+                    var syncInfoPacket = FileManager.RootFolder;
+                    SendFilePackets(syncInfoPacket, stream);
+                    Debug.WriteLine("Sending no request");
+                    var noRequest = new NoRequestPacket();
+                    byte[] msg = noRequest.GetPacket();
+                    stream.Write(msg, 0, msg.Length);
+                    msg = new byte[2048];
+                    do
                     {
-                        if (x is FileRequestPacket)
+                        Int32 bytes = stream.Read(msg, 0, msg.Length);
+                        List<TCPPacket> packets = TCPPacketReCreator.RecrateFromRecivedData(msg, bytes);
+                        foreach (var x in packets)
                         {
-                            fileReqPacet = x as FileRequestPacket;
-                            Debug.WriteLine("Sending file: " + fileReqPacet.File.FileName + "of size" +
-                                            fileReqPacet.File.FileSize);
-                            SendFile(fileReqPacet, stream);
+                            if (x is FileRequestPacket)
+                            {
+                                var fileReqPacet = x as FileRequestPacket;
+                                Debug.WriteLine("Sending file: " + fileReqPacet.File.FileName + "of size" +
+                                                fileReqPacet.File.FileSize);
+                                SendFile(fileReqPacet, stream);
+                            }
+                            else
+                            {
+                                return;
+                            }
                         }
-                        else
-                        {
-                            stream.Close();
-                            host.Close();
-                            return;
-                        }
-                    }
-                } while (true);
-                // Close everything.
+                    } while (true);
+                }
             }
-            catch (ArgumentNullException e)
+            catch (Exception e)
             {
-                Debug.WriteLine("ArgumentNullException: {0}", e);
-            }
-            catch (SocketException e)
-            {
-                Debug.WriteLine("SocketException:", e);
+                Debug.WriteLine("HandleSyncAsServerNoSSL:", e);
             }
         }
 
 
-        private static void SendFile(FileRequestPacket fileReqPacket, NetworkStream stream)
+        private static void SendFile(FileRequestPacket fileReqPacket, INetworkStream stream)
         {
             int packetSize = 1024;
             int packetCount = (int) fileReqPacket.File.FileSize/packetSize;
             int lastPacketSize = (int) fileReqPacket.File.FileSize%packetSize;
-            int i;
-
             try
             {
-                string[] files = Directory.GetFiles(rootPath, fileReqPacket.File.FileName, SearchOption.AllDirectories);
+                string[] files = TypeResolver.DirectoryHelper.GetFilesFromAllDirectories(rootPath, fileReqPacket.File.FileName);
                 string filePath;
                 if (files.Length == 1)
                 {
@@ -324,6 +307,7 @@ namespace PiggySync.Core
                     //}
                     filePath = files[0];
                 }
+                int i;
                 for (i = 0; i < packetCount; i++)
                 {
                     Debug.WriteLine("Sending file packets");
@@ -348,142 +332,69 @@ namespace PiggySync.Core
 
         internal static void HandleSyncAsServer(object hst) //TODO
         {
-            TcpClient host = null;
-            SslStream sslStream = null;
+            ITcpClient host = null;
             try
             {
-                host = (TcpClient) hst;
+                host = (ITcpClient) hst;
 
                 string message = "hello word";
                 byte[] msg = Encoding.UTF8.GetBytes(message);
 
-                sslStream = new SslStream(host.GetStream());
-                sslStream.AuthenticateAsServer(CertificateManager.ServerCert, false, SslProtocols.Default, true);
-
-
-                // Send the message to the connected TcpServer. 
-                sslStream.Write(msg, 0, msg.Length);
-
-                Debug.WriteLine("Sent: " + message);
-
-                // Receive the TcpServer.response. 
-
-                // Buffer to store the response bytes.
-                msg = new Byte[256];
-
-                // String to store the response UTF8 representation.
-                string responseData;
-
-                // Read the first batch of the TcpServer response bytes.
-                Int32 bytes = sslStream.Read(msg, 0, msg.Length);
-                responseData = Encoding.UTF8.GetString(msg, 0, bytes);
-                Debug.WriteLine("Received: " + responseData);
-                // Close everything.
-                sslStream.Close();
-                host.Close();
-            }
-            catch (ArgumentNullException e)
-            {
-                Debug.WriteLine("ArgumentNullException:", e);
-            }
-            catch (SocketException e)
-            {
-                Debug.WriteLine("SocketException:", e);
-            }
-            catch (AuthenticationException e)
-            {
-                Debug.WriteLine("AuthenticationException:", e);
-            }
-            finally
-            {
-                // The UDPReader stream will be closed with the sslStream 
-                // because we specified this behavior when creating 
-                // the sslStream.
-                if (sslStream != null)
+                using (var sslStream = TypeResolver.SslStream(host.GetStream()))
                 {
-                    sslStream.Close();
+                    sslStream.AuthenticateAsServer(CertificateManager.ServerCert, false, SslProtocols.Default, true);
+                    // Send the message to the connected TcpServer. 
+                    sslStream.Write(msg, 0, msg.Length);
+                    Debug.WriteLine("Sent: " + message);
+                    // Receive the TcpServer.response. 
+                    // Buffer to store the response bytes.
+                    msg = new Byte[256];
+                    // Read the first batch of the TcpServer response bytes.
+                    Int32 bytes = sslStream.Read(msg, 0, msg.Length);
+                    // String to store the response UTF8 representation.
+                    string responseData = Encoding.UTF8.GetString(msg, 0, bytes);
+                    Debug.WriteLine("Received: " + responseData);
                 }
-                if (host != null)
-                {
-                    host.Close();
-                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("HandleSyncAsServer: {0}", e);
             }
         }
 
-        public static bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain,
-            SslPolicyErrors sslPolicyErrors)
+        public static bool ValidateServerCertificate(X509Certificate certificate)
         {
-            if (sslPolicyErrors == SslPolicyErrors.None)
-            {
-                return true;
-            }
-            Debug.WriteLine("Certificate error: {0}", sslPolicyErrors);
-
-            return false;
+            return certificate.IsValid(DateTime.Now);
         }
-
 
         internal static void HandleSyncAsClient(object hst)
         {
-            TcpClient host = null;
-            SslStream sslStream = null;
             try
             {
-                host = (TcpClient) hst;
-
+                ITcpClient host = (ITcpClient) hst;
                 string message = "hello word";
                 byte[] msg = Encoding.UTF8.GetBytes(message);
 
-                sslStream = new SslStream(host.GetStream(), false, ValidateServerCertificate, null);
-
-                sslStream.AuthenticateAsClient(CertificateManager.ServerCert.FriendlyName);
-                // Send the message to the connected TcpServer. 
-                sslStream.Write(msg, 0, msg.Length);
-
-                Debug.WriteLine("Sent: " + message);
-
-                // Receive the TcpServer.response. 
-
-                // Buffer to store the response bytes.
-                msg = new Byte[256];
-
-                // String to store the response UTF8 representation.
-                string responseData;
-
-                // Read the first batch of the TcpServer response bytes.
-                Int32 bytes = sslStream.Read(msg, 0, msg.Length);
-                responseData = Encoding.UTF8.GetString(msg, 0, bytes);
-                Debug.WriteLine("Received: " + responseData);
-
-                // Close everything.
-                sslStream.Close();
-                host.Close();
-            }
-            catch (ArgumentNullException e)
-            {
-                Debug.WriteLine("ArgumentNullException: {0}", e);
-            }
-            catch (SocketException e)
-            {
-                Debug.WriteLine("SocketException: {0}", e);
-            }
-            catch (AuthenticationException e)
-            {
-                Debug.WriteLine("AuthenticationException: {0}", e);
-            }
-            finally
-            {
-                // The UDPReader stream will be closed with the sslStream 
-                // because we specified this behavior when creating 
-                // the sslStream.
-                if (sslStream != null)
+                using (var sslStream = TypeResolver.SslStream(host.GetStream()))
                 {
-                    sslStream.Close();
+                    sslStream.AuthenticateAsClient(CertificateManager.ServerCert);
+                    // Send the message to the connected TcpServer. 
+                    sslStream.Write(msg, 0, msg.Length);
+                    Debug.WriteLine("Sent: " + message);
+                    // Receive the TcpServer.response. 
+
+                    // Buffer to store the response bytes.
+                    msg = new Byte[256];
+                    // Read the first batch of the TcpServer response bytes.
+                    Int32 bytes = sslStream.Read(msg, 0, msg.Length);
+                    // String to store the response UTF8 representation.
+                    string responseData = Encoding.UTF8.GetString(msg, 0, bytes);
+                    Debug.WriteLine("Received: " + responseData);
                 }
-                if (host != null)
-                {
-                    host.Close();
-                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("HandleSyncAsClient: {0}", e);
             }
         }
     }
