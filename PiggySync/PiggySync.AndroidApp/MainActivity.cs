@@ -18,8 +18,6 @@ namespace PiggySync.AndroidApp
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.mainlayout);
-			Button button = FindViewById<Button> (Resource.Id.myButton);
-
 		}
 	}
 }

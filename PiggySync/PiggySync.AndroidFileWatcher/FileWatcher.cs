@@ -24,10 +24,10 @@ namespace PPiggySync.AndroidFileWatcher
 		}
 	}
 
-	public class FileWatcher
+	public class AndrFileWatcher
 	{
 		FileObserver fileObsver;
-		public FileWatcher ()
+		public AndrFileWatcher ()
 		{
 			fileObsver = new CustomFileObserver ("");
 		//	fileObsver.

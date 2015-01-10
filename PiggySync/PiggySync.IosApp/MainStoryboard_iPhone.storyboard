@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="owV-IA-AVZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="owV-IA-AVZ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Status-->
@@ -19,7 +19,7 @@
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="F5X-UH-lzP">
                                 <rect key="frame" x="16" y="478" width="288" height="2"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sync Status:                     Synchronizing" textAlignment="left" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jah-Ks-wxp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sync Status:                     Synchronizing" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jah-Ks-wxp">
                                 <rect key="frame" x="16" y="377" width="288" height="59"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -34,7 +34,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="DFm-i2-3lK"/>
+                    <tabBarItem key="tabBarItem" title="Main" image="first" id="DFm-i2-3lK"/>
                     <connections>
                         <outlet property="ProgressBar" destination="F5X-UH-lzP" id="ixR-z5-q9U"/>
                         <outlet property="StatusImageButton" destination="fDm-6f-22k" id="54U-24-zbo"/>
@@ -86,7 +86,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="P19-Qg-w18"/>
+                    <tabBarItem key="tabBarItem" title="Files" image="first" id="P19-Qg-w18"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pst-Zn-GSZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,7 +113,7 @@
                             <outlet property="delegate" destination="GYO-7f-XOC" id="Jai-yI-Ap0"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="9pj-cK-eMF"/>
+                    <tabBarItem key="tabBarItem" title="Devices" image="second" id="9pj-cK-eMF"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeg-Mu-0RS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -161,7 +161,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="kTL-N5-VNf"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="second" id="kTL-N5-VNf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gU8-p0-NOn" sceneMemberID="firstResponder"/>
             </objects>
@@ -193,11 +193,6 @@
         <image name="PiggyLogo_1024.png" width="1024" height="1024"/>
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
-        <image name="Default-568h.png" width="640" height="1136"/>
-        <image name="first.png" width="30" height="30"/>
-        <image name="second.png" width="30" height="30"/>
-        <image name="PiggyLogo_64.png" width="64" height="64"/>
-        <image name="PiggyLogo_128.png" width="128" height="128"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

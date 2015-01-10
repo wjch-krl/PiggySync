@@ -52,7 +52,7 @@ namespace PiggySync.Model
                 using (var con = GetConnection())
                 {
                     var retVal = new HashSet<FileInf>(new FileInfComparer());
-                    foreach (var element in  con.Table<FileInf>().Where(x => x.Path == path && x.IsDeleted))
+                    foreach (var element in con.Table<FileInf>().Where(x => x.Path == path && x.IsDeleted))
                     {
                         retVal.Add(element);
                     }

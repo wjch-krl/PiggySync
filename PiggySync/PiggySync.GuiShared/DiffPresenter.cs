@@ -20,8 +20,8 @@ namespace PiggySync.GuiShared
 
         public void CreateDiff()
         {
-			var m = new FileMerger.FileMerger(fileAPath, fileBPath, resultPath);
-            m.MergeFiles();
+			//var m = new FileMerger.FileMerger(fileAPath, fileBPath, resultPath);
+            //m.MergeFiles();
             ReloadView();
             //m.
         }

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\PiggySync.GuiShared\PiggySync.GuiShared.projitems" Label="Shared" Condition="Exists('..\PiggySync.GuiShared\PiggySync.GuiShared.projitems')" />
+  <Import Project="..\PiggySync.StandardTypeResolver\PiggySync.StandardTypeResolver.projitems" Label="Shared" Condition="Exists('..\PiggySync.StandardTypeResolver\PiggySync.StandardTypeResolver.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -111,7 +112,7 @@
   -->
   <ItemGroup>
     <ProjectReference Include="..\PiggySync.Common\PiggySync.Common.csproj">
-      <Project>{dcab3960-b155-43b9-bf0e-53fb156f9e27}</Project>
+      <Project>{DCAB3960-B155-43B9-BF0E-53FB156F9E27}</Project>
       <Name>PiggySync.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\PiggySync.Core\PiggySync.Core.csproj">
@@ -123,19 +124,15 @@
       <Name>PiggySync.DesktopFileWather</Name>
     </ProjectReference>
     <ProjectReference Include="..\PiggySync.Domain\PiggySync.Domain.csproj">
-      <Project>{7485a44a-0f3d-4b42-9213-643d7cca2b79}</Project>
+      <Project>{7485A44A-0F3D-4B42-9213-643D7CCA2B79}</Project>
       <Name>PiggySync.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\PiggySync.FileMerger\PiggySync.FileMerger.csproj">
       <Project>{3296F3DE-89D1-4B00-8031-E17A62AFD039}</Project>
       <Name>PiggySync.FileMerger</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PiggySync.LogManager\PiggySync.LogManager.csproj">
-      <Project>{19804015-C118-4438-9DB8-90E904F26840}</Project>
-      <Name>PiggySync.LogManager</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PiggySync.Model\PiggySync.Model.csproj">
-      <Project>{123d8965-d7be-4ceb-a12d-d430ce4e6cd8}</Project>
+      <Project>{123D8965-D7BE-4CEB-A12D-D430CE4E6CD8}</Project>
       <Name>PiggySync.Model</Name>
     </ProjectReference>
   </ItemGroup>

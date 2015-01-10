@@ -115,7 +115,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\PiggySync.Common\PiggySync.Common.csproj">
-      <Project>{9DDDE951-7DB6-43CA-A603-8A4384AEEA5E}</Project>
+      <Project>{DCAB3960-B155-43B9-BF0E-53FB156F9E27}</Project>
       <Name>PiggySync.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\PiggySync.Core\PiggySync.Core.csproj">
@@ -127,19 +127,15 @@
       <Name>PiggySync.DesktopFileWather</Name>
     </ProjectReference>
     <ProjectReference Include="..\PiggySync.Domain\PiggySync.Domain.csproj">
-      <Project>{AF7679D0-A9DE-407F-AA79-46726C54F4A9}</Project>
+      <Project>{7485A44A-0F3D-4B42-9213-643D7CCA2B79}</Project>
       <Name>PiggySync.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\PiggySync.FileMerger\PiggySync.FileMerger.csproj">
       <Project>{3296F3DE-89D1-4B00-8031-E17A62AFD039}</Project>
       <Name>PiggySync.FileMerger</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PiggySync.LogManager\PiggySync.LogManager.csproj">
-      <Project>{19804015-C118-4438-9DB8-90E904F26840}</Project>
-      <Name>PiggySync.LogManager</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PiggySync.Model\PiggySync.Model.csproj">
-      <Project>{C39A8E5D-9878-4197-9AA1-495C598CA036}</Project>
+      <Project>{123D8965-D7BE-4CEB-A12D-D430CE4E6CD8}</Project>
       <Name>PiggySync.Model</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{4681E02D-F676-49BA-B9FC-52357C1EF07E}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>PiggySync.StandardTypeResolver</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Resolver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StandardIpEndPoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StandardIPAddress.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StandardUdpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StandardTcpListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StandardTcpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StandardNetworkStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StandardSslStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StandarFileInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IpHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DirectoryHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThreadHelper.cs" />
+  </ItemGroup>
+</Project>

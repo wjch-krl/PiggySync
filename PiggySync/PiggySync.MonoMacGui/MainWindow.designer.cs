@@ -25,6 +25,9 @@ namespace PiggySync.MacApp
 		MonoMac.AppKit.NSButton SettingsButton { get; set; }
 
 		[Outlet]
+		MonoMac.AppKit.NSProgressIndicator SyncProgressBar { get; set; }
+
+		[Outlet]
 		MonoMac.AppKit.NSTextField SyncStatusLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -52,6 +55,11 @@ namespace PiggySync.MacApp
 			if (SyncStatusLabel != null) {
 				SyncStatusLabel.Dispose ();
 				SyncStatusLabel = null;
+			}
+
+			if (SyncProgressBar != null) {
+				SyncProgressBar.Dispose ();
+				SyncProgressBar = null;
 			}
 		}
 	}

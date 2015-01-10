@@ -5,6 +5,7 @@ using System.IO;
 using System.Xml.Serialization;
 using PCLStorage;
 using PiggySync.Domain.Abstract;
+using PiggySync.Common;
 
 namespace PiggySync.Domain.Concrete
 {
@@ -17,28 +18,21 @@ namespace PiggySync.Domain.Concrete
         static XmlSettingsRepository() //TODO DAFUCK!!!!!!!!!!!!!!!!!!!!!!!!!! Static ctor is not being caled
         {
             Instance = new XmlSettingsRepository();
-            SettingsPath = Path.Combine(Common.TypeResolver.EnviromentHelper.DocumentsPath, ".PiggySync");
-            SettingsFile = Path.Combine(SettingsPath, "Piggy.xml");
-            var folder = FileSystem.Current.GetFolderFromPathAsync(Common.TypeResolver.EnviromentHelper.DocumentsPath).Result;
-            if (folder.CheckExistsAsync(".PiggySync").Result != ExistenceCheckResult.FolderExists)
-            {
-                var newFolder = folder.CreateFolderAsync(".PiggySync", CreationCollisionOption.ReplaceExisting).Result;
-              //  DirectoryInfo di = Directory.CreateDirectory(SettingsPath);
-                //di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
-            }
+			SettingsPath = Path.Combine(Common.TypeResolver.EnviromentHelper.DocumentsPath, ".PiggySync");
+			SettingsFile = Path.Combine(SettingsPath, "Piggy.xml");
+			if (TypeResolver.DirectoryHelper.Exists (SettingsPath))
+			{
+				TypeResolver.DirectoryHelper.CreateHiddenDirectory (".PiggySync");
+			}
         }
 
         private XmlSettingsRepository()
         {
-            //	Instance = new XmlSettingsRepository();
             SettingsPath = Path.Combine(Common.TypeResolver.EnviromentHelper.DocumentsPath, ".PiggySync");
             SettingsFile = Path.Combine(SettingsPath, "Piggy.xml");
-            var folder = FileSystem.Current.GetFolderFromPathAsync(Common.TypeResolver.EnviromentHelper.DocumentsPath).Result;
-            if (folder.CheckExistsAsync(".PiggySync").Result != ExistenceCheckResult.FolderExists)
+			if (TypeResolver.DirectoryHelper.Exists (SettingsPath))
             {
-                var newFolder = folder.CreateFolderAsync(".PiggySync", CreationCollisionOption.ReplaceExisting).Result;
-                //  DirectoryInfo di = Directory.CreateDirectory(SettingsPath);
-                //di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+				TypeResolver.DirectoryHelper.CreateHiddenDirectory (".PiggySync");
             }
             settings = LoadSettings();
         }

@@ -15,15 +15,15 @@ namespace PiggySync.Model
 
         public FileInf(string path)
         {
-//            var fileInf = new FileInfo(path);
-//            FileName = fileInf.Name;
-//            if (fileInf.Length > UInt32.MaxValue)
-//            {
-//                throw new PiggyFileException("File is tooo Big, Max 4GiB files");
-//            }
-//            FileSize = (UInt32) fileInf.Length;
-//            LastModyfied = (fileInf.LastWriteTimeUtc - new DateTime(1970, 1, 1)).Ticks;
-//            CheckSum = CheckSumGenerator.ComputeChecksum(path);
+			IFileInfo fileInf = TypeResolver.FileInfo(path);
+            FileName = fileInf.Name;
+            if (fileInf.Length > UInt32.MaxValue)
+            {
+                throw new PiggyFileException("File is tooo Big, Max 4GiB files");
+            }
+            FileSize = (UInt32) fileInf.Length;
+            LastModyfied = (fileInf.LastWriteTimeUtc - new DateTime(1970, 1, 1)).Ticks;
+            CheckSum = CheckSumGenerator.ComputeChecksum(path);
         }
 
         public FileInf(byte[] packet, UInt32 packetSize)
@@ -54,7 +54,7 @@ namespace PiggySync.Model
         [MaxLength(16)]
         public byte[] CheckSum { get; set; }
 
-        public string FileName { get; set; }
+		public string FileName { get; set; }
 
         [Indexed]
         [MaxLength(1024)]

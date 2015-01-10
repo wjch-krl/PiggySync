@@ -1,5 +1,5 @@
 ﻿using PiggySync.Core;
-using PiggySync.DesktopFileWather;
+//using PiggySync.DesktopFileWather;
 
 namespace PiggySync.GuiShared
 {
@@ -11,7 +11,7 @@ namespace PiggySync.GuiShared
         static MainPresenter()
         {
             main = new SyncManager();
-            FileWatcher.Initialize(main);
+           // FileWatcher.Initialize(main);
             main.Run();
         }
 

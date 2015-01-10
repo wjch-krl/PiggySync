@@ -342,7 +342,7 @@ namespace PiggySync.Core
 
                 using (var sslStream = TypeResolver.SslStream(host.GetStream()))
                 {
-                    sslStream.AuthenticateAsServer(CertificateManager.ServerCert, false, SslProtocols.Default, true);
+                  //  sslStream.AuthenticateAsServer(CertificateManager.ServerCert, false, SslProtocols.Default, true);
                     // Send the message to the connected TcpServer. 
                     sslStream.Write(msg, 0, msg.Length);
                     Debug.WriteLine("Sent: " + message);
@@ -377,7 +377,7 @@ namespace PiggySync.Core
 
                 using (var sslStream = TypeResolver.SslStream(host.GetStream()))
                 {
-                    sslStream.AuthenticateAsClient(CertificateManager.ServerCert);
+               //     sslStream.AuthenticateAsClient(CertificateManager.ServerCert);
                     // Send the message to the connected TcpServer. 
                     sslStream.Write(msg, 0, msg.Length);
                     Debug.WriteLine("Sent: " + message);

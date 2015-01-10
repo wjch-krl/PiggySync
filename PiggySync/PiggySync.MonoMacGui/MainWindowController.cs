@@ -67,11 +67,11 @@ namespace PiggySync.MacApp
 		{
 			get
 			{
-				throw new NotImplementedException ();
+				return SyncProgressBar.DoubleValue;
 			}
 			set
 			{
-				throw new NotImplementedException ();
+				SyncProgressBar.DoubleValue = value;
 			}
 		}
 		public SyncStatus SyncStatus

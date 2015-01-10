@@ -6,7 +6,6 @@ namespace PiggySync.GuiShared
 {
     public class SettingsPresenter
     {
-        private static SyncManager main;
         private readonly ISettingsView settingsView;
 
         public SettingsPresenter(ISettingsView view)
