@@ -6,9 +6,10 @@ namespace PiggySync.StandardTypeResolver
 {
 	public class StandardIpEndPoint : IIPEndPoint
 	{
-		public IPEndPoint IPEndPoint { get; set; }
+		private IPEndPoint ip;
+		public IPEndPoint IPEndPoint { get { return ip; } }
 		public StandardIpEndPoint(IIPAddress iPAddress, int port){
-			IPEndPoint = new IPEndPoint ((iPAddress as StandardIPAddress).IpAdress, port);
+			ip = new IPEndPoint ((iPAddress as StandardIPAddress).IpAdress, port);
 		}
 	}
 }

@@ -8,8 +8,8 @@ namespace PiggySync.StandardTypeResolver
 	{
 		public byte[] Receive (ref IIPEndPoint source)
 		{
-			throw new NotImplementedException ();
-			//return UdpClient.Receive (ref ((StandardIpEndPoint)source).IPEndPoint);
+			var ip = ((StandardIpEndPoint)source).IPEndPoint;
+			return UdpClient.Receive (ref ip);
 		}
 
 		public void Send (byte[] msg, int p, IIPEndPoint destination)
