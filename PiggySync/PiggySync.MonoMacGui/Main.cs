@@ -5,6 +5,8 @@ using MonoMac.AppKit;
 using MonoMac.ObjCRuntime;
 using PiggySync.Common;
 using PiggySync.StandardTypeResolver;
+using PiggySync.Model;
+using SQLite.Net.Platform.Generic;
 
 namespace PiggySync.MacApp
 {
@@ -13,6 +15,7 @@ namespace PiggySync.MacApp
 		static void Main (string[] args)
 		{
 			TypeResolver.Factory = new Resolver ();
+			DatabaseManager.Init (new SQLitePlatformGeneric());
 			NSApplication.Init ();
 			NSApplication.Main (args);
 		}

@@ -49,9 +49,12 @@ namespace PiggySync.MacApp
 				new SettingsWindowController().ShowWindow(this);
 			};
 			this.DevicesButton.Activated += (sender, e) => {
-				var p = "/Users/wojciechkrol/Documents/Praca inż/PiggySync/PiggySync.MonoMacGui/bin/Debug";
-				new DiffWindowController (Path.Combine (p,"!LocalV~MainWindow.txt"),Path.Combine (p,"!RemoteV~MainWindow.txt"),Path.Combine (p,"MainWindow.txt")).ShowWindow(this);
-				//new HostsWindowController().ShowWindow(this);
+			//	var p = "/Users/wojciechkrol/Documents/Praca inż/PiggySync/PiggySync.MonoMacGui/bin/Debug";
+			//	new DiffWindowController (Path.Combine (p,"!LocalV~MainWindow.txt"),Path.Combine (p,"!RemoteV~MainWindow.txt"),Path.Combine (p,"MainWindow.txt")).ShowWindow(this);
+				new HostsWindowController().ShowWindow(this);
+			};
+			this.StatusImage.Activated += (sender, e) => {
+				new LogWindowController ().ShowWindow (this);
 			};
 			this.presenter = new MainPresenter (this);
 		}

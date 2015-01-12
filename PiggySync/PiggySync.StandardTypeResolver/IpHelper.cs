@@ -27,7 +27,7 @@ namespace PiggySync.StandardTypeResolver
 		{
 			get
 			{
-				throw new NotImplementedException ();
+				return new StandardIPAddress (IPAddress.Broadcast);
 			}
 			set
 			{
@@ -39,7 +39,7 @@ namespace PiggySync.StandardTypeResolver
 		{
 			get
 			{
-				throw new NotImplementedException ();
+				return new StandardIPAddress (IPAddress.Loopback);
 			}
 			set
 			{

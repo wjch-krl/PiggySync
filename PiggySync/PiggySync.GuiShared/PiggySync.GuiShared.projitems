@@ -19,5 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SyncStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPresenter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DiffPresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ILogView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogPreseneter.cs" />
   </ItemGroup>
 </Project>

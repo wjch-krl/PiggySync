@@ -41,5 +41,4 @@ namespace PiggySync.StandardTypeResolver
 			UdpClient = new UdpClient (p);
 		}
 	}
-}
-
+}									

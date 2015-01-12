@@ -20,9 +20,15 @@ namespace PiggySync.StandardTypeResolver
 		}
 
 		public IPAddress IpAdress { get ; private set; }
+
 		public StandardIPAddress (IPAddress ip)
 		{
 			IpAdress = ip;
+		}
+
+		public override string ToString ()
+		{
+			return IpAdress.ToString ();
 		}
 	}
 }

@@ -16,13 +16,10 @@ namespace PiggySync.MacApp
 		MonoMac.AppKit.NSButton DevicesButton { get; set; }
 
 		[Outlet]
-		MonoMac.AppKit.NSPopover popover { get; set; }
-
-		[Outlet]
-		MonoMac.AppKit.NSViewController popoverController { get; set; }
-
-		[Outlet]
 		MonoMac.AppKit.NSButton SettingsButton { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSButton StatusImage { get; set; }
 
 		[Outlet]
 		MonoMac.AppKit.NSProgressIndicator SyncProgressBar { get; set; }
@@ -37,19 +34,14 @@ namespace PiggySync.MacApp
 				DevicesButton = null;
 			}
 
-			if (popover != null) {
-				popover.Dispose ();
-				popover = null;
-			}
-
-			if (popoverController != null) {
-				popoverController.Dispose ();
-				popoverController = null;
-			}
-
 			if (SettingsButton != null) {
 				SettingsButton.Dispose ();
 				SettingsButton = null;
+			}
+
+			if (SyncProgressBar != null) {
+				SyncProgressBar.Dispose ();
+				SyncProgressBar = null;
 			}
 
 			if (SyncStatusLabel != null) {
@@ -57,9 +49,9 @@ namespace PiggySync.MacApp
 				SyncStatusLabel = null;
 			}
 
-			if (SyncProgressBar != null) {
-				SyncProgressBar.Dispose ();
-				SyncProgressBar = null;
+			if (StatusImage != null) {
+				StatusImage.Dispose ();
+				StatusImage = null;
 			}
 		}
 	}
