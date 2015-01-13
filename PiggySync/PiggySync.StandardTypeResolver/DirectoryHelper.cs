@@ -61,6 +61,21 @@ namespace PiggySync.StandardTypeResolver
 				return Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
 			}
 		}
+
+		public Stream OpenFileRead (string path)
+		{
+			return File.OpenRead (path);
+		}
+
+		public Stream OperFileWrite (string path)
+		{
+			return File.OpenWrite (path);
+		}
+
+		public bool FileExists (string name)
+		{
+			return File.Exists (name);
+		}
 	}
 
 }

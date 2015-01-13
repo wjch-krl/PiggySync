@@ -45,6 +45,25 @@ namespace PiggySync.MonoMacGui
 				return (LogWindow)base.Window;
 			}
 		}
+
+		#region ILogView implementation
+
+		public string[] LogLines
+		{
+			set
+			{
+				LogTextField.Value = string.Join ("\n",value);
+			}
+		}
+
+		#endregion
+		LogPreseneter presenter;
+
+		public override void WindowDidLoad ()
+		{
+			base.WindowDidLoad ();
+			this.presenter = new LogPreseneter (this);
+		}
 	}
 }
 

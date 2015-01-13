@@ -33,6 +33,7 @@
   <ItemGroup>
     <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LogManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -46,5 +47,11 @@
     <Reference Include="PortiLog">
       <HintPath>..\packages\PortiLog.1.0\lib\portable-net45+wp8+win8\PortiLog.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PiggySync.Domain\PiggySync.Domain.csproj">
+      <Project>{7485A44A-0F3D-4B42-9213-643D7CCA2B79}</Project>
+      <Name>PiggySync.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

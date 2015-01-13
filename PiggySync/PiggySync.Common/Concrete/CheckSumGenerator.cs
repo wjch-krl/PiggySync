@@ -24,8 +24,7 @@ namespace PiggySync.Common.Concrete
 
         public static byte[] ComputeChecksum(string file)
         {
-            var chksum = generator.ComputeChecksum(file);
-            return chksum.Result;
+            return generator.ComputeChecksum(file);
         }
     }
 }

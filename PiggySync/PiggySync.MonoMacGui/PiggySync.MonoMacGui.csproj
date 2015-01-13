@@ -152,6 +152,10 @@
       <Project>{123D8965-D7BE-4CEB-A12D-D430CE4E6CD8}</Project>
       <Name>PiggySync.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PiggySync.LogManager\PiggySync.LogManager.csproj">
+      <Project>{4ABAA37A-84C9-4C11-9BC9-17CBB429631C}</Project>
+      <Name>PiggySync.LogManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\PiggyLogo_1024.png" />

@@ -77,15 +77,12 @@ namespace PiggySync.MacApp
 				SyncProgressBar.DoubleValue = value;
 			}
 		}
+
 		public SyncStatus SyncStatus
 		{
-			get
-			{
-				throw new NotImplementedException ();
-			}
 			set
 			{
-				throw new NotImplementedException ();
+				SyncStatusLabel.StringValue = string.Format("Sync Status:\n{0}", value.ToString ());
 			}
 		}
 	}

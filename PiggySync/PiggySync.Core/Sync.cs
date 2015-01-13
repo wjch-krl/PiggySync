@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Org.BouncyCastle.X509;
-using PCLStorage;
 using PiggySync.Common;
 using PiggySync.Domain;
 using PiggySync.Domain.Concrete;
@@ -123,9 +122,9 @@ namespace PiggySync.Core
 			UInt32 size = x.File.FileSize;
 			Int32 bytes;
 			msg = new byte[2048];
-            var folder = FileSystem.Current.GetFolderFromPathAsync(x.FilePath);
-            var file = folder.Result.CreateFileAsync(x.File.FileName, CreationCollisionOption.OpenIfExists);      
-            using (var writer = new BinaryWriter(file.Result.OpenAsync(FileAccess.ReadAndWrite).Result))
+
+			using (var writer = new BinaryWriter(TypeResolver.DirectoryHelper.OperFileWrite
+				(Path.Combine ( x.FilePath, x.File.FileName))))
             {
                 try
                 {

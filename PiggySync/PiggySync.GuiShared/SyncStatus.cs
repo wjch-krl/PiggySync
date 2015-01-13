@@ -2,6 +2,8 @@ namespace PiggySync.GuiShared
 {
     public enum SyncStatus
     {
-        Ok = 1,
+        UpToDate = 1,
+		Synchronizing = 2,
+		Error =-1,
     }
 }

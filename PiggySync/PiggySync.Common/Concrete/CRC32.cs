@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using PCLStorage;
 using PiggySync.Common.Abstract;
 
 namespace PiggySync.Common.Concrete
@@ -39,11 +38,9 @@ namespace PiggySync.Common.Concrete
             get { return sizeof (UInt32); }
         }
 
-        static async Task<int> ComputeChecksumForFile(string filePath)
+        static int ComputeChecksumForFile(string filePath)
         {
-            var file = await FileSystem.Current.GetFileFromPathAsync(filePath);
-
-            using (var stream = await file.OpenAsync(FileAccess.Read))
+			using (var stream = TypeResolver.DirectoryHelper.OpenFileRead (filePath))
             {
                 using (var reader = new BinaryReader(stream))
                 {
@@ -65,12 +62,12 @@ namespace PiggySync.Common.Concrete
         }
 
 
-        public async Task<byte[]> ComputeChecksum(string filePath)
+        public byte[] ComputeChecksum(string filePath)
         {
-            return BitConverter.GetBytes(await ComputeChecksumForFile(filePath));
+            return BitConverter.GetBytes(ComputeChecksumForFile(filePath));
         }
 
-        public async Task<byte[]> ComputeChecksum(byte[] bytes)
+        public byte[] ComputeChecksum(byte[] bytes)
         {
             return BitConverter.GetBytes(ComputeChecksumForBytes(bytes));
         }

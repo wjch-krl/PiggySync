@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Xml.Serialization;
-using PCLStorage;
 using PiggySync.Domain.Abstract;
 using PiggySync.Common;
 
@@ -71,9 +70,7 @@ namespace PiggySync.Domain.Concrete
             }
             try
             {
-                serializer = new XmlSerializer(typeof (Settings));
-                var file = FileSystem.Current.GetFileFromPathAsync(SettingsFile);
-                using (var stream = file.Result.OpenAsync(FileAccess.ReadAndWrite).Result)
+				using (var stream = TypeResolver.DirectoryHelper.OperFileWrite (SettingsFile))
                 {
                     serializer.Serialize(stream, settings);
                     return true;
@@ -117,8 +114,7 @@ namespace PiggySync.Domain.Concrete
         private Settings LoadSettingsFile()
         {
             serializer = new XmlSerializer(typeof (Settings));
-            var file = FileSystem.Current.GetFileFromPathAsync(SettingsFile);
-            using (var stream = file.Result.OpenAsync(FileAccess.Read).Result)
+			using (var stream = TypeResolver.DirectoryHelper.OpenFileRead(SettingsFile))
             {
                 var s = (Settings) serializer.Deserialize(stream);
                 settings = s;

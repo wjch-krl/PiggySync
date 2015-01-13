@@ -13,7 +13,10 @@ namespace PiggySync.Common
 		void CreateHiddenDirectory(string path);
 
         bool Exists(string name);
+		bool FileExists(string name);
         string[] GetDirectories(string path);
         string[] GetFiles(string path);
+		System.IO.Stream OpenFileRead(string path);
+		System.IO.Stream OperFileWrite (string path);
     }
 }

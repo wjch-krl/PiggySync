@@ -8,8 +8,8 @@ using Org.BouncyCastle.Crypto.Prng;
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
-using PCLStorage;
 using PiggySync.Domain.Concrete;
+using PiggySync.Common;
 
 namespace PiggySync.Domain
 {
@@ -19,13 +19,11 @@ namespace PiggySync.Domain
 
         static CertificateManager()
         {
-            var folder = FileSystem.Current.GetFolderFromPathAsync(serverCertFileName).Result;
-            if (folder.CheckExistsAsync(serverCertFileName).Result != ExistenceCheckResult.FileExists)
+			if (TypeResolver.DirectoryHelper.FileExists (serverCertFileName))
             {
                 ServerCert = GenerateCertificate("server");
                 var certData = ServerCert.GetEncoded();
-                var file = folder.CreateFileAsync(serverCertFileName, CreationCollisionOption.ReplaceExisting).Result;
-                using (var fileWriter = new BinaryWriter(file.OpenAsync(FileAccess.ReadAndWrite).Result))
+				using (var fileWriter = new BinaryWriter(TypeResolver.DirectoryHelper.OperFileWrite(serverCertFileName)))
                 {
                     fileWriter.Write(certData);
                 }
@@ -34,9 +32,7 @@ namespace PiggySync.Domain
             {
                 try
                 {
-                    var file = folder.GetFileAsync(serverCertFileName).Result;
-                    using (
-                        var filestream =file.OpenAsync(FileAccess.Read).Result)
+					using (var filestream = TypeResolver.DirectoryHelper.OpenFileRead (serverCertFileName))
                     {
                         var parser = new X509CertificateParser();
                         ServerCert = parser.ReadCertificate(filestream);

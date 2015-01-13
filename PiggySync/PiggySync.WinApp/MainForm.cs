@@ -16,14 +16,13 @@ namespace PiggySync.WinApp
 
         public double ProgresLevel
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+			get { return progressBar1.Value / 100.0; }
+			set { progressBar1.Value = (int)Math.Round (value * 100); }
         }
 
         public SyncStatus SyncStatus
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+			set { statusTextBox.Text = string.Format("Sync Status:\n{0}", value.ToString ()); }
         }
 
         private void settingsButton_Click(object sender, EventArgs e)

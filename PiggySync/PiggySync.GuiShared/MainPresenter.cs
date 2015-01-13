@@ -18,6 +18,7 @@ namespace PiggySync.GuiShared
         public MainPresenter(IMainView mainView)
         {
             this.mainView = mainView;
+			this.mainView.SyncStatus = SyncStatus.UpToDate;
         }
 
         public void Synchronize()

@@ -22,6 +22,8 @@ namespace PiggySync.Common
 		ISslStream SslStream (INetworkStream stream);
 
 		IFileInfo FileInfo (string path);
+
+		Imd5 Md5 ();
 	}
 }
 

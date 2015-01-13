@@ -1,6 +1,7 @@
 ﻿using System;
 using PiggySync.Common.Abstract;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace PiggySync.Common
 {
@@ -61,6 +62,11 @@ namespace PiggySync.Common
 		public static IFileInfo FileInfo (string path)
 		{
 			return Factory.FileInfo (path);
+		}
+
+		public static Imd5 Md5 ()
+		{
+			return Factory.Md5 ();
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using PiggySync.Common;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 
 namespace PiggySync.StandardTypeResolver
 {
@@ -74,6 +75,11 @@ namespace PiggySync.StandardTypeResolver
 			{
 				return dirHelper;
 			}
+		}
+
+		public Imd5 Md5 ()
+		{
+			return new StandardMd5( MD5.Create ());
 		}
 	}
 }

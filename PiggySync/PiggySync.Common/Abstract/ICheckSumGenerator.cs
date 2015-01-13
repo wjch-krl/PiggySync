@@ -6,7 +6,7 @@ namespace PiggySync.Common.Abstract
     public interface ICheckSumGenerator
     {
         int ChecksumSize { get; }
-        Task<byte[]> ComputeChecksum(string filePath);
-        Task<byte[]> ComputeChecksum(byte[] bytes);
+        byte[] ComputeChecksum(string filePath);
+        byte[] ComputeChecksum(byte[] bytes);
     }
 }

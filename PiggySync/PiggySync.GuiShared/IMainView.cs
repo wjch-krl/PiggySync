@@ -12,6 +12,6 @@
         ///     Gets or sets the sync status.
         /// </summary>
         /// <value>The sync status.</value>
-        SyncStatus SyncStatus { get; set; }
+        SyncStatus SyncStatus { set; }
     }
 }
