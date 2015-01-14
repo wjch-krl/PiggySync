@@ -22,7 +22,7 @@ namespace PiggySync.WinApp
 
 		public SyncStatus SyncStatus
 		{
-			set { statusTextBox.Text = string.Format ("Sync Status:\n{0}", value.ToString ()); }
+            set { statusTextBox.Lines = new[] { "Sync Status:", value.ToString() }; }
 		}
 
 		private void settingsButton_Click (object sender, EventArgs e)
@@ -34,5 +34,10 @@ namespace PiggySync.WinApp
 		{
 			new HostsViewForm ().ShowDialog ();
 		}
+
+        private void s_Click(object sender, EventArgs e)
+        {
+            new LogForm().ShowDialog();
+        }
 	}
 }

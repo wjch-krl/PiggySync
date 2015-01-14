@@ -77,6 +77,7 @@
             this.s.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.s.TabIndex = 0;
             this.s.TabStop = false;
+            this.s.Click += new System.EventHandler(this.s_Click);
             // 
             // progressBar1
             // 
@@ -84,7 +85,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(246, 12);
             this.progressBar1.TabIndex = 6;
-            this.progressBar1.Value = 60;
             // 
             // MainForm
             // 
