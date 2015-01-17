@@ -53,6 +53,12 @@
     <Compile Include="HostsViewForm.Designer.cs">
       <DependentUpon>HostsViewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     </Compile>
     <EmbeddedResource Include="HostsViewForm.resx">
       <DependentUpon>HostsViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -130,6 +139,10 @@
     <ProjectReference Include="..\PiggySync.FileMerger\PiggySync.FileMerger.csproj">
       <Project>{3296F3DE-89D1-4B00-8031-E17A62AFD039}</Project>
       <Name>PiggySync.FileMerger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PiggySync.LogManager\PiggySync.LogManager.csproj">
+      <Project>{4abaa37a-84c9-4c11-9bc9-17cbb429631c}</Project>
+      <Name>PiggySync.LogManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\PiggySync.Model\PiggySync.Model.csproj">
       <Project>{123D8965-D7BE-4CEB-A12D-D430CE4E6CD8}</Project>
