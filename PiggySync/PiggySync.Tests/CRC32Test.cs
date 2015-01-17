@@ -36,7 +36,7 @@ namespace DuckSync.Tests
             UInt32 expected = 310811753;
             var expectedSum = BitConverter.GetBytes(expected);
             var crc = new CRC32();
-            var actual = crc.ComputeChecksum(bytes).Result;
+            var actual = crc.ComputeChecksum(bytes);
             CollectionAssert.AreEqual(expectedSum, actual);
         }
     }

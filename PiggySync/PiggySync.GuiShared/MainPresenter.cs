@@ -19,9 +19,8 @@ namespace PiggySync.GuiShared
         public MainPresenter(IMainView mainView)
         {
             this.mainView = mainView;
-			this.mainView.SyncStatus = SyncStatus.UpToDate;
+			this.Status = SyncStatus.UpToDate;
 			main.Observers.Add (this);
-
         }
 			
 		public SyncStatus Status
@@ -29,8 +28,10 @@ namespace PiggySync.GuiShared
 			set
 			{
 				mainView.SyncStatus = value;
+				mainView.ProgresEnabled = value == SyncStatus.Synchronizing;
 			}
 		}
+
 		public double Progress
 		{
 			set

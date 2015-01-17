@@ -8,6 +8,7 @@ using PiggySync.MonoMacGui;
 using PiggySync.Domain;
 using System.IO;
 using System.Net;
+using PiggySync.Model;
 
 namespace PiggySync.MacApp
 {
@@ -83,6 +84,14 @@ namespace PiggySync.MacApp
 			set
 			{
 				SyncStatusLabel.StringValue = string.Format("Sync Status:\n{0}", value.ToString ());
+			}
+		}
+
+		public bool ProgresEnabled
+		{
+			set
+			{
+				SyncProgressBar.Hidden = !value;
 			}
 		}
 	}

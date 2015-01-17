@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using PiggySync.GuiShared;
+using PiggySync.Model;
 
 namespace PiggySync.WinApp
 {
@@ -39,5 +40,13 @@ namespace PiggySync.WinApp
         {
             new LogForm().ShowDialog();
         }
+
+		public bool ProgresEnabled
+		{
+			set
+			{
+				progressBar1.Visible = value;
+			}
+		}
 	}
 }

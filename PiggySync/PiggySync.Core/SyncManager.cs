@@ -32,6 +32,7 @@ namespace PiggySync.Core
 		private int didReciveSyncRequestReties;
 		private ConcurrentBag<PiggyRemoteHost> hosts = new ConcurrentBag<PiggyRemoteHost> ();
 		private IHostWather observer;
+
 		public ICollection<IStatusWather> Observers  { get; set; }
 
 		public SyncManager ()
@@ -50,7 +51,7 @@ namespace PiggySync.Core
 			get { return serverQueue.Count + clientQueue.Count > 0; }
 		}
 
-		private void CleanHostsList ()
+		private void Cleaner ()
 		{
 			do
 			{
@@ -77,7 +78,7 @@ namespace PiggySync.Core
 			}
 		}
 
-		public void ThreadListnerRun (object observer)
+		public void Listner (object observer)
 		{
 			IIPEndPoint source = TypeResolver.IPEndPoint (TypeResolver.IpHelper.Any, 1337);
 
@@ -159,7 +160,7 @@ namespace PiggySync.Core
 			} while (true);
 		}
 
-		public void ThreadBroadcasterRun ()
+		public void Broadcaster ()
 		{
 			IUdpClient broadcastClient = TypeResolver.UdpClient ();
 			broadcastClient.EnableBroadcast = true;
@@ -309,7 +310,7 @@ namespace PiggySync.Core
 			throw new InvalidHostException ("Host requested sync but is not in the hosts list.");
 		}
 
-		public void HandleSyncAsServer ()
+		public void SyncServer ()
 		{
 			PiggyRemoteHostSync x;
 
@@ -332,7 +333,7 @@ namespace PiggySync.Core
 
 						listner.Stop ();
 
-						Syncronizer.HandleSyncAsServerNoSsl (newConnection);
+						Syncronizer.HandleSyncAsServerNoSsl (newConnection, new Notifier (Observers));
 					}
 
 
@@ -342,7 +343,7 @@ namespace PiggySync.Core
 		}
 
 
-		public void HandleSyncAsClient ()
+		public void SyncClient ()
 		{
 			do
 			{
@@ -399,7 +400,7 @@ namespace PiggySync.Core
 							{
 								newConnection.Connect (host);
 								var lastSyncDate = DeviaceHistoryManager.LastSyncDate (x);
-								Syncronizer.HandleSyncAsClientNoSsl (newConnection, lastSyncDate);
+								Syncronizer.HandleSyncAsClientNoSsl (newConnection, lastSyncDate, new Notifier (Observers));
 							}
 						}
 						catch (Exception e)
@@ -413,19 +414,37 @@ namespace PiggySync.Core
 			} while (true);
 		}
 
+		internal class Notifier
+		{
+			private IEnumerable<IStatusWather> observers;
+
+			internal Notifier (IEnumerable<IStatusWather> observers)
+			{
+				this.observers = observers;
+			}
+
+			internal void NotyfyObservers (SyncStatus stat, double progress = 0.0)
+			{
+				foreach (var element in this.observers)
+				{
+					element.Status = stat;
+					element.Progress = progress;
+				}
+			}
+		}
 
 		public void Run ()
 		{
 //            broadcaster =
-			Task.Factory.StartNew (ThreadBroadcasterRun);
+			Task.Factory.StartNew (Broadcaster);
 //            listner =
-			Task.Factory.StartNew (() => ThreadListnerRun (this));
+			Task.Factory.StartNew (() => Listner (this));
 //            syncClient =
-			Task.Factory.StartNew (HandleSyncAsServer);
+			Task.Factory.StartNew (SyncServer);
 //            syncServer =
-			Task.Factory.StartNew (HandleSyncAsClient);
+			Task.Factory.StartNew (SyncClient);
 //            hostListCleaner =
-			Task.Factory.StartNew (CleanHostsList);
+			Task.Factory.StartNew (Cleaner);
 		}
 	}
 }
