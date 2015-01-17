@@ -3,7 +3,7 @@
 
 namespace PiggySync.GuiShared
 {
-    public class MainPresenter
+    public class MainPresenter : IStatusWather
     {
         private static readonly SyncManager main;
         private readonly IMainView mainView;
@@ -13,6 +13,7 @@ namespace PiggySync.GuiShared
             main = new SyncManager();
            // FileWatcher.Initialize(main);
             main.Run();
+			main.Observers.Add (this);
         }
 
         public MainPresenter(IMainView mainView)
@@ -20,13 +21,6 @@ namespace PiggySync.GuiShared
             this.mainView = mainView;
 			this.mainView.SyncStatus = SyncStatus.UpToDate;
         }
-
-        public void Synchronize()
-        {
-            if (!main.IsSynchronizing)
-            {
-                main.ForceSync();
-            }
-        }
+			
     }
 }

@@ -1,53 +1,20 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="PiggySync.MonoMacGui/PiggySync.MonoMacGui.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.Model/DatabaseManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.WinApp/MainForm.cs">
     <Files>
-      <File FileName="PiggySync.StandardTypeResolver/DirectoryHelper.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.StandardTypeResolver/IpHelper.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.StandardTypeResolver/StandardTcpListener.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.StandardTypeResolver/StandardTcpClient.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.StandardTypeResolver/StandardUdpClient.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.StandardTypeResolver/StandardIpEndPoint.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Domain/Concrete/XmlSettingsRepository.cs" Line="3" Column="3" />
-      <File FileName="PiggySync.MonoMacGui/LogWindow.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.MonoMacGui/LogWindowController.cs" Line="88" Column="88" />
-      <File FileName="PiggySync.MonoMacGui/MainWindow.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.MonoMacGui/MainWindowController.cs" Line="50" Column="50" />
-      <File FileName="PiggySync.MonoMacGui/Main.cs" Line="7" Column="7" />
-      <File FileName="PiggySync.GuiShared/HostsPresenter.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.Model/DatabaseManager.cs" Line="39" Column="39" />
+      <File FileName="PiggySync.Core/SyncManager.cs" Line="16" Column="16" />
+      <File FileName="PiggySync.GuiShared/MainPresenter.cs" Line="25" Column="25" />
+      <File FileName="PiggySync.MonoMacGui/MainWindowController.cs" Line="5" Column="5" />
+      <File FileName="PiggySync.GuiShared/IMainView.cs" Line="32" Column="32" />
+      <File FileName="PiggySync.GuiShared/SyncStatus.cs" Line="13" Column="13" />
+      <File FileName="PiggySync.WinApp/MainForm.cs" Line="4" Column="4" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Common" expanded="True">
-            <Node name="PiggySync.Common" expanded="True" />
-            <Node name="PiggySync.Domain" expanded="True">
-              <Node name="Concrete" expanded="True" />
-            </Node>
-            <Node name="PiggySync.GuiShared" expanded="True" />
-            <Node name="PiggySync.Model" expanded="True">
-              <Node name="Packages" expanded="True" selected="True" />
-            </Node>
-            <Node name="PiggySync.StandardTypeResolver" expanded="True" />
-          </Node>
-          <Node name="Platforms" expanded="True">
-            <Node name="Desktop" expanded="True">
-              <Node name="PiggySync.MonoMacGui" expanded="True">
-                <Node name="LogWindow.cs" expanded="True" />
-                <Node name="MainWindow.cs" expanded="True" />
-              </Node>
-              <Node name="PiggySync.WinApp" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/wojciechkrol/OneDrive/PJN/4/SimpleCrawler/SimpleCrawler/Program.cs" line="29" column="1" />
       <Breakpoint file="/Users/wojciechkrol/Documents/Praca inż/PiggySync/PiggySync.Model/FileInf.cs" line="36" column="1" />
+      <Breakpoint file="/Users/wojciechkrol/Documents/Praca inz/PiggySync/PiggySync.Core/Sync.cs" line="126" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
