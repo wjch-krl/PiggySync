@@ -81,6 +81,8 @@ namespace PiggySync.StandardTypeResolver
 		{
 			return new StandardMd5( MD5.Create ());
 		}
-	}
+
+        public IFileWather FileWather { get; set; }
+    }
 }
 

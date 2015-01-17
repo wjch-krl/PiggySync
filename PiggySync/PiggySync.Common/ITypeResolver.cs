@@ -24,6 +24,8 @@ namespace PiggySync.Common
 		IFileInfo FileInfo (string path);
 
 		Imd5 Md5 ();
+
+        IFileWather FileWather { get; set; }
 	}
 }
 

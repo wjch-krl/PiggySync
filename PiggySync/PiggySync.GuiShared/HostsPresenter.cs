@@ -12,12 +12,21 @@ namespace PiggySync.GuiShared
         public HostsPresenter(IHostView view)
         {
             this.view = view;
+            SyncManager.HostObserver = this;
             view.Hosts = DeviaceHistoryManager.AllHosts;
         }
 
         public void RefreshHostsList(IEnumerable<PiggyRemoteHost> hosts)
         {
             view.Hosts = hosts.Concat(DeviaceHistoryManager.AllHosts);
+        }
+
+        public void UnSucribe()
+        {
+            if (SyncManager.HostObserver == this)
+            {
+                SyncManager.HostObserver = null;
+            }
         }
     }
 }

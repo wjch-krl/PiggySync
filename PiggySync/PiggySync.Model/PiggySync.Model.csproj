@@ -61,8 +61,6 @@
     <Compile Include="PiggyRemoteHostHistoryEntry.cs" />
     <Compile Include="PiggyRemoteHostSync.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IStatusWather.cs" />
-    <Compile Include="SyncStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PiggySync.Common\PiggySync.Common.csproj">

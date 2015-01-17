@@ -53,7 +53,6 @@
             this.autoSyncCheck.TabIndex = 1;
             this.autoSyncCheck.Text = "Enable AutoSync";
             this.autoSyncCheck.UseVisualStyleBackColor = true;
-            this.autoSyncCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // useTcp
             // 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using PiggySync.Common;
 using PiggySync.Core;
 using PiggySync.Domain.Abstract;
 using PiggySync.Domain.Concrete;
@@ -10,16 +11,16 @@ namespace PiggySync.DesktopFileWather
 {
     public class FileWatcher : IFileWather
     {
-        private static SyncManager syncM;
-        private static XmlSettingsRepository repo;
-        private static FileSystemWatcher watcher;
+        private XmlSettingsRepository repo;
+        private ISyncManager syncM;
+        private FileSystemWatcher watcher;
 
-        private static void watcher_Created(object sender, FileSystemEventArgs e)
+        private void watcher_Created(object sender, FileSystemEventArgs e)
         {
-            fileCreated(e.FullPath);
+            FileCreated(e.FullPath);
         }
 
-        private static void fileCreated(string path)
+        private void FileCreated(string path)
         {
             Debug.WriteLine(path + " has created. Sending notyfy..."); //TODO save modyfied file packet
             FileManager.RefreshPath(path);
@@ -36,7 +37,7 @@ namespace PiggySync.DesktopFileWather
             }
         }
 
-        private static void fileChanged(string path)
+        private void FileChanged(string path)
         {
             Debug.WriteLine(path + " has changed. Sending notyfy...");
             FileManager.RefreshPath(path);
@@ -50,17 +51,17 @@ namespace PiggySync.DesktopFileWather
             }
         }
 
-        private static void watcher_Changed(object sender, FileSystemEventArgs e)
+        private void watcher_Changed(object sender, FileSystemEventArgs e)
         {
-            fileChanged(e.FullPath);
+            FileChanged(e.FullPath);
         }
 
-        private static void watcher_Deleted(object sender, FileSystemEventArgs e)
+        private void watcher_Deleted(object sender, FileSystemEventArgs e)
         {
             FileDeleted(e.FullPath);
         }
 
-        public static void Initialize(SyncManager main)
+        public void Initialize(ISyncManager main)
         {
             syncM = main;
             repo = XmlSettingsRepository.Instance;
@@ -69,7 +70,6 @@ namespace PiggySync.DesktopFileWather
             {
                 watcher = new FileSystemWatcher(repo.Settings.SyncRootPath);
                 watcher.IncludeSubdirectories = true;
-
                 watcher.Changed += watcher_Changed;
                 watcher.Created += watcher_Created;
                 watcher.Deleted += watcher_Deleted;
@@ -78,14 +78,14 @@ namespace PiggySync.DesktopFileWather
             }
         }
 
-        public static void RefreshMonitoredDirectory(string dir)
+        public void RefreshMonitoredDirectory(string dir)
         {
             watcher.EnableRaisingEvents = false;
             watcher.Path = dir;
             watcher.EnableRaisingEvents = true;
         }
 
-        private static void FileDeleted(string fullPath)
+        private void FileDeleted(string fullPath)
         {
             var fileInf = new FileInf(fullPath)
             {
@@ -103,12 +103,12 @@ namespace PiggySync.DesktopFileWather
             }
         }
 
-        private static void wather_Renamed(object sender, RenamedEventArgs e)
+        private void wather_Renamed(object sender, RenamedEventArgs e)
         {
             FileRenamed(e.OldFullPath, e.FullPath);
         }
 
-        private static void FileRenamed(string oldFullPath, string fullPath)
+        private void FileRenamed(string oldFullPath, string fullPath)
         {
             throw new NotImplementedException();
         }

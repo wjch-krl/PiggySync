@@ -68,5 +68,7 @@ namespace PiggySync.Common
 		{
 			return Factory.Md5 ();
 		}
+
+        public static IFileWather Wather { get { return Factory.FileWather; } }
 	}
 }

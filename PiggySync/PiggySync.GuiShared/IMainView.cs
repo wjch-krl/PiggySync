@@ -1,4 +1,5 @@
-﻿using PiggySync.Model;
+﻿using PiggySync.Common;
+using PiggySync.Model;
 
 namespace PiggySync.GuiShared
 {

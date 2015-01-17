@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using PiggySync.LogManager;
 
 namespace PiggySync.GuiShared
 {
@@ -11,7 +10,7 @@ namespace PiggySync.GuiShared
 		public LogPreseneter (ILogView view)
 		{
 			this.view = view;
-			view.LogLines = File.ReadAllLines (LogManager.LogManager.LoggPath);
+			//view.LogLines = File.ReadAllLines (LogManager.LogManager.LoggPath);
 		}
 	}
 }
