@@ -141,7 +141,7 @@
       <Name>PiggySync.FileMerger</Name>
     </ProjectReference>
     <ProjectReference Include="..\PiggySync.LogManager\PiggySync.LogManager.csproj">
-      <Project>{4abaa37a-84c9-4c11-9bc9-17cbb429631c}</Project>
+      <Project>{4ABAA37A-84C9-4C11-9BC9-17CBB429631C}</Project>
       <Name>PiggySync.LogManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\PiggySync.Model\PiggySync.Model.csproj">

@@ -1,4 +1,4 @@
-namespace PiggySync.GuiShared
+namespace PiggySync.Model
 {
     public enum SyncStatus
     {

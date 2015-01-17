@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using PiggySync.Common;
 using PiggySync.Model;
 using PiggySync.Model.Concrete;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace PiggySync.Core
 {
@@ -30,6 +32,7 @@ namespace PiggySync.Core
 		private int didReciveSyncRequestReties;
 		private ConcurrentBag<PiggyRemoteHost> hosts = new ConcurrentBag<PiggyRemoteHost> ();
 		private IHostWather observer;
+		public ICollection<IStatusWather> Observers  { get; set; }
 
 		public SyncManager ()
 		{
@@ -39,6 +42,7 @@ namespace PiggySync.Core
 			UDPWriter = TypeResolver.UdpClient ();
 			ACKDickt = new ConcurrentDictionary<UInt32, bool> ();
 			UDPReader.EnableBroadcast = true;
+			Observers = new List<IStatusWather> ();
 		}
 
 		public bool IsSynchronizing
