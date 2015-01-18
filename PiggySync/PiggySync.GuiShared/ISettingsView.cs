@@ -35,8 +35,16 @@ namespace PiggySync.GuiShared
         /// <value>The text files.</value>
         IEnumerable<TextFile> TextFiles { get; set; }
 
+		/// <summary>
+		/// Gets or sets the banned files.
+		/// </summary>
+		/// <value>The banned files.</value>
         IEnumerable<string> BannedFiles { get; set; }
 
+		/// <summary>
+		/// Gets or sets the keep deleted info.
+		/// </summary>
+		/// <value>The keep deleted info.</value>
         int KeepDeletedInfo { get; set; }
     }
 }

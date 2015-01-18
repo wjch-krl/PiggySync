@@ -6,6 +6,7 @@ using MonoMac.Foundation;
 using MonoMac.AppKit;
 using PiggySync.GuiShared;
 using System.IO;
+using PiggySync.Domain;
 
 namespace PiggySync.MonoMacGui
 {
@@ -71,18 +72,6 @@ namespace PiggySync.MonoMacGui
 			}
 		}
 
-		public bool AutoSync
-		{
-			get
-			{
-				return AutoSyncCheck.State == NSCellStateValue.On;
-			}
-			set
-			{
-				AutoSyncCheck.State = value ? NSCellStateValue.On : NSCellStateValue.Off;
-			}
-		}
-
 		public bool UseTcp
 		{
 			get
@@ -92,18 +81,6 @@ namespace PiggySync.MonoMacGui
 			set
 			{
 				UseTcpChek.State = value ? NSCellStateValue.On : NSCellStateValue.Off;
-			}
-		}
-
-		public bool UseEncryption
-		{
-			get
-			{
-				return EnableEncryptionCheck.State == NSCellStateValue.On;
-			}
-			set
-			{
-				EnableEncryptionCheck.State = value ? NSCellStateValue.On : NSCellStateValue.Off;
 			}
 		}
 
@@ -123,12 +100,49 @@ namespace PiggySync.MonoMacGui
 		{
 			get
 			{
-				return (TextFilesTableView.DataSource as TextFilesDataSource).Files;
+				return TextFilesTextBox.Value.Split
+					(new char[0],StringSplitOptions.RemoveEmptyEntries).
+						Select (x=>new TextFile{ Extension = x, });
 			}
 			set
 			{
-				TextFilesTableView.DataSource = new TextFilesDataSource (value);
-				TextFilesTableView.ReloadData ();
+				TextFilesTextBox.Value = string.Join ("\n", value.Select (x => x.Extension));
+			}
+		}
+
+		public bool UseEncryption
+		{
+			get
+			{
+				return EnableEncryptionCheck.State == NSCellStateValue.On;
+			}
+			set
+			{
+				EnableEncryptionCheck.State = value ? NSCellStateValue.On : NSCellStateValue.Off;
+			}
+		}
+
+		public IEnumerable<string> BannedFiles
+		{
+			get
+			{
+				return ExcludedFilesBox.Value.Split (new char[0], StringSplitOptions.RemoveEmptyEntries);
+			}
+			set
+			{
+				ExcludedFilesBox.Value = string.Join ("\n", value);
+			}
+		}
+
+		public int KeepDeletedInfo
+		{
+			get
+			{
+				return KeepDeletedNumberBox.IntValue;
+			}
+			set
+			{
+				KeepDeletedNumberBox.IntValue = value;
 			}
 		}
 	}

@@ -44,20 +44,16 @@
   <ItemGroup>
     <Compile Include="ICloneable.cs" />
     <Compile Include="IDirectoryHelper.cs" />
-    <Compile Include="IFileWather.cs" />
     <Compile Include="IIPAddress.cs" />
     <Compile Include="IIPEndPoint.cs" />
     <Compile Include="IIPHelper.cs" />
     <Compile Include="INetworkStream.cs" />
     <Compile Include="ISslStream.cs" />
-    <Compile Include="IStatusWather.cs" />
-    <Compile Include="ISyncManager.cs" />
     <Compile Include="ITcpClient.cs" />
     <Compile Include="ITcpListener.cs" />
     <Compile Include="IThreadHelper.cs" />
     <Compile Include="IUdpClient.cs" />
     <Compile Include="SslProtocols.cs" />
-    <Compile Include="SyncStatus.cs" />
     <Compile Include="TypeResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abstract\ICheckSumGenerator.cs" />

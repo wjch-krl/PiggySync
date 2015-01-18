@@ -104,7 +104,7 @@ namespace PiggySync.Domain.Concrete
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
+				Debug.WriteLine("LoadSettings: {0}",e);
                 RestoreDefaults();
                 return settings;
             }

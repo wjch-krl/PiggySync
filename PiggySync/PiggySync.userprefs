@@ -1,20 +1,52 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="PiggySync.MonoMacGui/PiggySync.MonoMacGui.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PiggySync.GuiShared/MainPresenter.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="PiggySync.Core/SyncManager.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.GuiShared/MainPresenter.cs" Line="4" Column="4" />
-      <File FileName="PiggySync.MonoMacGui/MainWindowController.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.GuiShared/IMainView.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.GuiShared/SyncStatus.cs" Line="1" Column="1" />
-      <File FileName="PiggySync.WinApp/MainForm.cs" Line="43" Column="43" />
+      <File FileName="PiggySync.MonoMacGui/MainWindowController.cs" Line="6" Column="6" />
+      <File FileName="PiggySync.MonoMacGui/SettingsWindowController.cs" Line="53" Column="53" />
+      <File FileName="PiggySync.MonoMacGui/DiffWindowController.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.GuiShared/SettingsPresenter.cs" Line="42" Column="42" />
+      <File FileName="PiggySync.Domain/Concrete/XmlSettingsRepository.cs" Line="1" Column="1" />
+      <File FileName="PiggySync.Core/SyncManager.cs" Line="59" Column="59" />
+      <File FileName="PiggySync.AndroidApp/MainActivity.cs" Line="14" Column="14" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Common" expanded="True">
+            <Node name="PiggySync.Core" expanded="True" />
+            <Node name="PiggySync.Domain" expanded="True">
+              <Node name="Concrete" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Platforms" expanded="True">
+            <Node name="Desktop" expanded="True">
+              <Node name="PiggySync.MonoMacGui" expanded="True">
+                <Node name="SettingsWindow.cs" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Mobile" expanded="True">
+              <Node name="PiggySync.AndroidApp" expanded="True" selected="True">
+                <Node name="References" expanded="True" />
+                <Node name="ComponentReferenceFolder" expanded="True" />
+                <Node name="Resources" expanded="True">
+                  <Node name="layout" expanded="True" />
+                  <Node name="values" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="PiggySync.AndroidFileWatcher" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/wojciechkrol/OneDrive/PJN/4/SimpleCrawler/SimpleCrawler/Program.cs" line="29" column="1" />
       <Breakpoint file="/Users/wojciechkrol/Documents/Praca inż/PiggySync/PiggySync.Model/FileInf.cs" line="36" column="1" />
-      <Breakpoint file="/Users/wojciechkrol/Documents/Praca inz/PiggySync/PiggySync.Core/Sync.cs" line="126" column="1" />
+      <Breakpoint file="/Users/wojciechkrol/Documents/Praca inz/PiggySync/PiggySync.Core/Sync.cs" line="135" column="1" />
+      <Breakpoint file="/Users/wojciechkrol/Documents/Praca inz/PiggySync/PiggySync.GuiShared/SettingsPresenter.cs" line="33" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -13,9 +13,6 @@ namespace PiggySync.MonoMacGui
 	partial class SettingsWindowController
 	{
 		[Outlet]
-		MonoMac.AppKit.NSButton AutoSyncCheck { get; set; }
-
-		[Outlet]
 		MonoMac.AppKit.NSButton CancelButton { get; set; }
 
 		[Outlet]
@@ -25,13 +22,13 @@ namespace PiggySync.MonoMacGui
 		MonoMac.AppKit.NSTextField ComputerNameTextBox { get; set; }
 
 		[Outlet]
-		MonoMac.AppKit.NSButton DeleteFileButton { get; set; }
-
-		[Outlet]
 		MonoMac.AppKit.NSButton EnableEncryptionCheck { get; set; }
 
 		[Outlet]
-		MonoMac.AppKit.NSButton NewFileButton { get; set; }
+		MonoMac.AppKit.NSTextView ExcludedFilesBox { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSTextField KeepDeletedNumberBox { get; set; }
 
 		[Outlet]
 		MonoMac.AppKit.NSButton SaveButton { get; set; }
@@ -40,18 +37,13 @@ namespace PiggySync.MonoMacGui
 		MonoMac.AppKit.NSTextField SyncRootPathTextField { get; set; }
 
 		[Outlet]
-		MonoMac.AppKit.NSTableView TextFilesTableView { get; set; }
+		MonoMac.AppKit.NSTextView TextFilesTextBox { get; set; }
 
 		[Outlet]
 		MonoMac.AppKit.NSButton UseTcpChek { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (AutoSyncCheck != null) {
-				AutoSyncCheck.Dispose ();
-				AutoSyncCheck = null;
-			}
-
 			if (CancelButton != null) {
 				CancelButton.Dispose ();
 				CancelButton = null;
@@ -67,19 +59,19 @@ namespace PiggySync.MonoMacGui
 				ComputerNameTextBox = null;
 			}
 
-			if (DeleteFileButton != null) {
-				DeleteFileButton.Dispose ();
-				DeleteFileButton = null;
-			}
-
 			if (EnableEncryptionCheck != null) {
 				EnableEncryptionCheck.Dispose ();
 				EnableEncryptionCheck = null;
 			}
 
-			if (NewFileButton != null) {
-				NewFileButton.Dispose ();
-				NewFileButton = null;
+			if (ExcludedFilesBox != null) {
+				ExcludedFilesBox.Dispose ();
+				ExcludedFilesBox = null;
+			}
+
+			if (KeepDeletedNumberBox != null) {
+				KeepDeletedNumberBox.Dispose ();
+				KeepDeletedNumberBox = null;
 			}
 
 			if (SaveButton != null) {
@@ -87,14 +79,14 @@ namespace PiggySync.MonoMacGui
 				SaveButton = null;
 			}
 
-			if (TextFilesTableView != null) {
-				TextFilesTableView.Dispose ();
-				TextFilesTableView = null;
-			}
-
 			if (SyncRootPathTextField != null) {
 				SyncRootPathTextField.Dispose ();
 				SyncRootPathTextField = null;
+			}
+
+			if (TextFilesTextBox != null) {
+				TextFilesTextBox.Dispose ();
+				TextFilesTextBox = null;
 			}
 
 			if (UseTcpChek != null) {
