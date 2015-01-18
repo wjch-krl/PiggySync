@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Mono.Android.Support.v13" />
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.21.0.3.0\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
@@ -58,6 +57,10 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MainFragment.cs" />
+    <Compile Include="SettingsFragment.cs" />
+    <Compile Include="DevicesFragment.cs" />
+    <Compile Include="LogFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -69,6 +72,9 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\layout\mainlayout.axml" />
+    <AndroidResource Include="Resources\layout\settingslayout.axml" />
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\layout\devicelayout.axml" />
   </ItemGroup>
   <Import Project="..\PiggySync.StandardTypeResolver\PiggySync.StandardTypeResolver.projitems" Label="Shared" Condition="Exists('..\PiggySync.StandardTypeResolver\PiggySync.StandardTypeResolver.projitems')" />
   <Import Project="..\PiggySync.GuiShared\PiggySync.GuiShared.projitems" Label="Shared" Condition="Exists('..\PiggySync.GuiShared\PiggySync.GuiShared.projitems')" />

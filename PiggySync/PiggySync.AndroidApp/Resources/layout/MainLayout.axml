@@ -29,7 +29,7 @@
                     android:id="@+id/linearLayout5">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="332.2dp"
+                        android:layout_height="263.3dp"
                         android:id="@+id/imageView1"
                         android:layout_marginBottom="21.8dp"
                         android:src="@drawable/Icon"
@@ -43,13 +43,13 @@
                         android:layout_marginLeft="18.5dp" />
                     <ProgressBar
                         style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="327.7dp"
+                        android:layout_width="381.7dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/progressBar1"
                         android:max="100"
                         android:progress="60"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="72.9dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
                         android:layout_marginTop="27.7dp" />
                 </LinearLayout>
                 <LinearLayout
