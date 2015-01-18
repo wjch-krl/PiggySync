@@ -110,14 +110,12 @@ namespace PiggySync.Core
                     }
                     msg = new NoRequestPacket().GetPacket();
                     stream.Write(msg, 0, msg.Length);
+                    notyfier.NotyfyObservers(SyncStatus.UpToDate);
                 }
-            }
-            catch (ArgumentNullException e)
-            {
-                Debug.WriteLine("ArgumentNullException: {0}", e);
             }
             catch (Exception e)
             {
+                notyfier.NotyfyObservers(SyncStatus.Error);
                 Debug.WriteLine("HandleSyncAsClientNoSsl: {0}", e);
             }
         }
@@ -280,6 +278,7 @@ namespace PiggySync.Core
                             }
                             else
                             {
+                                notyfier.NotyfyObservers(SyncStatus.UpToDate);
                                 return;
                             }
                         }
@@ -288,7 +287,8 @@ namespace PiggySync.Core
             }
             catch (Exception e)
             {
-                Debug.WriteLine("HandleSyncAsServerNoSSL:", e);
+                notyfier.NotyfyObservers(SyncStatus.Error);
+                Debug.WriteLine("HandleSyncAsServerNoSSL: {0}", e);
             }
         }
 

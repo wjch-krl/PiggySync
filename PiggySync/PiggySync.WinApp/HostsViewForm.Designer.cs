@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "adsdas",
-            "192.168.1.1",
-            "12-10-2013"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "acascasdas",
-            "192.168.1.2",
-            "14-10-2013"}, -1);
             this.hostsListView = new System.Windows.Forms.ListView();
             this.hostNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.hostIpHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,9 +41,6 @@
             this.hostIpHeader,
             this.lastSyncHeader});
             this.hostsListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hostsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
             this.hostsListView.Location = new System.Drawing.Point(0, 0);
             this.hostsListView.Name = "hostsListView";
             this.hostsListView.Size = new System.Drawing.Size(390, 295);

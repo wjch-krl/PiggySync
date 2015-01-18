@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormExtensions.cs" />
     <Compile Include="HostsViewForm.cs">
       <SubType>Form</SubType>
     </Compile>

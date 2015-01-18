@@ -20,7 +20,6 @@ namespace PiggySync.WinApp
         {
             set
             {
-                hostsListView.Clear();
                 hostsListView.Items.AddRange(value.
                     Select(x => new ListViewItem(new[]
                     {
@@ -29,6 +28,7 @@ namespace PiggySync.WinApp
                             ? ((PiggyRemoteHostHistoryEntry) x).LastSync.ToShortDateString()
                             : string.Empty
                     })).ToArray());
+                hostsListView.Refresh();
             }
         }
 

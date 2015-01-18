@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using PiggySync.Common;
 using PiggySync.GuiShared;
+using PiggySync.WinApp.Properties;
 
 namespace PiggySync.WinApp
 {
@@ -18,17 +19,17 @@ namespace PiggySync.WinApp
         public double ProgresLevel
         {
             get { return progressBar1.Value/100.0; }
-            set { GuiInvokeMethod(() => { progressBar1.Value = (int)Math.Round(value * 100); }); }
+            set { this.GuiInvokeMethod(() => { progressBar1.Value = (int)Math.Round(value * 100); }); }
         }
 
         public SyncStatus SyncStatus
         {
-            set { GuiInvokeMethod(() => { statusTextBox.Lines = new[] { "Sync Status:", value.ToString() }; }); }
+            set { this.GuiInvokeMethod(() => { statusTextBox.Lines = new[] { Resources.SyncStatus, value.ToString() }; }); }
         }
 
         public bool ProgresEnabled
         {
-            set { GuiInvokeMethod(() => { progressBar1.Visible = value; }); }
+            set { this.GuiInvokeMethod(() => { progressBar1.Visible = value; }); }
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
@@ -44,18 +45,6 @@ namespace PiggySync.WinApp
         private void s_Click(object sender, EventArgs e)
         {
             new LogForm().ShowDialog();
-        }
-
-        public void GuiInvokeMethod(Action @delegate)
-        {
-            // Check if we need to invoke as GUI thread
-            if (this.InvokeRequired)
-            {
-                this.Invoke(@delegate);
-                return;
-            }
-            // Execute
-            @delegate.Invoke();
         }
     }
 }

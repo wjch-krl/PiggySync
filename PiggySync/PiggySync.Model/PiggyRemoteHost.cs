@@ -78,7 +78,7 @@ namespace PiggySync.Model
 
         public string GetShortName()
         {
-            return Name.Substring(0, Name.Length - XmlSettingsRepository.RandomNamePartLenght);
+            return Name ==null? string.Empty : Name.Substring(0, Name.Length - XmlSettingsRepository.RandomNamePartLenght);
         }
     }
 }
