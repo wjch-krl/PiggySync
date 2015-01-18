@@ -89,7 +89,6 @@ namespace PiggySync.Domain.Concrete
             {
                 ComputerName = Common.TypeResolver.EnviromentHelper.MachineName + Random8Numbers(),
                 SyncRootPath = Common.TypeResolver.EnviromentHelper.MyDocuments,
-                AutoSync = true,
 				TextFiles = new List<TextFile> {new TextFile {Extension = ".txt", Pattern =  null },},
                 BannedFiles = new HashSet<string> {".DS_Store", "thumbs.db",},
                 UseEncryption = false,

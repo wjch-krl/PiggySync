@@ -33,15 +33,8 @@ namespace PiggySync.Core
 
         public static DateTime LastSyncDate(PiggyRemoteHost host)
         {
-            try
-            {
-                var historyHost = AllHosts.Find(x => x == host);
-                return historyHost.LastSync;
-            }
-            catch (Exception)
-            {
-                return default(DateTime);
-            }
+            var historyHost = AllHosts.Find(x => x == host);
+            return historyHost == null ? default(DateTime) : historyHost.LastSync;
         }
     }
 }

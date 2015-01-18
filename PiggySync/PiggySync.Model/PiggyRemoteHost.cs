@@ -56,7 +56,7 @@ namespace PiggySync.Model
 
         public static bool operator ==(PiggyRemoteHost o1, PiggyRemoteHost o2)
         {
-            return o1.Equals(o2);
+            return (object)o1 == null || (object)o2 == null || o1.Equals(o2);
         }
 
         public static bool operator !=(PiggyRemoteHost o1, PiggyRemoteHost o2)

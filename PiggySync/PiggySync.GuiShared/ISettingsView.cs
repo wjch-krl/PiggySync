@@ -12,12 +12,6 @@ namespace PiggySync.GuiShared
         string SyncRootPath { get; set; }
 
         /// <summary>
-        ///     Gets or sets a value indicating whether this <see cref="PiggySync.GtkGui.IMainView" /> auto sync.
-        /// </summary>
-        /// <value><c>true</c> if auto sync; otherwise, <c>false</c>.</value>
-        bool AutoSync { get; set; }
-
-        /// <summary>
         ///     Gets or sets a value indicating whether this <see cref="PiggySync.GtkGui.IMainView" /> use tcp.
         /// </summary>
         /// <value><c>true</c> if use tcp; otherwise, <c>false</c>.</value>
@@ -40,5 +34,9 @@ namespace PiggySync.GuiShared
         /// </summary>
         /// <value>The text files.</value>
         IEnumerable<TextFile> TextFiles { get; set; }
+
+        IEnumerable<string> BannedFiles { get; set; }
+
+        int KeepDeletedInfo { get; set; }
     }
 }

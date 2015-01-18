@@ -1,23 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using PiggySync.GuiShared;
 using PiggySync.Model;
 
 namespace PiggySync.WinApp
 {
-    public partial class HostsViewForm : Form , IHostView
+    public partial class HostsViewForm : Form, IHostView
     {
-        private HostsPresenter presenter;
+        private readonly HostsPresenter presenter;
+
         public HostsViewForm()
         {
             InitializeComponent();
-            this.presenter = new HostsPresenter(this);
+            presenter = new HostsPresenter(this);
         }
 
         public IEnumerable<PiggyRemoteHost> Hosts
         {
-            set { throw new NotImplementedException(); }
+            set
+            {
+                hostsListView.Clear();
+                hostsListView.Items.AddRange(value.
+                    Select(x => new ListViewItem(new[]
+                    {
+                        x.GetShortName(), x.Ip.ToString(),
+                        x is PiggyRemoteHostHistoryEntry
+                            ? ((PiggyRemoteHostHistoryEntry) x).LastSync.ToShortDateString()
+                            : string.Empty
+                    })).ToArray());
+            }
         }
 
         private void HostsViewForm_FormClosed(object sender, FormClosedEventArgs e)

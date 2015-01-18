@@ -12,12 +12,6 @@ namespace PiggySync.Domain
         public string SyncRootPath { get; set; }
 
         /// <summary>
-        ///     Gets or sets a value indicating whether this <see cref="PiggySync.GtkGui.IMainView" /> auto sync.
-        /// </summary>
-        /// <value><c>true</c> if auto sync; otherwise, <c>false</c>.</value>
-        public bool AutoSync { get; set; }
-
-        /// <summary>
         ///     Gets or sets a value indicating whether this <see cref="PiggySync.GtkGui.IMainView" /> use tcp.
         /// </summary>
         /// <value><c>true</c> if use tcp; otherwise, <c>false</c>.</value>
@@ -51,7 +45,7 @@ namespace PiggySync.Domain
 		/// Gets or sets the deleted file store time.
 		/// </summary>
 		/// <value>The deleted file store time.</value>
-		public TimeSpan DeletedFileStore { get; set; } 
+		public Int32 DeletedFileStore { get; set; } 
     }
 }
 	

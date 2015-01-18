@@ -175,16 +175,10 @@ namespace PiggySync.Core
 
         public void CreateNewConnection(PiggyRemoteHost host)
         {
-            if (!hosts.Contains(host) && PiggyRemoteHost.Me.Name != host.Name)
+            if (!hosts.Contains(host) && PiggyRemoteHost.Me.Name == host.Name)
             {
-                foreach (var x in hosts)
-                {
-                    if (x.Name == host.Name && x.Ip != x.Ip)
-                    {
-                        //hosts.Remove(x); 
-                        break;
-                    }
-                }
+                var newHosts = hosts.Where(x => x.Name != host.Name || x.Ip == host.Ip);
+                hosts = new ConcurrentBag<PiggyRemoteHost>(newHosts);
                 Debug.WriteLine("Addding new host: " + host.Name);
                 hosts.Add(host);
                 RequestSync(host);

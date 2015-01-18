@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using PiggySync.Domain;
 using PiggySync.GuiShared;
 
 namespace PiggySync.WinApp
 {
-    public partial class SettingsForm : Form , ISettingsView
+    public partial class SettingsForm : Form, ISettingsView
     {
         private SettingsPresenter presenter;
 
@@ -20,63 +23,66 @@ namespace PiggySync.WinApp
             set { pathTextBox.Text = value; }
         }
 
-        public bool AutoSync
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
 
         public bool UseTcp
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return useTcp.Checked; }
+            set { useTcp.Checked = value; }
         }
 
         public bool UseEncryption
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return useEncryption.Checked; }
+            set { useEncryption.Checked = value; }
         }
 
         public string ComputerName
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return computerNameTextBox.Text; }
+            set { computerNameTextBox.Text = value; }
         }
 
         public System.Collections.Generic.IEnumerable<Domain.TextFile> TextFiles
         {
-            get
+            get { return textFiles.Lines.Select(x => new TextFile {Extension = x}); }
+            set { textFiles.Lines = value.Select(x => x.Extension).ToArray(); }
+        }
+
+
+        public IEnumerable<string> BannedFiles
+        {
+            get { return bannedFiles.Lines; }
+            set { bannedFiles.Lines = value.ToArray(); }
+        }
+
+        public int KeepDeletedInfo
+        {
+            get { return Convert.ToInt32(deletedUpDown.Value); }
+            set { deletedUpDown.Value = value; }
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (presenter.SaveSettings())
             {
-                throw new NotImplementedException();
+                this.Close();
             }
-            set
+            else
             {
-                throw new NotImplementedException();
+                MessageBox.Show("Error in configuration");
+            }
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void selectPath_Click(object sender, EventArgs e)
+        {
+            if (folderSelector.ShowDialog() == DialogResult.OK)
+            {
+                SyncRootPath = folderSelector.SelectedPath;
             }
         }
     }

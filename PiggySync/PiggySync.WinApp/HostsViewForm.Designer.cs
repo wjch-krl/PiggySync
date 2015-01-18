@@ -36,28 +36,28 @@
             "acascasdas",
             "192.168.1.2",
             "14-10-2013"}, -1);
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.hostsListView = new System.Windows.Forms.ListView();
             this.hostNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.hostIpHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lastSyncHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // listView1
+            // hostsListView
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.hostsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.hostNameHeader,
             this.hostIpHeader,
             this.lastSyncHeader});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            this.hostsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hostsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2});
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(390, 295);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.hostsListView.Location = new System.Drawing.Point(0, 0);
+            this.hostsListView.Name = "hostsListView";
+            this.hostsListView.Size = new System.Drawing.Size(390, 295);
+            this.hostsListView.TabIndex = 1;
+            this.hostsListView.UseCompatibleStateImageBehavior = false;
+            this.hostsListView.View = System.Windows.Forms.View.Details;
             // 
             // hostNameHeader
             // 
@@ -79,7 +79,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(390, 295);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.hostsListView);
             this.Name = "HostsViewForm";
             this.Text = "HostsViewForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HostsViewForm_FormClosed);
@@ -89,7 +89,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView hostsListView;
         private System.Windows.Forms.ColumnHeader hostNameHeader;
         private System.Windows.Forms.ColumnHeader hostIpHeader;
         private System.Windows.Forms.ColumnHeader lastSyncHeader;
