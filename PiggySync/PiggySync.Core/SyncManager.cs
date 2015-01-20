@@ -55,18 +55,18 @@ namespace PiggySync.Core
 		{
 			do
 			{
-				TypeResolver.ThreadHelper.Sleep (100000);
-				PiggyRemoteHost host;
-				var cleaned = new ConcurrentBag<PiggyRemoteHost> ();
-				while (hosts.TryTake (out host))
-				{
-					if (clientQueue.Contains (host) || serverQueue.Contains (host))
-					{
-						cleaned.Add (host);
-					}
-				}
-				hosts = cleaned;
-				NotyfyAboutHostUpade ();
+//				TypeResolver.ThreadHelper.Sleep (100000);
+//				PiggyRemoteHost host;
+//				var cleaned = new ConcurrentBag<PiggyRemoteHost> ();
+//				while (hosts.TryTake (out host))
+//				{
+//					if (clientQueue.Contains (host) || serverQueue.Contains (host))
+//					{
+//						cleaned.Add (host);
+//					}
+//				}
+//				hosts = cleaned;
+//				NotyfyAboutHostUpade ();
 			} while (true);
 		}
 

@@ -17,12 +17,12 @@ namespace PiggySync.Domain.Concrete
         static XmlSettingsRepository() //TODO DAFUCK!!!!!!!!!!!!!!!!!!!!!!!!!! Static ctor is not being caled
         {
             Instance = new XmlSettingsRepository();
-			SettingsPath = Path.Combine(Common.TypeResolver.EnviromentHelper.DocumentsPath, ".PiggySync");
-			SettingsFile = Path.Combine(SettingsPath, "Piggy.xml");
-			if (TypeResolver.DirectoryHelper.Exists (SettingsPath))
-			{
-				TypeResolver.DirectoryHelper.CreateHiddenDirectory (".PiggySync");
-			}
+//			SettingsPath = Path.Combine(Common.TypeResolver.EnviromentHelper.DocumentsPath, ".PiggySync");
+//			SettingsFile = Path.Combine(SettingsPath, "Piggy.xml");
+//			if (TypeResolver.DirectoryHelper.Exists (SettingsPath))
+//			{
+//				TypeResolver.DirectoryHelper.CreateHiddenDirectory (SettingsPath);
+//			}
         }
 
         private XmlSettingsRepository()
@@ -31,7 +31,7 @@ namespace PiggySync.Domain.Concrete
             SettingsFile = Path.Combine(SettingsPath, "Piggy.xml");
 			if (TypeResolver.DirectoryHelper.Exists (SettingsPath))
             {
-				TypeResolver.DirectoryHelper.CreateHiddenDirectory (".PiggySync");
+				TypeResolver.DirectoryHelper.CreateHiddenDirectory (SettingsPath);
             }
             settings = LoadSettings();
         }

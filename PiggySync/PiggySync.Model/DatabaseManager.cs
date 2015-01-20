@@ -15,12 +15,16 @@ namespace PiggySync.Model
 		private static DatabaseManager instance;
 		private readonly string databasePath;
 		private readonly object dbLock;
-		ISQLitePlatform sqlitePlatform;
+		private ISQLitePlatform sqlitePlatform;
 
 		private DatabaseManager (ISQLitePlatform sqlitePlatform)
 		{
 			string DataBaseName = "PiggyDB.sqlite";
 			string libraryPath = XmlSettingsRepository.SettingsPath;
+			if (!TypeResolver.DirectoryHelper.Exists (libraryPath))
+			{
+				TypeResolver.DirectoryHelper.CreateHiddenDirectory (libraryPath);
+			}
 			databasePath = Path.Combine (libraryPath, DataBaseName);
 			dbLock = new object ();
 			this.sqlitePlatform = sqlitePlatform;

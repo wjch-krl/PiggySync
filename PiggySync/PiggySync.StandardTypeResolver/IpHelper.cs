@@ -1,6 +1,10 @@
 ﻿using System;
 using PiggySync.Common;
 using System.Net;
+using System.Net.Sockets;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
 
 namespace PiggySync.StandardTypeResolver
 {
@@ -10,16 +14,12 @@ namespace PiggySync.StandardTypeResolver
 		{
 			return new StandardIPAddress (new IPAddress (adrBytes));
 		}
-			
+
 		public IIPAddress Any//TODO
 		{
 			get
 			{
 				return new StandardIPAddress (IPAddress.Any);
-			}
-			set
-			{
-				throw new NotImplementedException ();
 			}
 		}
 
@@ -29,24 +29,29 @@ namespace PiggySync.StandardTypeResolver
 			{
 				return new StandardIPAddress (IPAddress.Broadcast);
 			}
-			set
-			{
-				throw new NotImplementedException ();
-			}
 		}
+
+		private IPAddress localIp = LocalIPAddress ();
 
 		public IIPAddress LocalIp
 		{
 			get
 			{
-				return new StandardIPAddress (IPAddress.Loopback);
-			}
-			set
-			{
-				throw new NotImplementedException ();
+				return new StandardIPAddress (localIp);
 			}
 		}
 
+		private static IPAddress LocalIPAddress ()
+		{
+			if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+			{
+				return null;
+			}
+			IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+			return host
+				.AddressList
+				.LastOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
+		}
 	}
 }
 

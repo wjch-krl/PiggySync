@@ -16,23 +16,6 @@ namespace PiggySync.Common
         {
             IIPAddress host;
             IIPAddress localIP = TypeResolver.IpHelper.LocalIp;
-//            try
-//            {
-//                var Dns = TypeResolver.IDns;
-//                host = Dns.GetHostEntry(Dns.GetHostName());
-//                foreach (IIPAddress ip in host.AddressList)
-//                {
-//                    if (ip.AddressFamilyIsInterNetwork && ip != TypeResolver.IpHelper.Any)
-//                    {
-//                        localIP = ip;
-//                        break;
-//                    }
-//                }
-//            }
-//            catch (Exception e)
-//            {
-//                Debug.WriteLine("Create Local IP: {0}", e);
-//            }
             return localIP;
         }
 

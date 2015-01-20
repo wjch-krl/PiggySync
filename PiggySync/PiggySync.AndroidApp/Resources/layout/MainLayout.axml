@@ -30,7 +30,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="263.3dp"
-                        android:id="@+id/imageView1"
+                        android:id="@+id/statusImageView"
                         android:layout_marginBottom="21.8dp"
                         android:src="@drawable/Icon"
                         android:layout_marginTop="34.1dp" />
@@ -39,7 +39,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView1"
+                        android:id="@+id/statusTextView"
                         android:layout_marginLeft="18.5dp" />
                     <ProgressBar
                         style="?android:attr/progressBarStyleHorizontal"

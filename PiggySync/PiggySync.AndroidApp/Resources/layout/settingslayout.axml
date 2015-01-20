@@ -1,65 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <CheckBox
-        android:text="Enable Encryption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox2" />
-    <CheckBox
-        android:text="Use TCP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox1" />
-    <TextView
-        android:text="Sync root path:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/syncRootPathEdit" />
-    <TextView
-        android:text="Keep deleted files information for:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/keepDeletedFilesLabel" />
-    <EditText
-        android:inputType="number"
-        android:layout_width="298.6dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/deletedStore" />
-    <TextView
-        android:text="Text files extensions:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textFilesLabel" />
-    <EditText
-        android:inputType="textMultiLine"
-        android:layout_width="match_parent"
-        android:layout_height="73.3dp"
-        android:id="@+id/textFilesEdit" />
-    <TextView
-        android:text="Synchronization Excluded Files:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4" />
-    <EditText
-        android:inputType="textMultiLine"
-        android:layout_width="match_parent"
-        android:layout_height="76.1dp"
-        android:id="@+id/bannedFilesEdit"
-        android:layout_marginBottom="0.0dp" />
-    <Button
-        android:text="Save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/saveButton" />
-</LinearLayout>
+<ScrollView xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/scrollView1">
+    <LinearLayout
+        p1:orientation="vertical"
+        p1:layout_width="match_parent"
+        p1:layout_height="match_parent"
+        p1:id="@+id/linearLayout1">
+        <CheckBox
+            p1:text="Enable Encryption"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/useEncyption" />
+        <CheckBox
+            p1:text="Use TCP"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/useTcp" />
+        <TextView
+            p1:text="Sync root path:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/textView1" />
+        <EditText
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/syncRootPathEdit" />
+        <TextView
+            p1:text="Device Name:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/textView5" />
+        <EditText
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/deviceName" />
+        <TextView
+            p1:text="Keep deleted files information for:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/keepDeletedFilesLabel" />
+        <EditText
+            p1:inputType="number"
+            p1:layout_width="298.6dp"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/deletedStore" />
+        <TextView
+            p1:text="Text files extensions:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/textFilesLabel" />
+        <EditText
+            p1:inputType="textMultiLine"
+            p1:layout_width="match_parent"
+            p1:layout_height="73.3dp"
+            p1:id="@+id/textFilesEdit" />
+        <TextView
+            p1:text="Synchronization Excluded Files:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/textView4" />
+        <EditText
+            p1:inputType="textMultiLine"
+            p1:layout_width="match_parent"
+            p1:layout_height="76.1dp"
+            p1:id="@+id/bannedFilesEdit"
+            p1:layout_marginBottom="0.0dp" />
+        <Button
+            p1:text="Save"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/saveButton" />
+        <ScrollView
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/scrollView1" />
+    </LinearLayout>
+</ScrollView>

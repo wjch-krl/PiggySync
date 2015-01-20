@@ -26,6 +26,8 @@ namespace PiggySync.AndroidApp
 		
 		public static void UpdateIdValues()
 		{
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::PiggySync.AndroidApp.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::PiggySync.AndroidApp.Resource.String.Hello;
 			global::PPiggySync.AndroidFileWatcher.Resource.String.library_name = global::PiggySync.AndroidApp.Resource.String.library_name;
 		}
 		
@@ -1160,17 +1162,11 @@ namespace PiggySync.AndroidApp
 			// aapt resource value: 0x7f07000f
 			public const int always = 2131165199;
 			
-			// aapt resource value: 0x7f070052
-			public const int bannedFilesEdit = 2131165266;
+			// aapt resource value: 0x7f070056
+			public const int bannedFilesEdit = 2131165270;
 			
 			// aapt resource value: 0x7f07000a
 			public const int beginning = 2131165194;
-			
-			// aapt resource value: 0x7f07004b
-			public const int checkBox1 = 2131165259;
-			
-			// aapt resource value: 0x7f07004a
-			public const int checkBox2 = 2131165258;
 			
 			// aapt resource value: 0x7f070029
 			public const int checkbox = 2131165225;
@@ -1184,8 +1180,11 @@ namespace PiggySync.AndroidApp
 			// aapt resource value: 0x7f070024
 			public const int default_activity_button = 2131165220;
 			
-			// aapt resource value: 0x7f07004e
-			public const int deletedStore = 2131165262;
+			// aapt resource value: 0x7f070052
+			public const int deletedStore = 2131165266;
+			
+			// aapt resource value: 0x7f070050
+			public const int deviceName = 2131165264;
 			
 			// aapt resource value: 0x7f070012
 			public const int dialog = 2131165202;
@@ -1226,11 +1225,8 @@ namespace PiggySync.AndroidApp
 			// aapt resource value: 0x7f070023
 			public const int image = 2131165219;
 			
-			// aapt resource value: 0x7f070044
-			public const int imageView1 = 2131165252;
-			
-			// aapt resource value: 0x7f07004d
-			public const int keepDeletedFilesLabel = 2131165261;
+			// aapt resource value: 0x7f070051
+			public const int keepDeletedFilesLabel = 2131165265;
 			
 			// aapt resource value: 0x7f070042
 			public const int linearLayout1 = 2131165250;
@@ -1280,8 +1276,11 @@ namespace PiggySync.AndroidApp
 			// aapt resource value: 0x7f07002b
 			public const int radio = 2131165227;
 			
-			// aapt resource value: 0x7f070053
-			public const int saveButton = 2131165267;
+			// aapt resource value: 0x7f070057
+			public const int saveButton = 2131165271;
+			
+			// aapt resource value: 0x7f07004a
+			public const int scrollView1 = 2131165258;
 			
 			// aapt resource value: 0x7f070035
 			public const int search_badge = 2131165237;
@@ -1328,11 +1327,17 @@ namespace PiggySync.AndroidApp
 			// aapt resource value: 0x7f07001c
 			public const int split_action_bar = 2131165212;
 			
+			// aapt resource value: 0x7f070044
+			public const int statusImageView = 2131165252;
+			
+			// aapt resource value: 0x7f070045
+			public const int statusTextView = 2131165253;
+			
 			// aapt resource value: 0x7f07003c
 			public const int submit_area = 2131165244;
 			
-			// aapt resource value: 0x7f07004c
-			public const int syncRootPathEdit = 2131165260;
+			// aapt resource value: 0x7f07004e
+			public const int syncRootPathEdit = 2131165262;
 			
 			// aapt resource value: 0x7f070041
 			public const int tabHost1 = 2131165249;
@@ -1340,17 +1345,20 @@ namespace PiggySync.AndroidApp
 			// aapt resource value: 0x7f070002
 			public const int tabMode = 2131165186;
 			
-			// aapt resource value: 0x7f070050
-			public const int textFilesEdit = 2131165264;
+			// aapt resource value: 0x7f070054
+			public const int textFilesEdit = 2131165268;
+			
+			// aapt resource value: 0x7f070053
+			public const int textFilesLabel = 2131165267;
+			
+			// aapt resource value: 0x7f07004d
+			public const int textView1 = 2131165261;
+			
+			// aapt resource value: 0x7f070055
+			public const int textView4 = 2131165269;
 			
 			// aapt resource value: 0x7f07004f
-			public const int textFilesLabel = 2131165263;
-			
-			// aapt resource value: 0x7f070045
-			public const int textView1 = 2131165253;
-			
-			// aapt resource value: 0x7f070051
-			public const int textView4 = 2131165265;
+			public const int textView5 = 2131165263;
 			
 			// aapt resource value: 0x7f070027
 			public const int title = 2131165223;
@@ -1358,8 +1366,14 @@ namespace PiggySync.AndroidApp
 			// aapt resource value: 0x7f07001d
 			public const int up = 2131165213;
 			
+			// aapt resource value: 0x7f07004b
+			public const int useEncyption = 2131165259;
+			
 			// aapt resource value: 0x7f070004
 			public const int useLogo = 2131165188;
+			
+			// aapt resource value: 0x7f07004c
+			public const int useTcp = 2131165260;
 			
 			// aapt resource value: 0x7f070010
 			public const int withText = 2131165200;
@@ -1493,6 +1507,12 @@ namespace PiggySync.AndroidApp
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f0a0012
+			public const int ApplicationName = 2131361810;
+			
+			// aapt resource value: 0x7f0a0011
+			public const int Hello = 2131361809;
+			
 			// aapt resource value: 0x7f0a0000
 			public const int abc_action_bar_home_description = 2131361792;
 			
@@ -1541,17 +1561,17 @@ namespace PiggySync.AndroidApp
 			// aapt resource value: 0x7f0a000f
 			public const int abc_toolbar_collapse_description = 2131361807;
 			
-			// aapt resource value: 0x7f0a0012
-			public const int app_name = 2131361810;
+			// aapt resource value: 0x7f0a0014
+			public const int app_name = 2131361812;
 			
 			// aapt resource value: 0x7f0a0010
 			public const int library_name = 2131361808;
 			
-			// aapt resource value: 0x7f0a0013
-			public const int status = 2131361811;
+			// aapt resource value: 0x7f0a0015
+			public const int status = 2131361813;
 			
-			// aapt resource value: 0x7f0a0011
-			public const int sync_now = 2131361809;
+			// aapt resource value: 0x7f0a0013
+			public const int sync_now = 2131361811;
 			
 			static String()
 			{

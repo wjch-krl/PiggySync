@@ -58,6 +58,7 @@ namespace PiggySync.StandardTypeResolver
 		{
 			get
 			{
+				//return Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
 				return Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
 			}
 		}
